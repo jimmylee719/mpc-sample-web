@@ -22,6 +22,7 @@ export const s1_02: Lesson = {
     '你知道紅字要按住 SHIFT 才生效',
     '你知道 K1 到 K3 是絕對位置，需要 Takeover',
     '你能從螢幕上下兩排看出 B 鍵與 K 旋鈕現在管什麼',
+    '你看得懂按鍵亮度：亮的正在用、微亮可以用、不亮用不了',
   ],
   steps: [
     // ── 第 1 段 · 三種顏色 ──────────────────────────────
@@ -60,6 +61,18 @@ export const s1_02: Lesson = {
     },
     {
       ch: 0,
+      say: '按鍵還會用亮度說話。<b>亮的是正在用</b>，微亮的是可以用，完全不亮的是現在用不了。',
+      targets: ['sample', 'seq', 'chop', 'lev16'],
+      screen: { t1: 'A01 Kick 02' },
+      hear: '—',
+      note: {
+        kind: 'tip',
+        title: '一個實際例子',
+        body: '在 Sequence Mode 下不能用 Chop 與 16 Levels，那兩顆的燈會全暗。',
+      },
+    },
+    {
+      ch: 0,
       say: '<b>MAIN VOLUME</b> 管喇叭與耳機音量。機器有內建喇叭，選 Mic 錄音時會自動關掉。',
       targets: ['vol'],
       screen: { t1: 'VOLUME' },
@@ -76,6 +89,14 @@ export const s1_02: Lesson = {
       ch: 1,
       say: '按住 <b>SHIFT</b> 不要放。整個面板的紅色小字同時亮起來。那些字就是每顆鍵的第二功能。',
       targets: ['shift'],
+      shift: true,
+      screen: { t1: 'SHIFT' },
+      hear: '—',
+    },
+    {
+      ch: 1,
+      say: '按住 SHIFT 時燈也會變。<b>有第二功能的鍵會轉成紅色</b>。微亮代表還沒啟用，明亮代表正在用。',
+      targets: ['shift', 'sample', 'seq', 'padfx', 'knobfx'],
       shift: true,
       screen: { t1: 'SHIFT' },
       hear: '—',
