@@ -17,7 +17,8 @@ export type IssueCode =
   | 'SENTENCE_TOO_LONG'   // 單句超過 40 字
   | 'BAD_PREREQUISITE'    // prerequisites 指向不存在的課
   | 'CH_OUT_OF_RANGE'     // ch 索引超出 chapters 範圍
-  | 'DUPLICATE_ID';       // lesson id 重複
+  | 'DUPLICATE_ID'        // lesson id 重複
+  | 'BAD_SLUG';           // 網址 slug 格式不合 SEO 規範或重複
 
 export interface Issue {
   code: IssueCode;
@@ -94,6 +95,29 @@ export function validateLesson(input: unknown, knownLessonIds: ReadonlySet<strin
   }
   if (!isNonEmptyString(input.title)) {
     issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'title 必填' });
+  }
+
+  // slug：SEO 規範（PROJECT-PLAN §13）
+  if (!isNonEmptyString(input.slug)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'slug 必填（網址用英文 slug）' });
+  } else {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.slug)) {
+      issues.push({
+        code: 'BAD_SLUG',
+        where: at(),
+        detail: `slug「${input.slug}」必須是全小寫英數與連字號`,
+      });
+    }
+    if (/(^|-)mpc(-|$)/.test(input.slug)) {
+      issues.push({
+        code: 'BAD_SLUG',
+        where: at(),
+        detail: 'slug 不得單獨使用「mpc」（會撞上 MPC-HC 播放器的搜尋結果）',
+      });
+    }
+    if (/^\d{4}(-\d{2})?/.test(input.slug)) {
+      issues.push({ code: 'BAD_SLUG', where: at(), detail: 'slug 不得含日期前綴' });
+    }
   }
   if (!isNonEmptyString(input.outcome)) {
     issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'outcome 必填（做完手上有什麼）' });
@@ -220,6 +244,7 @@ export function validateLesson(input: unknown, knownLessonIds: ReadonlySet<strin
 export function validateLessons(lessons: readonly unknown[]): Issue[] {
   const issues: Issue[] = [];
   const seen = new Set<string>();
+  const seenSlugs = new Set<string>();
   const knownIds = new Set<string>();
 
   for (const l of lessons) {
@@ -232,6 +257,15 @@ export function validateLessons(lessons: readonly unknown[]): Issue[] {
         issues.push({ code: 'DUPLICATE_ID', where: l.id, detail: `lesson id「${l.id}」重複` });
       }
       seen.add(l.id);
+
+      if (isNonEmptyString(l.slug)) {
+        // 同一 Season 內 slug 不可重複，否則兩課會搶同一個網址
+        const key = `s${String(l.season)}/${l.slug}`;
+        if (seenSlugs.has(key)) {
+          issues.push({ code: 'BAD_SLUG', where: l.id, detail: `網址「${key}」與其他課程重複` });
+        }
+        seenSlugs.add(key);
+      }
     }
     issues.push(...validateLesson(l, knownIds));
   }

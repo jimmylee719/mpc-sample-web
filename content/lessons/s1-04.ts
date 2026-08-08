@@ -2,6 +2,7 @@ import type { Lesson } from '@/types/lesson';
 
 export const s1_04: Lesson = {
   id: 's1-04',
+  slug: 'projects-samples-microsd',
   season: 1,
   index: 4,
   title: '專案、樣本、記憶卡',
@@ -13,7 +14,7 @@ export const s1_04: Lesson = {
   verifiedDate: '2026-08-08',
   prerequisites: ['s1-01'],
   sources: [
-    'Akai 官方使用手冊 v1.3.0 (RevA)：容量與規格數字',
+    'Akai 官方使用手冊 v1.3.0 (RevA)：容量規格、Project 選單、SD Card Access、Song 匯出',
     '操作流程為實機實測後自行撰寫',
   ],
   checkpoints: [
@@ -86,7 +87,7 @@ export const s1_04: Lesson = {
       note: {
         kind: 'warn',
         title: '尚未驗證',
-        body: 'Recall 能撈回幾秒，官方手冊內文與規格表寫得不一樣。實測前不寫死。',
+        body: '官方手冊規格表寫 30 秒，內文兩處寫 25 秒。同一份手冊自己不一致，實測前不寫死。',
       },
     },
 
@@ -100,26 +101,34 @@ export const s1_04: Lesson = {
     },
     {
       ch: 2,
-      say: '<b>買卡前先確認規格</b>。容量上限與格式我們還沒實測，買錯會白花錢。',
+      say: '<b>記憶卡不含在盒裝內</b>，官方手冊寫得很清楚。買機器時記得一起買一張。',
       targets: ['r_usb'],
       screen: { t1: 'STORAGE' },
       hear: '—',
       note: {
         kind: 'warn',
         title: '尚未驗證',
-        body: 'microSD 的容量上限與檔案系統格式，我們還沒實測確認。',
+        body: 'microSD 的容量上限與檔案系統格式，官方手冊與 FAQ 都沒寫。買大容量卡前先問官方。',
       },
     },
     {
       ch: 2,
-      say: '<b>作品要拿得出來</b>才算數。匯出的檔案存在哪裡，我們還沒實測確認。',
-      targets: ['r_usb'],
-      screen: { t1: 'EXPORT' },
+      say: '<b>作品要拿得出來</b>才算數。歌做完在 Song 頁按 <b>B1</b> 匯出，再按 <b>B2</b> 存成音檔。',
+      targets: ['b1', 'b2'],
+      screen: { t1: 'EXPORT AUDIO MIXDOWN' },
+      hear: '—',
+    },
+    {
+      ch: 2,
+      say: '傳到電腦走 Project 選單的 <b>SD Card Access</b>。記憶卡會變成電腦上的一個外接磁碟。',
+      targets: ['p16'],
+      shift: true,
+      screen: { t1: 'SD CARD ACCESS' },
       hear: '—',
       note: {
         kind: 'warn',
         title: '尚未驗證',
-        body: '沒插記憶卡能不能取出作品，是我們最想確認的一項。確認之前先準備一張卡。',
+        body: '沒插卡能不能取出作品，官方手冊兩處說法不一致。這是我們最想確認的一項。',
       },
     },
 

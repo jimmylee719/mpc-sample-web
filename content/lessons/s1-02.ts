@@ -2,6 +2,7 @@ import type { Lesson } from '@/types/lesson';
 
 export const s1_02: Lesson = {
   id: 's1-02',
+  slug: 'panel-and-shift-functions',
   season: 1,
   index: 2,
   title: '讀懂面板：紅字的世界',
@@ -66,7 +67,7 @@ export const s1_02: Lesson = {
       note: {
         kind: 'warn',
         title: '尚未驗證',
-        body: '內建喇叭是不是單聲道，我們還沒實測。確認之前不寫成肯定說法。',
+        body: '手冊規格寫「3 瓦內建喇叭」，用的是單數。是不是單聲道，官方沒有明寫。',
       },
     },
 

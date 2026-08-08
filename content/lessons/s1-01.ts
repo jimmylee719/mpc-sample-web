@@ -2,6 +2,7 @@ import type { Lesson } from '@/types/lesson';
 
 export const s1_01: Lesson = {
   id: 's1-01',
+  slug: 'make-your-first-beat',
   season: 1,
   index: 1,
   title: '你的第一個 30 分鐘',

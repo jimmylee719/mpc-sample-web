@@ -9,6 +9,7 @@ import type { Lesson } from '../../types/lesson';
  */
 export const validLesson: Lesson = {
   id: 's0-00',
+  slug: 'validator-control-fixture',
   season: 1,
   index: 0,
   title: '驗證腳本對照組',

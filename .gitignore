@@ -10,6 +10,7 @@ next-env.d.ts
 
 # production
 /build
+/out
 
 # 環境變數與憑證 — 絕不進版控
 .env

@@ -16,9 +16,9 @@ export function getLesson(id: string): Lesson | undefined {
   return lessonById.get(id);
 }
 
-/** 課程頁網址：/learn/s1/01 */
+/** 課程頁網址：/learn/s1/make-your-first-beat */
 export function lessonHref(lesson: Lesson): string {
-  return `/learn/s${lesson.season}/${String(lesson.index).padStart(2, '0')}`;
+  return `/learn/s${lesson.season}/${lesson.slug}`;
 }
 
 export function lessonsBySeason(season: SeasonNumber): Lesson[] {
@@ -26,10 +26,8 @@ export function lessonsBySeason(season: SeasonNumber): Lesson[] {
 }
 
 /** 依網址參數找課，找不到回 undefined */
-export function findLesson(season: string, index: string): Lesson | undefined {
-  return lessons.find(
-    (l) => `s${l.season}` === season && String(l.index).padStart(2, '0') === index,
-  );
+export function findLesson(season: string, slug: string): Lesson | undefined {
+  return lessons.find((l) => `s${l.season}` === season && l.slug === slug);
 }
 
 export const SEASONS: ReadonlyArray<{ n: SeasonNumber; title: string; outcome: string }> = [

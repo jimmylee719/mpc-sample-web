@@ -100,6 +100,11 @@ export type SeasonNumber = 1 | 2 | 3 | 4 | 5;
 export interface Lesson {
   /** 例：'s1-01' */
   id: string;
+  /**
+   * 網址用的英文 slug，例：'make-your-first-beat'。
+   * 全小寫英文與連字號，不含日期與分類前綴，不得單獨使用「mpc」。
+   */
+  slug: string;
   season: SeasonNumber;
   index: number;
   title: string;

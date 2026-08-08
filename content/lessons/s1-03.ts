@@ -2,6 +2,7 @@ import type { Lesson } from '@/types/lesson';
 
 export const s1_03: Lesson = {
   id: 's1-03',
+  slug: 'firmware-update',
   season: 1,
   index: 3,
   title: '開機第一件事：韌體更新',
@@ -13,19 +14,20 @@ export const s1_03: Lesson = {
   verifiedDate: '2026-08-08',
   prerequisites: ['s1-01'],
   sources: [
-    'Akai 官方網站韌體下載頁',
+    'Akai 官方支援：MPC Sample Firmware Update（更新方式、Windows 10 例外、Update Mode 組合鍵）',
     'Akai 官方使用手冊 v1.3.0 (RevA)',
   ],
   checkpoints: [
     '機器已經更新到官方最新韌體',
     '更新之前的專案已經先存過一次',
     '你知道只用官方韌體，不碰第三方韌體',
+    '你知道自己的系統要走瀏覽器還是走桌面程式',
   ],
   steps: [
     // ── 第 1 段 · 為什麼先做 ────────────────────────────
     {
       ch: 0,
-      say: '這是全站唯一需要電腦的一課。<b>先更新韌體，再開始學</b>。舊韌體會讓後面的課對不上。',
+      say: '這是全站唯一需要電腦的一課。<b>先更新韌體，再開始學</b>。舊韌體會讓後面的課對不上。好消息是幾乎不用裝東西。',
       targets: ['r_power'],
       screen: { t1: 'POWER' },
       hear: '—',
@@ -68,22 +70,41 @@ export const s1_03: Lesson = {
     // ── 第 3 段 · 更新中 ────────────────────────────────
     {
       ch: 2,
-      say: '到 Akai 官方網站下載這台機器的韌體更新程式。<b>只用官方來源</b>，不要用第三方韌體。',
+      say: '把機器用 <b>USB-C</b> 接上電腦，開機。更新是<b>用瀏覽器</b>做的，不必裝軟體。',
       targets: ['r_usb'],
       screen: { t1: 'USB' },
       hear: '—',
+      note: {
+        kind: 'tip',
+        title: '所以不挑系統',
+        body: 'Mac、Linux 都可以。有 USB-C 埠的 iOS 裝置也行，官方明說支援。',
+      },
     },
     {
       ch: 2,
-      say: '把機器用 <b>USB-C</b> 接上電腦。照官方程式畫面上的指示一步一步做。',
+      say: '在瀏覽器網址列輸入 <b>mpc-sample.local</b>。連不上就改用 <b>192.168.155.1</b>。',
       targets: ['r_usb'],
       screen: { t1: 'UPDATING' },
       hear: '—',
       note: {
         kind: 'tip',
         title: '本站不轉寫官方步驟',
-        body: '更新流程以官方頁面為準。我們不改寫也不翻譯，避免官方一改版就過期。',
+        body: '畫面上要按哪裡以官方頁面為準。我們不改寫也不翻譯，避免官方改版就過期。',
       },
+    },
+    {
+      ch: 2,
+      say: 'Windows 10 是唯一的例外。要到官方下載頁抓 <b>MPC Sample Updater</b> 桌面程式。',
+      targets: ['r_usb'],
+      screen: { t1: 'UPDATING' },
+      hear: '—',
+    },
+    {
+      ch: 2,
+      say: 'Windows 10 還要進 Update Mode。<b>開機同時按住 CHOP、MUTE、SAMPLE SELECT</b>。',
+      targets: ['chop', 'mute', 'ssel'],
+      screen: { t1: 'UPDATE MODE' },
+      hear: '—',
     },
     {
       ch: 2,
@@ -91,17 +112,10 @@ export const s1_03: Lesson = {
       targets: ['r_usb', 'r_power'],
       screen: { t1: 'UPDATING' },
       hear: '—',
-    },
-    {
-      ch: 2,
-      say: 'Windows 10 使用者要多注意。<b>更新前先查官方支援頁</b>的系統需求。',
-      targets: ['r_usb'],
-      screen: { t1: 'UPDATING' },
-      hear: '—',
       note: {
         kind: 'warn',
-        title: '尚未驗證',
-        body: 'Windows 10 的例外狀況我們還沒實測。確認之前不寫成肯定說法。',
+        title: '官方唯一的明確警告',
+        body: '官方支援頁只強調一件事：更新進行中不要拔線。跑完機器會自己重開。',
       },
     },
 

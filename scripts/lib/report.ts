@@ -11,6 +11,7 @@ const LABEL: Record<IssueCode, string> = {
   BAD_PREREQUISITE: '前置課程不存在',
   CH_OUT_OF_RANGE: 'ch 超出章節範圍',
   DUPLICATE_ID: 'lesson id 重複',
+  BAD_SLUG: '網址 slug 不合規範',
 };
 
 export function labelOf(code: IssueCode): string {

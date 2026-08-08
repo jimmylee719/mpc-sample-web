@@ -10,6 +10,7 @@
  */
 export const brokenLesson = {
   id: 's9-99',
+  slug: 'broken-fixture',
   season: 1,
   index: 99,
   title: '故意寫錯的測試課',
