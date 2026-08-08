@@ -5,12 +5,25 @@ import { s1_03 } from './s1-03';
 import { s1_04 } from './s1-04';
 import { s2_01 } from './s2-01';
 import { s2_02 } from './s2-02';
+import { s3_01 } from './s3-01';
+import { s3_02 } from './s3-02';
+import { s3_03 } from './s3-03';
+import { s3_04 } from './s3-04';
+import { s3_05 } from './s3-05';
+import { s3_06 } from './s3-06';
+import { s3_07 } from './s3-07';
+import { s3_08 } from './s3-08';
+import { s3_09 } from './s3-09';
 
 /**
  * 全站課程註冊表。加課只要 import 進來、放進這個陣列，
  * `npm run build` 會自動驗證，有錯就中止建置。
  */
-export const lessons: Lesson[] = [s1_01, s1_02, s1_03, s1_04, s2_01, s2_02];
+export const lessons: Lesson[] = [
+  s1_01, s1_02, s1_03, s1_04,
+  s2_01, s2_02,
+  s3_01, s3_02, s3_03, s3_04, s3_05, s3_06, s3_07, s3_08, s3_09,
+];
 
 export const lessonById = new Map<string, Lesson>(lessons.map((l) => [l.id, l]));
 
