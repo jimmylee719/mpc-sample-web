@@ -6,6 +6,7 @@ import { MpcPanel } from '@/components/mpc/MpcPanel';
 import { needsRearView } from '@/components/mpc/panel-layout';
 import { ChapterRail } from './ChapterRail';
 import { NoteBox } from './NoteBox';
+import { AudioClip } from './AudioClip';
 
 const STORAGE_PREFIX = 'mpc-sample:progress:';
 
@@ -118,6 +119,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
             </div>
           </dl>
 
+          {step.audio && <AudioClip path={step.audio} />}
           {step.note && <NoteBox note={step.note} />}
         </div>
 
