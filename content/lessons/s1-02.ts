@@ -1,0 +1,184 @@
+import type { Lesson } from '@/types/lesson';
+
+export const s1_02: Lesson = {
+  id: 's1-02',
+  season: 1,
+  index: 2,
+  title: '讀懂面板：紅字的世界',
+  outcome: '一張你自己看得懂的面板地圖',
+  minutes: 20,
+  chapters: ['三種顏色', '紅字的世界', '旋鈕的脾氣', '螢幕在教你'],
+  needsComputer: false,
+  firmwareVerified: '1.3.0',
+  verifiedDate: '2026-08-08',
+  prerequisites: ['s1-01'],
+  sources: [
+    'Akai 官方使用手冊 v1.3.0 (RevA)：按鍵名稱與第二功能',
+    '操作流程為實機實測後自行撰寫',
+  ],
+  checkpoints: [
+    '你能說出藍色、橘色、白色按鍵各管什麼',
+    '你知道紅字要按住 SHIFT 才生效',
+    '你知道 K1 到 K3 是絕對位置，需要 Takeover',
+    '你能從螢幕上下兩排看出 B 鍵與 K 旋鈕現在管什麼',
+  ],
+  steps: [
+    // ── 第 1 段 · 三種顏色 ──────────────────────────────
+    {
+      ch: 0,
+      say: '先看按鍵顏色。藍色是<b>模式鍵</b>，按下去整台機器換一種工作方式。<b>SAMPLE</b> 和 <b>SEQ</b> 是最常按的兩顆。',
+      targets: ['sample', 'seq'],
+      screen: { t1: 'A01 Kick 02' },
+      hear: '—',
+    },
+    {
+      ch: 0,
+      say: '右邊這四顆也是藍色，管的是<b>打擊墊怎麼反應</b>。<b>CHOP</b>、<b>LOOP</b>、<b>MUTE</b>、<b>16 LEVELS</b>，面板上寫著 PAD PLAY。',
+      targets: ['chop', 'loop', 'mute', 'lev16'],
+      screen: { t1: 'PAD PLAY' },
+      hear: '—',
+    },
+    {
+      ch: 0,
+      say: '橘色只有兩顆，都是效果。<b>PAD FX</b> 套在整段序列上。<b>KNOB FX</b> 才能指定某一顆 pad。',
+      targets: ['padfx', 'knobfx'],
+      screen: { t1: 'PAD FX' },
+      hear: '—',
+      note: {
+        kind: 'warn',
+        title: '這兩顆最多人搞反',
+        body: 'Pad FX 不能只套一顆 pad。要針對單一 pad 動手腳，用的是 Knob FX。',
+      },
+    },
+    {
+      ch: 0,
+      say: '白色是一般功能鍵。<b>ERASE</b>、<b>NOTE RPT</b>、<b>PAD BANK</b> 是三顆。<b>SAMPLE SEL</b> 和 <b>TAP TEMPO</b> 也是白的。',
+      targets: ['erase', 'nrep', 'ssel', 'tap', 'bank'],
+      screen: { t1: 'A01 Kick 02' },
+      hear: '—',
+    },
+    {
+      ch: 0,
+      say: '<b>MAIN VOLUME</b> 管喇叭與耳機音量。機器有內建喇叭，選 Mic 錄音時會自動關掉。',
+      targets: ['vol'],
+      screen: { t1: 'VOLUME' },
+      hear: '轉大聲時示範節奏跟著變大聲',
+      note: {
+        kind: 'warn',
+        title: '尚未驗證',
+        body: '內建喇叭是不是單聲道，我們還沒實測。確認之前不寫成肯定說法。',
+      },
+    },
+
+    // ── 第 2 段 · 紅字的世界 ────────────────────────────
+    {
+      ch: 1,
+      say: '按住 <b>SHIFT</b> 不要放。整個面板的紅色小字同時亮起來。那些字就是每顆鍵的第二功能。',
+      targets: ['shift'],
+      shift: true,
+      screen: { t1: 'SHIFT' },
+      hear: '—',
+    },
+    {
+      ch: 1,
+      say: '看 MODE 這四顆下面。<b>SAMPLE</b> 是 INPUT CONFIG，<b>SEQ</b> 是 STEP EDIT。<b>PAD FX</b> 是 FLEX BEAT，<b>KNOB FX</b> 是 FX SELECT。',
+      targets: ['sample', 'seq', 'padfx', 'knobfx'],
+      shift: true,
+      screen: { t1: 'INPUT CONFIG', tabs: ['Source', 'Monitor', 'Thresh'], bots: ['', '', ''] },
+      hear: '—',
+    },
+    {
+      ch: 1,
+      say: '紅字不只在按鍵下面。<b>每一顆 pad 上方也有一行</b>。那是 SHIFT 加這顆 pad 的功能。',
+      targets: ['pads'],
+      shift: true,
+      screen: { t1: 'SHIFT + PAD' },
+      hear: '—',
+    },
+    {
+      ch: 1,
+      say: 'PAD 11 上面寫 RESAMPLE。<b>按住 SHIFT 再按 PAD 11</b> 就是重新取樣。這是這台機器最重要的一招。',
+      targets: ['p11'],
+      shift: true,
+      screen: { t1: 'RESAMPLE' },
+      hear: '—',
+    },
+    {
+      ch: 1,
+      say: 'PAD 16 上面寫 PROJECT。<b>按住 SHIFT 再按 PAD 16</b> 打開專案選單。存檔、載入都在這裡。',
+      targets: ['p16'],
+      shift: true,
+      screen: { t1: 'PROJECT' },
+      hear: '—',
+      note: {
+        kind: 'tip',
+        title: '全機只有五個選單',
+        body: '這台機器沒有偏好設定頁。全機只有五個選單。Input Config、Fader、Time Correct。還有 MIDI Config 與 Project。',
+      },
+    },
+
+    // ── 第 3 段 · 旋鈕的脾氣 ────────────────────────────
+    {
+      ch: 2,
+      say: '中間三顆旋鈕不是無限旋轉。<b>K1</b>、<b>K2</b>、<b>K3</b> 是 270 度絕對位置，轉到底就不動了。',
+      targets: ['k1', 'k2', 'k3'],
+      screen: { t1: 'A01 Kick 02' },
+      hear: '—',
+    },
+    {
+      ch: 2,
+      say: '所以會遇到 <b>Takeover</b>。旋鈕的實際位置和螢幕上的值對不上時，要先轉到對上才會動。',
+      targets: ['k1', 'k2', 'k3'],
+      screen: { t1: 'TAKEOVER' },
+      hear: '—',
+      note: {
+        kind: 'tip',
+        title: '不是壞掉',
+        body: '轉了半天沒反應，通常是還沒對上。慢慢轉過去，值會突然接上。',
+      },
+    },
+    {
+      ch: 2,
+      say: '<b>按住 SHIFT 再轉 K1、K2、K3</b> 是放大波形。這個功能面板上沒有印出來。',
+      targets: ['k1', 'k2', 'k3'],
+      shift: true,
+      screen: { t1: 'ZOOM ×8', wave: 31 },
+      hear: '—',
+    },
+    {
+      ch: 2,
+      say: '右邊那顆大的是 <b>ENCODER</b>。可以無限轉，也可以按下去確認。打名字就靠它。',
+      targets: ['enc'],
+      screen: { t1: 'A01 Kick 02' },
+      hear: '—',
+    },
+
+    // ── 第 4 段 · 螢幕在教你 ────────────────────────────
+    {
+      ch: 3,
+      say: '螢幕上排三個字對應 <b>B1</b>、<b>B2</b>、<b>B3</b>。預設是 Trim、Tune、Filter。字會跟著模式換。',
+      targets: ['b1', 'b2', 'b3'],
+      screen: { t1: 'A01 Kick 02', wave: 31 },
+      hear: '—',
+    },
+    {
+      ch: 3,
+      say: '螢幕下排三個字對應 <b>K1</b>、<b>K2</b>、<b>K3</b>。預設是 Start、End、Loop。',
+      targets: ['k1', 'k2', 'k3'],
+      screen: { t1: 'A01 Kick 02', wave: 31 },
+      hear: '—',
+    },
+    {
+      ch: 3,
+      say: '進 <b>CHOP</b> 之後，下排最後一個從 Loop 變成 Type。<b>螢幕本身就在教你旋鈕現在管什麼</b>。',
+      targets: ['chop'],
+      screen: { t1: 'CHOP  8 slices', tabs: ['Chop', 'Tune', 'Filter'], bots: ['Start', 'End', 'Type'], wave: 52 },
+      hear: '—',
+      note: {
+        kind: 'win',
+        title: '這就是讀懂面板',
+        body: '你不用背組合鍵。看紅字知道 SHIFT 能做什麼，看螢幕知道旋鈕在管什麼。',
+      },
+    },
+  ],
+};

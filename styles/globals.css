@@ -36,6 +36,9 @@
   --color-dev-wave: #e8c93a;
   --color-dev-silk: #8a8780; /* 深色面板上的絲印文字 */
 
+  /* ---- 斷點：960px 以下改上下堆疊，機器在上 ---- */
+  --breakpoint-split: 960px;
+
   /* ---- 字體：全部系統堆疊，禁用任何 webfont 與 Inter ---- */
   --font-sans: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC",
     "Hiragino Sans", system-ui, sans-serif;
