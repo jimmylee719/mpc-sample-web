@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* Tailwind 4 內容掃描來源（明確指定，不依賴自動偵測） */
+@source "../app";
+@source "../components";
+@source "../content";
+
+/* ============================================================
+   設計 token — CLAUDE.md §6 / PROJECT-PLAN §8.2
+   ============================================================ */
+@theme {
+  /* ---- 頁面 ---- */
+  --color-stage: #14161a;
+  --color-stage-2: #1c1f24;
+  --color-paper: #f5f3ee;
+  --color-ink: #191b1e;
+  --color-muted: #6f6c65;
+  --color-rule: #d8d4cb;
+  --color-akai: #d6342c;
+  --color-live: #22c55e;
+
+  /* ---- 機器 ---- */
+  --color-dev-body: #e7e5e0;
+  --color-dev-body-edge: #c9c6bf;
+  --color-dev-dark: #1b1d20;
+  --color-dev-dark-edge: #34383d;
+  --color-dev-pad: #3d4854;
+  --color-dev-pad-edge: #5a6774;
+  --color-dev-blue: #7fc7e0; /* MODE / PAD PLAY */
+  --color-dev-orange: #efa043; /* PAD FX / KNOB FX */
+  --color-dev-red: #e2483f; /* 錄音鍵 */
+  --color-dev-green: #4faf5a; /* PLAY */
+  --color-dev-white: #f6f5f2;
+  --color-dev-shift: #4c5157;
+  --color-dev-screen: #0c130f;
+  --color-dev-wave: #e8c93a;
+  --color-dev-silk: #8a8780; /* 深色面板上的絲印文字 */
+
+  /* ---- 字體：全部系統堆疊，禁用任何 webfont 與 Inter ---- */
+  --font-sans: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC",
+    "Hiragino Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ============================================================
+   基礎樣式
+   ============================================================ */
+@layer base {
+  html {
+    background: var(--color-stage);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 全站鍵盤可操作，focus 必須看得見 */
+  :focus-visible {
+    outline: 3px solid var(--color-akai);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* 教學句：18.5px / 1.74（PROJECT-PLAN §8.3） */
+  .say {
+    font-size: 18.5px;
+    line-height: 1.74;
+    letter-spacing: 0.01em;
+  }
+
+  .say b {
+    font-weight: 700;
+    box-shadow: inset 0 -0.42em 0 rgb(214 52 44 / 0.2);
+  }
+
+  /* 標籤與代號一律 mono、大寫、寬字距 */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+/* ============================================================
+   面板控制項狀態 — 全部靠 CSS class 切換，不用 JS 動畫
+   來源：reference/prototype-v2.html
+   ============================================================ */
+@layer components {
+  .ctl {
+    cursor: default;
+  }
+
+  .halo {
+    opacity: 0;
+    pointer-events: none;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* 招牌元素 1：目標控制項綠色脈動光暈 */
+  .ctl.hot .halo {
+    opacity: 1;
+    animation: mpc-pulse 1.45s ease-in-out infinite;
+  }
+
+  .ctl.hot .cap {
+    stroke: var(--color-live);
+    stroke-width: 2.6;
+  }
+
+  @keyframes mpc-pulse {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.1;
+      transform: scale(1.14);
+    }
+  }
+
+  /* SHIFT 按住狀態 */
+  .ctl.held .cap {
+    fill: var(--color-akai) !important;
+    stroke: var(--color-akai);
+  }
+
+  .ctl.held .lbl {
+    fill: #fff !important;
+  }
+
+  /* 招牌元素 2：按住 SHIFT 時全面板紅色第二功能字一起亮 */
+  .sfx {
+    fill: #c4a29e;
+    font-size: 5.6px;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+  }
+
+  .sfx-dark {
+    fill: #9a6b66;
+    font-size: 5.6px;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+  }
+
+  .shift-on .sfx {
+    fill: var(--color-akai);
+    font-weight: 700;
+  }
+
+  .shift-on .sfx-dark {
+    fill: #ff6b60;
+    font-weight: 700;
+  }
+}
+
+/* 尊重 prefers-reduced-motion：光暈不動，固定 45% 透明度 */
+@media (prefers-reduced-motion: reduce) {
+  .ctl.hot .halo {
+    animation: none;
+    opacity: 0.45;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

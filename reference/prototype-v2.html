@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MPC Sample 第 1 課 — 你的第一個 30 分鐘</title>
+<style>
+  :root{
+    --stage:#14161A; --stage2:#1C1F24;
+    --paper:#F5F3EE; --ink:#191B1E; --muted:#6F6C65; --rule:#D8D4CB;
+    --akai:#D6342C; --live:#22C55E;
+    --sans:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Hiragino Sans",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--stage)}
+  body{font-family:var(--sans);color:var(--paper);-webkit-font-smoothing:antialiased;padding:18px 14px 60px}
+  .wrap{max-width:1240px;margin:0 auto}
+
+  header{border-bottom:1px solid #2C3036;padding-bottom:16px;margin-bottom:24px}
+  .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--akai);font-weight:700}
+  h1{font-size:clamp(23px,4vw,34px);letter-spacing:-.02em;margin-top:7px;line-height:1.15;color:#fff}
+  .sub{color:#8D9299;font-size:14px;margin-top:8px;line-height:1.6;max-width:56ch}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px;align-items:start}
+  @media(max-width:960px){.grid{grid-template-columns:1fr;gap:18px}}
+
+  .stage{position:sticky;top:14px;background:var(--stage2);border:1px solid #2C3036;border-radius:14px;padding:16px 16px 10px}
+  @media(max-width:960px){.stage{position:static}}
+  svg{width:100%;height:auto;display:block}
+  .viewTag{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+  .viewTag span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#6B7178}
+  .pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:#2A2F35;color:#B7BDC4;padding:4px 9px;border-radius:99px}
+  .pill.on{background:var(--akai);color:#fff}
+
+  .sheet{background:var(--paper);color:var(--ink);border-radius:14px;padding:26px 26px 30px}
+  @media(max-width:520px){.sheet{padding:20px 18px 24px}}
+
+  .rail{display:flex;gap:5px;margin-bottom:9px}
+  .rail div{flex:1;height:3px;background:var(--rule);overflow:hidden}
+  .rail div i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(0);transition:transform .35s ease}
+  .railLabels{display:flex;gap:5px;margin-bottom:22px}
+  .railLabels span{flex:1;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .railLabels span.on{color:var(--akai);font-weight:700}
+
+  .chapter{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--akai);font-weight:700}
+  .stepNo{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);margin-top:3px}
+  .say{font-size:18.5px;line-height:1.74;margin:14px 0 20px;letter-spacing:.01em}
+  .say b{font-weight:700;box-shadow:inset 0 -.42em 0 rgba(214,52,44,.2)}
+
+  .facts{border-top:1px solid var(--rule)}
+  .fact{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .fact dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .fact dd{font-size:14px;line-height:1.6}
+
+  .note{margin-top:18px;padding:13px 15px;border-left:3px solid var(--akai);background:rgba(214,52,44,.07);font-size:14px;line-height:1.66}
+  .note.win{border-left-color:#2E7D4F;background:rgba(46,125,79,.09)}
+  .note strong{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+
+  .nav{display:flex;gap:9px;margin-top:26px;align-items:center;flex-wrap:wrap}
+  button{font-family:var(--sans);font-size:14px;font-weight:600;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:10px 18px;cursor:pointer;transition:.15s}
+  button:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+  button:disabled{opacity:.28;cursor:default}
+  button.primary{background:var(--ink);color:var(--paper)}
+  button.primary:hover{background:var(--akai);border-color:var(--akai)}
+  button:focus-visible{outline:3px solid var(--akai);outline-offset:2px}
+  .hint{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--muted);margin-left:auto}
+
+  .upnext{margin-top:34px;border-top:1px solid var(--rule);padding-top:16px}
+  .upnext h3{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .upnext div{display:flex;gap:12px;font-size:13.5px;color:var(--muted);padding:8px 0;border-bottom:1px dotted var(--rule)}
+  .upnext b{font-family:var(--mono);font-size:10.5px;color:var(--ink);min-width:32px}
+
+  /* control states */
+  .ctl{cursor:default}
+  .halo{opacity:0;pointer-events:none;transform-box:fill-box;transform-origin:center}
+  .ctl.hot .halo{opacity:1;animation:pulse 1.45s ease-in-out infinite}
+  .ctl.hot .cap{stroke:var(--live);stroke-width:2.6}
+  @keyframes pulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:.1;transform:scale(1.14)}}
+  @media(prefers-reduced-motion:reduce){.ctl.hot .halo{animation:none;opacity:.45}}
+  .ctl.held .cap{fill:var(--akai)!important;stroke:var(--akai)}
+  .ctl.held .lbl{fill:#fff!important}
+  .sfx{fill:#C4A29E;font-size:5.6px;letter-spacing:.04em;font-family:ui-monospace,monospace}
+  svg.shiftOn .sfx{fill:var(--akai);font-weight:700}
+  svg.shiftOn .sfxD{fill:#FF6B60;font-weight:700}
+  .sfxD{fill:#9A6B66;font-size:5.6px;letter-spacing:.04em;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Lesson 01 · 原型 v2 · 依實機照片修正</div>
+    <h1>你的第一個 30 分鐘</h1>
+    <p class="sub">從開機，到你手上有一段自己錄、自己切、自己彈出來的節奏。一口氣做完，中間不換題目。</p>
+  </header>
+
+  <div class="grid">
+    <div class="stage">
+      <svg id="dev" viewBox="0 0 700 800" role="img" aria-label="MPC Sample 面板"></svg>
+      <div class="viewTag">
+        <span id="vlabel">TOP PANEL</span>
+        <span class="pill" id="vpill">上面板</span>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="rail" id="rail"></div>
+      <div class="railLabels" id="railLabels"></div>
+      <div class="chapter" id="chapter"></div>
+      <div class="stepNo" id="stepNo"></div>
+      <p class="say" id="say"></p>
+      <dl class="facts">
+        <div class="fact"><dt>螢幕顯示</dt><dd id="fScreen"></dd></div>
+        <div class="fact"><dt>你會聽到</dt><dd id="fHear"></dd></div>
+      </dl>
+      <div id="noteBox"></div>
+      <div class="nav">
+        <button id="prev">← 上一步</button>
+        <button id="next" class="primary">下一步 →</button>
+        <span class="hint">← → 方向鍵</span>
+      </div>
+      <div class="upnext">
+        <h3>接下來</h3>
+        <div><b>02</b><span>找到「只有鼓」的那四小節</span></div>
+        <div><b>03</b><span>用低通濾波留下鼓與貝斯</span></div>
+        <div><b>04</b><span>用高通濾波讓人聲浮出來</span></div>
+        <div><b>05</b><span>Resample 疊層：鼓＋貝斯＋旋律</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('dev');
+const E=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const T=(x,y,s,a={})=>{const t=E('text',Object.assign({x,y},a));t.textContent=s;return t;};
+
+const COL={body:'#E7E5E0',bodyEdge:'#C9C6BF',dark:'#1B1D20',darkEdge:'#34383D',
+  pad:'#3D4854',padEdge:'#5A6774',blue:'#7FC7E0',orange:'#EFA043',red:'#E2483F',
+  green:'#4FAF5A',white:'#F6F5F2',shift:'#4C5157',ink:'#22252A',silk:'#8A8780',
+  screenBg:'#0C130F',wave:'#E8C93A'};
+
+const front=E('g',{id:'front'}), rear=E('g',{id:'rear',style:'display:none'});
+svg.appendChild(front); svg.appendChild(rear);
+const N={};
+
+function reg(g,id,parent){const w=E('g',{class:'ctl',id:'c-'+id});w.appendChild(g);parent.appendChild(w);N[id]=w;return w;}
+
+/* ---------- helpers ---------- */
+function btn(p,id,x,y,w,h,label,fill,txt,sub,subDark){
+  const g=E('g');
+  g.appendChild(E('rect',{class:'halo',x:x-5,y:y-5,width:w+10,height:h+10,rx:8,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('rect',{class:'cap',x,y,width:w,height:h,rx:4,fill:fill,stroke:'rgba(0,0,0,.28)','stroke-width':1}));
+  g.appendChild(T(x+w/2,y+h/2+3.2,label,{class:'lbl','text-anchor':'middle',fill:txt,'font-family':'ui-monospace,monospace','font-size':'7.6','font-weight':'700','letter-spacing':'.04em'}));
+  if(sub) g.appendChild(T(x+w/2,y+h+8.5,sub,{class:subDark?'sfxD':'sfx','text-anchor':'middle'}));
+  reg(g,id,p);
+}
+function knob(p,id,cx,cy,r,label,face,ring,lblFill){
+  const g=E('g');
+  g.appendChild(E('circle',{class:'halo',cx,cy,r:r+7,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('circle',{class:'cap',cx,cy,r,fill:face,stroke:ring,'stroke-width':2}));
+  g.appendChild(E('circle',{cx,cy,r:r*0.62,fill:'none',stroke:'rgba(0,0,0,.18)','stroke-width':1}));
+  g.appendChild(E('line',{x1:cx,y1:cy-r+3,x2:cx,y2:cy-r*0.55,stroke:'rgba(0,0,0,.55)','stroke-width':2.2,'stroke-linecap':'round'}));
+  if(label) g.appendChild(T(cx,cy+r+11,label,{'text-anchor':'middle',fill:lblFill||COL.silk,'font-family':'ui-monospace,monospace','font-size':'7.5','letter-spacing':'.1em'}));
+  reg(g,id,p);
+}
+
+/* ================= FRONT ================= */
+front.appendChild(E('rect',{x:14,y:12,width:672,height:776,rx:16,fill:COL.bodyEdge}));
+front.appendChild(E('rect',{x:20,y:18,width:660,height:752,rx:13,fill:COL.body}));
+front.appendChild(E('rect',{x:30,y:26,width:640,height:270,rx:9,fill:COL.dark}));
+front.appendChild(E('rect',{x:34,y:30,width:632,height:262,rx:7,fill:'none',stroke:COL.darkEdge}));
+
+front.appendChild(T(60,68,'AKAI',{fill:COL.akai||'#D6342C','font-family':'system-ui','font-size':'23','font-weight':'800','letter-spacing':'-.01em'}));
+front.appendChild(T(61,80,'professional',{fill:'#D6342C','font-family':'system-ui','font-size':'9','font-style':'italic'}));
+front.appendChild(T(648,66,'MPC SAMPLE',{'text-anchor':'end',fill:'#D6342C','font-family':'system-ui','font-size':'17','font-weight':'800','letter-spacing':'.02em'}));
+
+btn(front,'b1',262,44,44,17,'B1','#2A2E33','#E8E4DC');
+btn(front,'b2',322,44,44,17,'B2','#2A2E33','#E8E4DC');
+btn(front,'b3',382,44,44,17,'B3','#2A2E33','#E8E4DC');
+
+knob(front,'vol',108,158,33,'MAIN VOLUME','#D9D6D0','#F0EEE9','#9AA0A6');
+front.appendChild(T(166,164,'A',{fill:'#E8E4DC','font-family':'system-ui','font-size':'15','font-weight':'700'}));
+front.appendChild(E('rect',{x:146,y:196,width:15,height:7,rx:3,fill:'#4FE07A'}));
+
+/* screen */
+front.appendChild(E('rect',{x:246,y:92,width:208,height:142,rx:5,fill:'#0A0C0D'}));
+front.appendChild(E('rect',{x:250,y:96,width:200,height:134,rx:3,fill:COL.screenBg}));
+const tabs=[];[0,1,2].forEach(i=>{
+  const g=E('g'); const x=258+i*66;
+  const bg=E('rect',{x,y:102,width:60,height:15,rx:2,fill:'none'});
+  const tx=T(x+30,113,'',{'text-anchor':'middle',fill:'#7FE08A','font-family':'ui-monospace,monospace','font-size':'8.4'});
+  g.appendChild(bg);g.appendChild(tx);front.appendChild(g);tabs.push({bg,tx});
+});
+const scrTitle=T(258,132,'',{fill:'#EDE7C8','font-family':'ui-monospace,monospace','font-size':'8.6'});
+front.appendChild(scrTitle);
+const waveG=E('g'); front.appendChild(waveG);
+function drawWave(seed){
+  while(waveG.firstChild)waveG.removeChild(waveG.firstChild);
+  let s=seed||7;
+  const rnd=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  [0,1].forEach(row=>{
+    const cy=155+row*33;
+    for(let i=0;i<92;i++){
+      const h=2+rnd()*15;
+      waveG.appendChild(E('rect',{x:258+i*2.1,y:cy-h/2,width:1.3,height:h,fill:COL.wave,opacity:.9}));
+    }
+  });
+}
+const bots=[];[0,1,2].forEach(i=>{
+  const t=T(258+i*66+30,222,'',{'text-anchor':'middle',fill:'#9AD6A4','font-family':'ui-monospace,monospace','font-size':'8'});
+  front.appendChild(t);bots.push(t);
+});
+
+/* meters */
+[0,1].forEach(c=>{for(let r=0;r<6;r++){
+  const col=r<2?'#E2483F':(r<4?'#EFA043':'#4FAF5A');
+  front.appendChild(E('rect',{x:468+c*13,y:104+r*22,width:8,height:15,rx:1.5,fill:col,opacity:r<2?.45:.9}));
+}});
+/* speaker */
+front.appendChild(E('rect',{x:506,y:96,width:132,height:134,rx:7,fill:'#2A2E33'}));
+for(let r=0;r<9;r++)for(let c=0;c<9;c++)
+  front.appendChild(E('circle',{cx:518+c*14,cy:108+r*14,r:2.6,fill:'#15171A'}));
+
+/* MODE group */
+front.appendChild(T(105,318,'M O D E',{'text-anchor':'middle',fill:COL.silk,'font-family':'ui-monospace,monospace','font-size':'7','letter-spacing':'.2em'}));
+btn(front,'sample',46,326,60,25,'SAMPLE',COL.blue,COL.ink,'INPUT CONFIG');
+btn(front,'seq',112,326,60,25,'SEQ',COL.blue,COL.ink,'STEP EDIT');
+btn(front,'padfx',46,372,60,25,'PAD FX',COL.orange,COL.ink,'FLEX BEAT');
+btn(front,'knobfx',112,372,60,25,'KNOB FX',COL.orange,COL.ink,'FX SELECT');
+
+/* K knobs */
+knob(front,'k1',252,368,32,'K1','#DEDBD5','#F2F0EC','#7A776F');
+knob(front,'k2',362,368,32,'K2','#DEDBD5','#F2F0EC','#7A776F');
+knob(front,'k3',472,368,32,'K3','#DEDBD5','#F2F0EC','#7A776F');
+
+/* PAD PLAY group */
+front.appendChild(T(605,318,'P A D   P L A Y',{'text-anchor':'middle',fill:COL.silk,'font-family':'ui-monospace,monospace','font-size':'7','letter-spacing':'.16em'}));
+btn(front,'chop',545,326,58,25,'CHOP',COL.blue,COL.ink,'NOTE ON');
+btn(front,'mute',609,326,58,25,'MUTE',COL.blue,COL.ink,'UNMUTE ALL');
+btn(front,'loop',545,372,58,25,'LOOP',COL.blue,COL.ink,'REVERSE');
+btn(front,'lev16',609,372,58,25,'16 LEVELS',COL.blue,COL.ink,'TYPE');
+
+/* SHIFT + PAD BANK */
+btn(front,'shift',46,424,60,29,'SHIFT',COL.shift,'#F1EFEA');
+btn(front,'bank',112,426,60,25,'PAD BANK',COL.white,COL.ink);
+
+/* fader */
+(function(){
+  const g=E('g');
+  g.appendChild(E('rect',{class:'halo',x:57,y:493,width:44,height:166,rx:12,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('rect',{class:'cap',x:64,y:500,width:30,height:152,rx:6,fill:'#D5D2CC',stroke:'#B7B3AB','stroke-width':1}));
+  g.appendChild(E('rect',{x:77,y:508,width:4,height:136,rx:2,fill:'#8E8A83'}));
+  g.appendChild(E('rect',{x:66,y:558,width:26,height:26,rx:4,fill:'#F3F1EC',stroke:'#A9A59D'}));
+  g.appendChild(E('rect',{x:107,y:566,width:8,height:11,rx:2,fill:'#E040A0'}));
+  reg(g,'fader',front);
+})();
+
+btn(front,'erase',46,686,60,25,'ERASE',COL.white,COL.ink,'COPY');
+btn(front,'nrep',112,686,60,25,'NOTE RPT',COL.white,COL.ink,'TRIPLET');
+
+/* right column */
+btn(front,'ssel',545,424,58,25,'SAMPLE SEL',COL.white,COL.ink,'SAVE SAMPLE');
+btn(front,'tap',609,424,58,25,'TAP TEMPO',COL.white,COL.ink,'METRO');
+knob(front,'enc',578,516,37,'','#F4F2ED','#FFFFFF');
+(function(){ // mic icon
+  const g=E('g');
+  g.appendChild(E('circle',{class:'halo',cx:650,cy:486,r:14,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('rect',{class:'cap',x:645,y:478,width:10,height:15,rx:5,fill:'#3A3E44',stroke:'#3A3E44'}));
+  g.appendChild(E('path',{d:'M641 490a9 9 0 0 0 18 0',fill:'none',stroke:'#3A3E44','stroke-width':2}));
+  g.appendChild(E('line',{x1:650,y1:499,x2:650,y2:505,stroke:'#3A3E44','stroke-width':2}));
+  reg(g,'mic',front);
+})();
+btn(front,'minus',545,574,58,23,'—',COL.white,COL.ink,'UNDO');
+btn(front,'plus',609,574,58,23,'+',COL.white,COL.ink,'REDO');
+btn(front,'srec',545,618,58,27,'SAMPLE REC',COL.red,'#fff','RECALL');
+btn(front,'qrec',609,618,58,27,'SEQ REC',COL.red,'#fff','RECALL');
+btn(front,'stop',545,662,58,27,'■',COL.white,COL.ink);
+btn(front,'play',609,662,58,27,'▶',COL.green,'#fff','CONTINUE');
+
+/* pads */
+const PADSUB=['FULL LEVEL','HALF SEQ','DOUBLE SEQ','COUNT-IN','COMPRESSOR','HALF SPEED','DOUBLE SPEED','MIDI CONFIG','FADER','REC QUANTIZE','RESAMPLE','SONG','TRIM SAMPLE','TIME CORRECT','WARP','PROJECT'];
+const PW=79,PH=60,PGX=8,PGY=10,PX0=194,PY0=452;
+for(let n=1;n<=16;n++){
+  const col=(n-1)%4, row=3-Math.floor((n-1)/4);
+  const x=PX0+col*(PW+PGX), y=PY0+row*(PH+PGY);
+  const g=E('g');
+  g.appendChild(E('rect',{class:'halo',x:x-5,y:y-5,width:PW+10,height:PH+10,rx:9,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('rect',{class:'cap',x,y,width:PW,height:PH,rx:6,fill:COL.pad,stroke:COL.padEdge,'stroke-width':1.4}));
+  g.appendChild(E('rect',{x:x+5,y:y+4,width:PW-10,height:PH*0.4,rx:4,fill:'rgba(255,255,255,.05)'}));
+  g.appendChild(T(x,y-4,String(n),{class:'sfx',fill:'#57544D','font-weight':'700'}));
+  g.appendChild(T(x+PW,y-4,PADSUB[n-1],{class:'sfx','text-anchor':'end'}));
+  reg(g,'p'+n,front);
+}
+
+/* ================= REAR ================= */
+rear.appendChild(E('rect',{x:14,y:250,width:672,height:230,rx:14,fill:COL.bodyEdge}));
+rear.appendChild(E('rect',{x:20,y:256,width:660,height:212,rx:11,fill:COL.body}));
+rear.appendChild(E('rect',{x:34,y:268,width:632,height:44,rx:6,fill:COL.dark}));
+rear.appendChild(T(56,297,'AKAI professional',{fill:'#D6342C','font-family':'system-ui','font-size':'15','font-weight':'800'}));
+rear.appendChild(T(644,297,'MPC SAMPLE',{'text-anchor':'end',fill:'#D6342C','font-family':'system-ui','font-size':'14','font-weight':'800'}));
+
+const REAR=[
+  ['r_phones','PHONES',72],['r_sync','SYNC OUT',128],['r_midiout','MIDI OUT',184],['r_midiin','MIDI IN',238],
+  ['r_out2','AUDIO OUT 2/R',300],['r_out1','AUDIO OUT 1/L',360],
+  ['r_in2','AUDIO IN 2/R',420],['r_in1','AUDIO IN 1/L',480]
+];
+REAR.forEach(([id,lab,x])=>{
+  const g=E('g'), r=lab.startsWith('AUDIO')?17:11;
+  g.appendChild(E('circle',{class:'halo',cx:x,cy:378,r:r+11,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('circle',{class:'cap',cx:x,cy:378,r,fill:'#2A2E33',stroke:'#8E8A83','stroke-width':2}));
+  g.appendChild(E('circle',{cx:x,cy:378,r:r*0.45,fill:'#0D0F11'}));
+  g.appendChild(T(x,342,lab,{'text-anchor':'middle',fill:'#D6342C','font-family':'ui-monospace,monospace','font-size':'6.6','font-weight':'700'}));
+  reg(g,id,rear);
+});
+knob(rear,'r_gain',548,378,20,'','#D9D6D0','#F0EEE9');
+rear.appendChild(T(548,342,'REC GAIN',{'text-anchor':'middle',fill:'#D6342C','font-family':'ui-monospace,monospace','font-size':'6.6','font-weight':'700'}));
+(function(){
+  const g=E('g');
+  g.appendChild(E('rect',{class:'halo',x:583,y:361,width:38,height:34,rx:10,fill:'none',stroke:'#22C55E','stroke-width':3}));
+  g.appendChild(E('rect',{class:'cap',x:590,y:370,width:24,height:14,rx:7,fill:'#2A2E33',stroke:'#8E8A83','stroke-width':2}));
+  reg(g,'r_usb',rear);
+})();
+rear.appendChild(T(602,342,'USB',{'text-anchor':'middle',fill:'#D6342C','font-family':'ui-monospace,monospace','font-size':'6.6','font-weight':'700'}));
+knob(rear,'r_power',646,378,15,'','#E7E5E0','#B7B3AB');
+rear.appendChild(T(646,342,'POWER',{'text-anchor':'middle',fill:'#D6342C','font-family':'ui-monospace,monospace','font-size':'6.6','font-weight':'700'}));
+
+/* ================= LESSON ================= */
+const CH=['認識機器','錄進來','切開它','變成節奏'];
+const D={tabs:['Trim','Tune','Filter'],bots:['Start','End','Loop']};
+const S=[
+{c:0,say:'電源鍵在<b>機器背面最右邊</b>。旁邊那個 USB-C 孔負責充電、傳音訊、也傳 MIDI — 之後很多事都靠它。現在按下 POWER 開機。',t:['r_power','r_usb'],scr:{t1:'BOOTING…',tabs:['','',''],bots:['','','']},hear:'—'},
+{c:0,say:'開機後機器會自動載入示範專案。先把 <b>MAIN VOLUME</b> 轉到一半左右。',t:['vol'],scr:{t1:'DEMO PROJECT loaded'},hear:'還沒有聲音'},
+{c:0,say:'按 <b>PLAY</b>（右下角綠色那顆）。這是機器內建的示範節奏，先聽聽它能做到什麼程度。',t:['play'],scr:{t1:'SEQ 01  ▶  90 BPM'},hear:'一段完整的鼓組節奏，pad 會跟著亮'},
+{c:0,say:'按 <b>STOP</b>（PLAY 左邊白色那顆）停下來。記一個急救招式：<b>快速連按兩下 STOP</b>，所有聲音立刻消失。',t:['stop'],scr:{t1:'SEQ 01  ■  90 BPM'},hear:'安靜'},
+{c:0,say:'現在隨便敲中間的 <b>pad</b>。每一顆是一個獨立的聲音，敲越用力越大聲。',t:['pads'],scr:{t1:'PAD 05  KICK 02'},hear:'每敲一下出一個聲音'},
+{c:0,say:'按左上角的 <b>SAMPLE</b>（藍色）。這是主畫面，你之後八成時間都待在這裡。迷路了就按它回來。',t:['sample'],scr:{t1:'A01 Kick 02'},hear:'—'},
+{c:0,say:'記住整台機器的邏輯，只有一句話：<b>螢幕上方三顆 B 鍵換頁，中間三顆 K 旋鈕調那一頁的參數</b>。你看螢幕上排的 Trim / Tune / Filter，就是 B1 / B2 / B3；下排的 Start / End / Loop，就是 K1 / K2 / K3。',t:['b1','b2','b3','k1','k2','k3'],scr:{t1:'A01 Kick 02'},hear:'—',note:['整台機器只有這一個邏輯','按鍵下方的紅色小字，是按住 SHIFT 之後的第二功能。下一步你就會用到。']},
+
+{c:1,say:'按住左下角的 <b>SHIFT</b> 不放，再按 <b>SAMPLE</b>。看到 SAMPLE 下面那行紅字 INPUT CONFIG 亮起來了嗎？整個面板的紅字現在都亮了 — 那就是 SHIFT 的世界。',t:['sample'],shift:1,scr:{t1:'INPUT CONFIG',tabs:['Source','Monitor','Thresh'],bots:['','','']},hear:'—'},
+{c:1,say:'轉 <b>K1</b>，把 Source 選成 <b>Mic</b>。麥克風就在右邊 ENCODER 旁邊那個小圖示的位置。',t:['k1','mic'],scr:{t1:'SOURCE   MIC',tabs:['Source','Monitor','Thresh'],bots:['Mic','Auto','Off']},hear:'—',note:['正常現象','選 Mic 之後內建喇叭會自動關掉，這是防止回授，不是故障。']},
+{c:1,say:'按右下角紅色的 <b>SAMPLE RECORD</b> 進入錄音模式，再轉 <b>K2</b> 把 Rec Length 選成 <b>Free</b>（想錄多久就多久）。',t:['srec','k2'],scr:{t1:'REC READY',tabs:['Source','Length','Thresh'],bots:['Mic','Free','Off']},hear:'—'},
+{c:1,say:'敲 <b>PAD 9</b> 開始錄。對著機器連續敲四下桌子，或哼四拍。<b>不要停頓</b>，節奏穩一點。',t:['p9'],scr:{t1:'● RECORDING  00:03',tabs:['','',''],bots:['','','']},hear:'右邊音量表會跳動'},
+{c:1,say:'再敲一次 <b>PAD 9</b> 結束錄音。你剛剛錄的東西，現在住在那顆 pad 裡面了。',t:['p9'],scr:{t1:'SAMPLE SAVED → PAD 09',tabs:['','',''],bots:['','','']},hear:'—'},
+{c:1,say:'按 <b>SAMPLE</b> 回主畫面，再敲一次 PAD 9。螢幕上那條黃色波形，就是你自己的聲音。',t:['sample','p9'],scr:{t1:'A09 My Rec 001',wave:31},hear:'你剛剛錄的聲音',note:['里程碑','這個聲音的權利 100% 是你的。之後不管你拿它做什麼、賣給誰，都不會有人來找你。','win']},
+
+{c:2,say:'錄音頭尾一定有多餘空白。轉 <b>K1</b> 調 Start（起點），轉 <b>K2</b> 調 End（終點），把空白切掉。邊轉邊敲 pad 試聽。',t:['k1','k2'],scr:{t1:'A09 My Rec 001',wave:31},hear:'頭尾的雜音消失'},
+{c:2,say:'切不準？<b>按住 SHIFT 再轉 K1 或 K2</b>，波形會放大。這個功能面板上沒印、快速指南也沒寫，但沒有它就切不準。',t:['k1','k2'],shift:1,scr:{t1:'ZOOM ×8',wave:31},hear:'—',note:['隱藏功能','SHIFT + K1 放大起點、SHIFT + K2 放大終點、SHIFT + K3 放大循環點。']},
+{c:2,say:'錄太小聲的話，<b>按住 SHIFT 再按 B2</b>（Normalize），機器會把音量推到最大而不破音。',t:['b2'],shift:1,scr:{t1:'NORMALIZE → 0 dB',wave:88},hear:'同一個聲音，變大聲了'},
+{c:2,say:'有趣的來了。按 <b>CHOP</b>（右上藍色），機器會把這段聲音切開，分配到 16 顆 pad 上。',t:['chop'],scr:{t1:'CHOP  8 slices',tabs:['Chop','Tune','Filter'],bots:['Start','End','Type'],wave:52},hear:'—'},
+{c:2,say:'轉 <b>K3</b> 選切法。先選 <b>Regions 8</b> — 不管內容，平均切成八塊。',t:['k3'],scr:{t1:'CHOP TYPE  REG 8',tabs:['Chop','Tune','Filter'],bots:['Start','End','Reg8'],wave:52},hear:'—'},
+{c:2,say:'敲 <b>PAD 1 到 PAD 8</b>，每一顆是一塊。<b>刻意不要照順序</b> — 5、2、5、8、1、1、7。你剛剛把自己的錄音重組成新東西了。',t:['p1','p2','p3','p4','p5','p6','p7','p8'],scr:{t1:'SLICE 05 / 08',tabs:['Chop','Tune','Filter'],bots:['Start','End','Reg8'],wave:52},hear:'原本的聲音，順序全變了',note:['這就是取樣的核心','你沒有創造新的聲音，你創造了新的順序。這件事從 1988 年做到現在都沒變。']},
+{c:2,say:'某一塊特別好聽？<b>按住 SHIFT 再按 B1</b>（Extract），它會變成獨立樣本跑到下一顆空 pad，之後可以單獨調音、單獨加效果。',t:['b1'],shift:1,scr:{t1:'EXTRACT → PAD 10',tabs:['Chop','Tune','Filter'],bots:['','',''],wave:52},hear:'—',note:['小心','切片編輯不能用 Undo 復原。動手前先存一次專案比較保險。']},
+
+{c:3,say:'按 <b>SEQ</b>（SAMPLE 右邊）。現在 pad 不是用來發聲的，而是用來選段落 — 亮的代表裡面有東西。',t:['seq'],scr:{t1:'SEQ 02  EMPTY',tabs:['Seq','BPM','Rec Q'],bots:['2 bars','90.0','ON']},hear:'—'},
+{c:3,say:'轉 <b>K1</b> 把長度設成 <b>2 小節</b>，再按 <b>B3</b> 把錄音量化打開 — 你敲歪的音會自動貼到格子上。',t:['k1','b3'],scr:{t1:'LENGTH 2   Q 1/16',tabs:['Seq','BPM','Rec Q'],bots:['2 bars','90.0','ON']},hear:'—',note:['新手一定要開','等手感練起來再關掉。那時候的「不準」才叫味道，現在的不準只是不準。']},
+{c:3,say:'按 <b>SEQ RECORD</b>（紅色），它會開始閃，代表準備好了。再按 <b>PLAY</b> 開始錄。',t:['qrec','play'],scr:{t1:'● REC   BAR 1/2',tabs:['Seq','BPM','Rec Q'],bots:['2 bars','90.0','ON']},hear:'節拍器與空拍'},
+{c:3,say:'敲你的切片 pad，把剛才那段順序彈出來。跑完一輪機器會自動轉成疊錄，你可以繼續加東西上去。',t:['p1','p2','p3','p4','p5','p6','p7','p8'],scr:{t1:'● REC   BAR 2/2  OVERDUB',tabs:['','',''],bots:['','','']},hear:'你彈的東西開始循環'},
+{c:3,say:'按 <b>STOP</b>。恭喜 — 你有一段完全屬於自己的循環了。',t:['stop'],scr:{t1:'SEQ 02  ■  2 bars'},hear:'安靜'},
+{c:3,say:'最後兩步最重要。<b>按住 SHIFT 再按 PAD 11</b>（看 PAD 11 上面的紅字：RESAMPLE），機器會把整段循環收成一個聲音，放進你指定的空 pad。',t:['p11'],shift:1,scr:{t1:'RESAMPLE SEQ → pad?',tabs:['','',''],bots:['','','']},hear:'—',note:['這是最重要的一招','收成一顆 pad 之後，其他 15 顆就空出來了，你可以拿去做貝斯。這是這台機器做出多層次音樂的唯一方法。']},
+{c:3,say:'<b>按住 SHIFT 再按 PAD 16</b>（PROJECT），選 Save Project，用 <b>ENCODER</b> 逐字打名字。機器雖然有背景自動存檔，但那只是暫存，<b>不是備份</b>。',t:['p16','enc'],shift:1,scr:{t1:'SAVE  MY_FIRST_BEAT',tabs:['','',''],bots:['','','']},hear:'—',note:['第 1 課完成','你會了：開機、面板邏輯、麥克風錄音、修剪、Zoom、Normalize、切片、重組、Extract、序列錄音、Resample、存檔。下一課我們去找「只有鼓」的那四小節。','win']}
+];
+
+/* runtime */
+const rail=document.getElementById('rail'),railL=document.getElementById('railLabels'),$=id=>document.getElementById(id);
+CH.forEach((n,i)=>{const d=document.createElement('div');d.innerHTML='<i></i>';rail.appendChild(d);
+  const s=document.createElement('span');s.textContent=(i+1)+'. '+n;railL.appendChild(s);});
+let i=0;
+function render(){
+  const s=S[i], isRear=(s.t||[]).some(x=>x.startsWith('r_'));
+  front.style.display=isRear?'none':'';
+  rear.style.display=isRear?'':'none';
+  svg.setAttribute('viewBox',isRear?'0 0 700 560':'0 0 700 800');
+  $('vlabel').textContent=isRear?'REAR PANEL':'TOP PANEL';
+  $('vpill').textContent=isRear?'背面 I/O':'上面板';
+  $('vpill').className='pill'+(isRear?' on':'');
+
+  document.querySelectorAll('.ctl').forEach(n=>n.classList.remove('hot','held'));
+  svg.classList.toggle('shiftOn',!!s.shift);
+  if(s.shift&&N['shift'])N['shift'].classList.add('held');
+  (s.t||[]).forEach(id=>{
+    if(id==='pads'){for(let n=1;n<=16;n++)N['p'+n].classList.add('hot');}
+    else if(N[id])N[id].classList.add('hot');
+  });
+  const sc=s.scr||{};
+  const tb=sc.tabs||D.tabs, bt=sc.bots||D.bots;
+  tabs.forEach((o,n)=>{o.tx.textContent=tb[n]||'';o.bg.setAttribute('fill',n===0&&tb[n]?'rgba(127,224,138,.16)':'none');});
+  bots.forEach((t,n)=>t.textContent=bt[n]||'');
+  scrTitle.textContent=sc.t1||'';
+  drawWave(sc.wave||0);
+  waveG.style.opacity=sc.wave?1:.12;
+
+  $('chapter').textContent='第 '+(s.c+1)+' 段 · '+CH[s.c];
+  $('stepNo').textContent='STEP '+String(i+1).padStart(2,'0')+' / '+S.length;
+  $('say').innerHTML=s.say;
+  $('fScreen').textContent=sc.t1||'—';
+  $('fHear').textContent=s.hear||'—';
+  $('noteBox').innerHTML=s.note?'<div class="note'+(s.note[2]==='win'?' win':'')+'"><strong>'+s.note[0]+'</strong>'+s.note[1]+'</div>':'';
+  CH.forEach((_,ci)=>{
+    const tot=S.filter(x=>x.c===ci).length, done=S.slice(0,i+1).filter(x=>x.c===ci).length;
+    rail.children[ci].firstChild.style.transform='scaleX('+(done/tot)+')';
+    railL.children[ci].classList.toggle('on',ci===s.c);
+  });
+  $('prev').disabled=(i===0);$('next').disabled=(i===S.length-1);
+  $('next').textContent=(i===S.length-1)?'已完成':'下一步 →';
+}
+$('prev').onclick=()=>{if(i>0){i--;render();}};
+$('next').onclick=()=>{if(i<S.length-1){i++;render();}};
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'&&i<S.length-1){i++;render();}
+  if(e.key==='ArrowLeft'&&i>0){i--;render();}
+});
+render();
+</script>
+</body>
+</html>

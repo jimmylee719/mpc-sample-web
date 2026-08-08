@@ -1,0 +1,308 @@
+/**
+ * 內容驗證核心。純函式、不做 I/O、輸入一律當成 unknown。
+ *
+ * 「輸入當成 unknown」是刻意的：驗證器必須能檢查連型別都不對的資料，
+ * 否則刻意寫錯的測試資料會先被 TypeScript 擋下來，驗證器本身反而沒被測到。
+ */
+
+import { CONTROL_IDS } from '../../types/lesson';
+
+export type IssueCode =
+  | 'BAD_SHAPE'           // 資料結構根本不對
+  | 'MISSING_FIELD'       // 必填欄位缺漏或空值
+  | 'BAD_CONTROL_ID'      // targets 用了不存在的控制項 ID
+  | 'MISSING_SCREEN'      // 步驟缺 screen
+  | 'MISSING_HEAR'        // 步驟缺 hear
+  | 'SAY_NO_BOLD'         // say 沒有任何 <b>
+  | 'SENTENCE_TOO_LONG'   // 單句超過 40 字
+  | 'BAD_PREREQUISITE'    // prerequisites 指向不存在的課
+  | 'CH_OUT_OF_RANGE'     // ch 索引超出 chapters 範圍
+  | 'DUPLICATE_ID';       // lesson id 重複
+
+export interface Issue {
+  code: IssueCode;
+  /** 出問題的位置，例：'s1-01 · step 12' */
+  where: string;
+  detail: string;
+}
+
+/** 單句字數上限（PROJECT-PLAN §2.2 L-01） */
+export const MAX_SENTENCE_LENGTH = 40;
+
+const LEGAL_CONTROL_IDS = new Set<string>(CONTROL_IDS as readonly string[]);
+
+const isObject = (v: unknown): v is Record<string, unknown> =>
+  typeof v === 'object' && v !== null && !Array.isArray(v);
+
+const isNonEmptyString = (v: unknown): v is string =>
+  typeof v === 'string' && v.trim().length > 0;
+
+const isNonEmptyStringArray = (v: unknown): v is string[] =>
+  Array.isArray(v) && v.length > 0 && v.every(isNonEmptyString);
+
+/** 剝掉 HTML 標籤，只留可讀文字 */
+export function stripTags(text: string): string {
+  return text.replace(/<[^>]*>/g, '');
+}
+
+/** 以全形句號、問號、驚嘆號斷句 */
+export function splitSentences(text: string): string[] {
+  return stripTags(text)
+    .split(/(?<=[。？！])/u)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
+}
+
+/** 計算單句字數：不計空白，不計句尾標點 */
+export function sentenceLength(sentence: string): number {
+  const cleaned = sentence.replace(/[。？！]+$/u, '').replace(/\s+/gu, '');
+  return [...cleaned].length;
+}
+
+/** 檢查一段文字裡有沒有超長句 */
+function checkSentences(text: string, where: string, field: string, issues: Issue[]): void {
+  for (const sentence of splitSentences(text)) {
+    const len = sentenceLength(sentence);
+    if (len > MAX_SENTENCE_LENGTH) {
+      issues.push({
+        code: 'SENTENCE_TOO_LONG',
+        where,
+        detail: `${field} 有一句 ${len} 字（上限 ${MAX_SENTENCE_LENGTH}）：「${sentence.slice(0, 24)}…」`,
+      });
+    }
+  }
+}
+
+/**
+ * 驗證單一課程。
+ * @param input 未經型別檢查的課程資料
+ * @param knownLessonIds 全站已知的 lesson id，用來檢查 prerequisites
+ */
+export function validateLesson(input: unknown, knownLessonIds: ReadonlySet<string>): Issue[] {
+  const issues: Issue[] = [];
+
+  if (!isObject(input)) {
+    return [{ code: 'BAD_SHAPE', where: '(unknown)', detail: '課程資料不是物件' }];
+  }
+
+  const id = isNonEmptyString(input.id) ? input.id : '(缺 id)';
+  const at = (suffix = ''): string => (suffix ? `${id} · ${suffix}` : id);
+
+  // ---- 課程層必填欄位 ----
+  if (!isNonEmptyString(input.id)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'id 必填' });
+  }
+  if (!isNonEmptyString(input.title)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'title 必填' });
+  }
+  if (!isNonEmptyString(input.outcome)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'outcome 必填（做完手上有什麼）' });
+  }
+  if (!isNonEmptyString(input.firmwareVerified)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'firmwareVerified 必填' });
+  }
+  if (!isNonEmptyString(input.verifiedDate)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'verifiedDate 必填' });
+  } else if (!/^\d{4}-\d{2}-\d{2}$/.test(input.verifiedDate)) {
+    issues.push({
+      code: 'MISSING_FIELD',
+      where: at(),
+      detail: `verifiedDate 必須是 ISO 日期（YYYY-MM-DD），目前是「${input.verifiedDate}」`,
+    });
+  }
+  if (typeof input.needsComputer !== 'boolean') {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'needsComputer 必填，且必須是 true / false' });
+  }
+  if (!isNonEmptyStringArray(input.checkpoints)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'checkpoints 必填，至少一項' });
+  } else {
+    input.checkpoints.forEach((c, i) => checkSentences(c, at(`checkpoint ${i + 1}`), 'checkpoint', issues));
+  }
+  if (isNonEmptyString(input.outcome)) {
+    checkSentences(input.outcome, at(), 'outcome', issues);
+  }
+
+  // ---- chapters ----
+  const chapters = isNonEmptyStringArray(input.chapters) ? input.chapters : null;
+  if (!chapters) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'chapters 必填，至少一段' });
+  }
+
+  // ---- prerequisites ----
+  if (!Array.isArray(input.prerequisites)) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'prerequisites 必須是陣列（沒有前置課寫 []）' });
+  } else {
+    for (const pre of input.prerequisites) {
+      if (typeof pre !== 'string' || !knownLessonIds.has(pre)) {
+        issues.push({
+          code: 'BAD_PREREQUISITE',
+          where: at(),
+          detail: `prerequisites 指向不存在的課程「${String(pre)}」`,
+        });
+      }
+    }
+  }
+
+  // ---- steps ----
+  if (!Array.isArray(input.steps) || input.steps.length === 0) {
+    issues.push({ code: 'MISSING_FIELD', where: at(), detail: 'steps 必填，至少一步' });
+    return issues;
+  }
+
+  input.steps.forEach((rawStep, i) => {
+    const where = at(`step ${i + 1}`);
+
+    if (!isObject(rawStep)) {
+      issues.push({ code: 'BAD_SHAPE', where, detail: '步驟不是物件' });
+      return;
+    }
+
+    // say：必填，且至少一個 <b>
+    if (!isNonEmptyString(rawStep.say)) {
+      issues.push({ code: 'MISSING_FIELD', where, detail: 'say 必填' });
+    } else {
+      if (!/<b>[\s\S]*?<\/b>/i.test(rawStep.say)) {
+        issues.push({
+          code: 'SAY_NO_BOLD',
+          where,
+          detail: 'say 至少要有一個 <b> 標記實際按鍵名稱',
+        });
+      }
+      checkSentences(rawStep.say, where, 'say', issues);
+    }
+
+    // screen：必填
+    if (!isObject(rawStep.screen)) {
+      issues.push({ code: 'MISSING_SCREEN', where, detail: 'screen 必填（這一步螢幕顯示什麼）' });
+    }
+
+    // hear：必填，無聲寫 '—'
+    if (!isNonEmptyString(rawStep.hear)) {
+      issues.push({ code: 'MISSING_HEAR', where, detail: "hear 必填（無聲寫 '—'）" });
+    }
+
+    // targets：必填，且每個都要是合法 ControlId
+    if (!Array.isArray(rawStep.targets) || rawStep.targets.length === 0) {
+      issues.push({ code: 'MISSING_FIELD', where, detail: 'targets 必填，至少一個控制項' });
+    } else {
+      for (const t of rawStep.targets) {
+        if (typeof t !== 'string' || !LEGAL_CONTROL_IDS.has(t)) {
+          issues.push({
+            code: 'BAD_CONTROL_ID',
+            where,
+            detail: `targets 含不存在的控制項 ID「${String(t)}」`,
+          });
+        }
+      }
+    }
+
+    // ch：必須落在 chapters 範圍內
+    if (typeof rawStep.ch !== 'number' || !Number.isInteger(rawStep.ch)) {
+      issues.push({ code: 'MISSING_FIELD', where, detail: 'ch 必填，且必須是整數' });
+    } else if (chapters && (rawStep.ch < 0 || rawStep.ch >= chapters.length)) {
+      issues.push({
+        code: 'CH_OUT_OF_RANGE',
+        where,
+        detail: `ch = ${rawStep.ch}，但這一課只有 ${chapters.length} 段（合法範圍 0–${chapters.length - 1}）`,
+      });
+    }
+
+    // note 內文也要守 40 字規則
+    if (isObject(rawStep.note) && isNonEmptyString(rawStep.note.body)) {
+      checkSentences(rawStep.note.body, where, 'note.body', issues);
+    }
+  });
+
+  return issues;
+}
+
+/** 驗證整份課程清單，包含跨課檢查（id 重複、prerequisites） */
+export function validateLessons(lessons: readonly unknown[]): Issue[] {
+  const issues: Issue[] = [];
+  const seen = new Set<string>();
+  const knownIds = new Set<string>();
+
+  for (const l of lessons) {
+    if (isObject(l) && isNonEmptyString(l.id)) knownIds.add(l.id);
+  }
+
+  for (const l of lessons) {
+    if (isObject(l) && isNonEmptyString(l.id)) {
+      if (seen.has(l.id)) {
+        issues.push({ code: 'DUPLICATE_ID', where: l.id, detail: `lesson id「${l.id}」重複` });
+      }
+      seen.add(l.id);
+    }
+    issues.push(...validateLesson(l, knownIds));
+  }
+
+  return issues;
+}
+
+/** 驗證單一曲風配方卡：八段齊全、L4 必須說明做不完整 */
+export function validateGenre(input: unknown): Issue[] {
+  const issues: Issue[] = [];
+
+  if (!isObject(input)) {
+    return [{ code: 'BAD_SHAPE', where: '(unknown)', detail: '曲風資料不是物件' }];
+  }
+
+  const slug = isNonEmptyString(input.slug) ? input.slug : '(缺 slug)';
+
+  for (const field of ['slug', 'title', 'titleEn', 'tagline', 'firmwareVerified', 'verifiedDate']) {
+    if (!isNonEmptyString(input[field])) {
+      issues.push({ code: 'MISSING_FIELD', where: slug, detail: `${field} 必填` });
+    }
+  }
+
+  if (!isObject(input.intro) || !isNonEmptyString(input.intro.body)) {
+    issues.push({ code: 'MISSING_FIELD', where: slug, detail: '第 ① 段 intro.body 必填' });
+  }
+  if (!isObject(input.tempo)) {
+    issues.push({ code: 'MISSING_FIELD', where: slug, detail: '第 ② 段 tempo 必填' });
+  }
+
+  const sections: ReadonlyArray<[string, string]> = [
+    ['padPlan', '第 ③ 段 Pad 配置'],
+    ['drums', '第 ④ 段 鼓組結構'],
+    ['samples', '第 ⑤ 段 素材建議'],
+    ['resamples', '第 ⑥ 段 Resample 次數'],
+    ['fx', '第 ⑦ 段 效果配方'],
+    ['checkpoints', '第 ⑧ 段 完成檢查點'],
+  ];
+
+  for (const [field, label] of sections) {
+    const value = input[field];
+    // L1 有可能 0 次 resample，允許空陣列但不允許缺欄位
+    const allowEmpty = field === 'resamples';
+    if (!Array.isArray(value) || (!allowEmpty && value.length === 0)) {
+      issues.push({ code: 'MISSING_FIELD', where: slug, detail: `${label} 必填` });
+    }
+  }
+
+  if (isNonEmptyStringArray(input.checkpoints)) {
+    input.checkpoints.forEach((c, i) =>
+      checkSentences(c, `${slug} · checkpoint ${i + 1}`, 'checkpoint', issues),
+    );
+  }
+  if (isObject(input.intro) && isNonEmptyString(input.intro.body)) {
+    checkSentences(input.intro.body, slug, 'intro.body', issues);
+  }
+
+  if (input.level === 'L4' && !isNonEmptyString(input.limitation)) {
+    issues.push({
+      code: 'MISSING_FIELD',
+      where: slug,
+      detail: 'L4 曲風必須在 limitation 說明機上做不完整、做到哪裡為止',
+    });
+  }
+  if (!['L1', 'L2', 'L3', 'L4'].includes(String(input.level))) {
+    issues.push({ code: 'MISSING_FIELD', where: slug, detail: 'level 必須是 L1 / L2 / L3 / L4' });
+  }
+
+  return issues;
+}
+
+export function validateGenres(genres: readonly unknown[]): Issue[] {
+  return genres.flatMap((g) => validateGenre(g));
+}

@@ -1,0 +1,30 @@
+{
+  "name": "mpc-sample-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "敲敲取樣 · 一台就夠 — MPC Sample 中文教學",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "npm run validate",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx scripts/validate-content.ts",
+    "validate:selftest": "tsx scripts/validate-selftest.ts",
+    "check": "npm run typecheck && npm run validate && npm run validate:selftest"
+  },
+  "dependencies": {
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
