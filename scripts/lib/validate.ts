@@ -6,6 +6,7 @@
  */
 
 import { CONTROL_IDS } from '../../types/lesson';
+import { fxEntries } from '../../content/reference/fx';
 
 export type IssueCode =
   | 'BAD_SHAPE'           // 資料結構根本不對
@@ -18,7 +19,8 @@ export type IssueCode =
   | 'BAD_PREREQUISITE'    // prerequisites 指向不存在的課
   | 'CH_OUT_OF_RANGE'     // ch 索引超出 chapters 範圍
   | 'DUPLICATE_ID'        // lesson id 重複
-  | 'BAD_SLUG';           // 網址 slug 格式不合 SEO 規範或重複
+  | 'BAD_SLUG'            // 網址 slug 格式不合 SEO 規範或重複
+  | 'UNKNOWN_FX';         // 曲風配方引用了效果字典裡沒有的效果
 
 export interface Issue {
   code: IssueCode;
@@ -321,6 +323,25 @@ export function validateGenre(input: unknown): Issue[] {
   }
   if (isObject(input.intro) && isNonEmptyString(input.intro.body)) {
     checkSentences(input.intro.body, slug, 'intro.body', issues);
+  }
+
+  // 效果配方只能引用效果字典裡真的存在的效果，避免自己編出不存在的效果名
+  if (Array.isArray(input.fx)) {
+    for (const raw of input.fx) {
+      if (!isObject(raw)) continue;
+      const name = String(raw.name ?? '');
+      const engine = String(raw.engine ?? '');
+      // Flex Beat 與內建 Compressor 不是逐一命名的效果，不做名稱比對
+      if (engine === 'flexbeat' || engine === 'compressor') continue;
+      const known = fxEntries.some((f) => f.engine === engine && f.name === name);
+      if (!known) {
+        issues.push({
+          code: 'UNKNOWN_FX',
+          where: slug,
+          detail: `效果配方引用了「${engine} · ${name}」，但效果字典裡沒有這一個`,
+        });
+      }
+    }
   }
 
   if (input.level === 'L4' && !isNonEmptyString(input.limitation)) {
