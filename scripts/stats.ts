@@ -22,3 +22,14 @@ console.log(`快捷鍵 ${shortcuts.length} / 名詞 ${glossary.length} / 疑難�
 console.log(`旋鈕矩陣 ${knobRows.length} 畫面（已查證 ${knobRows.filter((r) => r.status === 'verified').length}）`);
 console.log(`效果 ${fxEntries.length} = Pad FX ${padFx.length} + Knob FX ${knobFx.length}`);
 console.log(`尚未驗證項目 ${openQuestions.length}`);
+
+// 延伸觀看：待人工確認的影片要看得見，否則會一直躺在那裡沒人處理
+const allVideos = [
+  ...lessons.flatMap((l) => (l.videos ?? []).map((v) => ({ where: l.id, v }))),
+  ...genres.flatMap((g) => (g.videos ?? []).map((v) => ({ where: g.slug, v }))),
+];
+const unreviewed = allVideos.filter((x) => !x.v.reviewed);
+console.log(`延伸觀看影片 ${allVideos.length} 支，其中 ${unreviewed.length} 支尚未人工確認`);
+for (const { where, v } of unreviewed) {
+  console.log(`  待確認  ${where.padEnd(10)} [${v.channel}] ${v.title}`);
+}

@@ -23,6 +23,18 @@ export const brokenLesson = {
   prerequisites: [],
   checkpoints: ['驗證腳本必須攔下這一課的五種錯誤'],
   sources: ['內部測試用，非教學內容'],
+  // 錯誤 ⑥：影片 ID 格式不對，而且塞了逐字稿欄位（著作權紅線）
+  videos: [
+    {
+      youtubeId: 'not-an-id',
+      title: '測試用影片',
+      channel: '測試頻道',
+      why: '用來確認影片檢查有效',
+      lang: 'en',
+      reviewed: false,
+      transcript: '這裡如果放得進逐字稿，就代表防線失效了',
+    },
+  ],
   steps: [
     // 錯誤 ①：targets 用了不存在的控制項 ID
     {

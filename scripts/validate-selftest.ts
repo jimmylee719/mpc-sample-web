@@ -20,6 +20,8 @@ const MUST_CATCH: readonly IssueCode[] = [
   'SAY_NO_BOLD',
   'BAD_CONTROL_ID',
   'SENTENCE_TOO_LONG',
+  // 影片相關：ID 格式錯誤，以及有人試圖把逐字稿存進資料
+  'BAD_VIDEO',
 ];
 
 function main(): void {

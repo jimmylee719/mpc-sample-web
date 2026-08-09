@@ -13,6 +13,7 @@ const LABEL: Record<IssueCode, string> = {
   DUPLICATE_ID: 'lesson id 重複',
   BAD_SLUG: '網址 slug 不合規範',
   UNKNOWN_FX: '引用了不存在的效果',
+  BAD_VIDEO: '影片資料不合規範',
 };
 
 export function labelOf(code: IssueCode): string {

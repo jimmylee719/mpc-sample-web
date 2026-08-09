@@ -95,6 +95,31 @@ export interface Step {
   note?: StepNote;
 }
 
+/**
+ * 延伸觀看的外部影片。
+ *
+ * 影片只能嵌入或連結，**絕對不可以把內容轉錄成文字**（著作權）。
+ * 它的定位是補足文字教不了的東西：手感、律動、音色。
+ * 本站的教學內容不可以依賴影片，影片說法也不可以直接當成事實。
+ */
+export interface VideoRef {
+  /** YouTube 影片 ID，11 碼 */
+  youtubeId: string;
+  title: string;
+  /** 頻道名稱。讀者有權知道這是誰做的 */
+  channel: string;
+  /** 為什麼選這一支：它補足了本站文字教不了的什麼 */
+  why: string;
+  lang: 'zh-Hant' | 'zh-Hans' | 'en' | 'ja' | 'other';
+  /** 是否為 Akai 官方頻道 */
+  official?: boolean;
+  /**
+   * 是否已經有人實際看過並確認內容與說明相符。
+   * false 時前台會標示「尚未人工確認」——沒看過就說推薦是不誠實的。
+   */
+  reviewed: boolean;
+}
+
 export type SeasonNumber = 1 | 2 | 3 | 4 | 5;
 
 export interface Lesson {
@@ -125,4 +150,6 @@ export interface Lesson {
   checkpoints: string[];
   /** 官方來源標記 */
   sources: string[];
+  /** 延伸觀看。可選，本站教學不得依賴它 */
+  videos?: VideoRef[];
 }

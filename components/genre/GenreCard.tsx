@@ -2,6 +2,7 @@ import type { Genre } from '@/types/genre';
 import { MpcPanel } from '@/components/mpc/MpcPanel';
 import { AudioClip } from '@/components/lesson/AudioClip';
 import { GenreMiniPlayer } from './GenreMiniPlayer';
+import { VideoList } from '@/components/video/VideoList';
 
 /**
  * 曲風配方卡，固定八段式（PROJECT-PLAN §4.3）。
@@ -187,6 +188,8 @@ export function GenreCard({ genre }: { genre: Genre }) {
           <GenreMiniPlayer title={genre.miniPlayer.title} steps={genre.miniPlayer.steps} />
         </div>
       )}
+
+      {genre.videos && <VideoList videos={genre.videos} />}
 
       <section className="mt-10 border-t border-[#2C3036] pt-4">
         <h2 className="label-mono text-muted">資料來源</h2>

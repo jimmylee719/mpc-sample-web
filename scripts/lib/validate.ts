@@ -20,7 +20,8 @@ export type IssueCode =
   | 'CH_OUT_OF_RANGE'     // ch 索引超出 chapters 範圍
   | 'DUPLICATE_ID'        // lesson id 重複
   | 'BAD_SLUG'            // 網址 slug 格式不合 SEO 規範或重複
-  | 'UNKNOWN_FX';         // 曲風配方引用了效果字典裡沒有的效果
+  | 'UNKNOWN_FX'          // 曲風配方引用了效果字典裡沒有的效果
+  | 'BAD_VIDEO';          // 延伸觀看的影片資料不合規範
 
 export interface Issue {
   code: IssueCode;
@@ -60,6 +61,61 @@ export function splitSentences(text: string): string[] {
 export function sentenceLength(sentence: string): number {
   const cleaned = sentence.replace(/[。？！]+$/u, '').replace(/\s+/gu, '');
   return [...cleaned].length;
+}
+
+const LEGAL_LANGS = new Set(['zh-Hant', 'zh-Hans', 'en', 'ja', 'other']);
+
+/**
+ * 檢查延伸觀看的影片資料。
+ * 影片只能嵌入或連結，內容絕對不可以轉錄成文字，所以這裡不接受任何逐字稿欄位。
+ */
+function checkVideos(value: unknown, where: string, issues: Issue[]): void {
+  if (value === undefined) return;
+  if (!Array.isArray(value)) {
+    issues.push({ code: 'BAD_VIDEO', where, detail: 'videos 必須是陣列' });
+    return;
+  }
+  const seen = new Set<string>();
+  for (const raw of value) {
+    if (!isObject(raw)) {
+      issues.push({ code: 'BAD_VIDEO', where, detail: '影片資料不是物件' });
+      continue;
+    }
+    const id = typeof raw.youtubeId === 'string' ? raw.youtubeId : '';
+    if (!/^[A-Za-z0-9_-]{11}$/.test(id)) {
+      issues.push({ code: 'BAD_VIDEO', where, detail: `youtubeId「${id}」不是合法的 11 碼影片 ID` });
+    }
+    if (seen.has(id)) {
+      issues.push({ code: 'BAD_VIDEO', where, detail: `同一支影片「${id}」重複列出` });
+    }
+    seen.add(id);
+
+    for (const field of ['title', 'channel', 'why']) {
+      if (!isNonEmptyString(raw[field])) {
+        issues.push({ code: 'BAD_VIDEO', where, detail: `影片「${id}」缺少 ${field}` });
+      }
+    }
+    if (!LEGAL_LANGS.has(String(raw.lang))) {
+      issues.push({ code: 'BAD_VIDEO', where, detail: `影片「${id}」的 lang 不合法` });
+    }
+    if (typeof raw.reviewed !== 'boolean') {
+      issues.push({
+        code: 'BAD_VIDEO',
+        where,
+        detail: `影片「${id}」必須明確標示 reviewed，沒看過就寫 false`,
+      });
+    }
+    // 防呆：如果有人想把逐字稿塞進資料，直接擋下來
+    for (const banned of ['transcript', 'subtitles', 'captions', 'fullText']) {
+      if (banned in raw) {
+        issues.push({
+          code: 'BAD_VIDEO',
+          where,
+          detail: `影片「${id}」出現 ${banned} 欄位。轉錄影片內容是著作權紅線，不可以存在`,
+        });
+      }
+    }
+  }
 }
 
 /** 檢查一段文字裡有沒有超長句 */
@@ -168,6 +224,8 @@ export function validateLesson(input: unknown, knownLessonIds: ReadonlySet<strin
       }
     }
   }
+
+  checkVideos(input.videos, at(), issues);
 
   // ---- steps ----
   if (!Array.isArray(input.steps) || input.steps.length === 0) {
@@ -343,6 +401,8 @@ export function validateGenre(input: unknown): Issue[] {
       }
     }
   }
+
+  checkVideos(input.videos, slug, issues);
 
   if (input.level === 'L4' && !isNonEmptyString(input.limitation)) {
     issues.push({

@@ -17,6 +17,24 @@ export const s3_02: Lesson = {
     'Akai 官方使用手冊 v1.3.0 (RevA)：SHIFT + PAD 11 RESAMPLE 會把目前序列的全部聲音錄成新樣本',
     '操作流程為實機實測後自行撰寫',
   ],
+  videos: [
+    {
+      youtubeId: 'JyncB9xaQ0k',
+      title: 'AKAI MPC SAMPLE Video 8 - Resample & Recall',
+      channel: 'Daddy Long Les',
+      why: '系列教學第 8 集，主題正是 Resample 與 Recall，與本課直接對應。',
+      lang: 'en',
+      reviewed: false,
+    },
+    {
+      youtubeId: 'pp6q9iHLZSo',
+      title: 'Akai MPC Sample Part 8 - Resampling and Automation Tip!',
+      channel: 'DnC Music',
+      why: '同樣講 Resample，另外帶到自動化。想看第二種做法可以比對。',
+      lang: 'en',
+      reviewed: false,
+    },
+  ],
   checkpoints: [
     '你手上有一段至少三層的循環',
     '那三層只佔掉一到三顆 pad',

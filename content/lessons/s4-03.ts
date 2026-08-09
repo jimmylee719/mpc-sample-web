@@ -17,6 +17,16 @@ export const s4_03: Lesson = {
     'Akai 官方使用手冊 v1.3.0 (RevA)：SHIFT + PAD FX 進入、PAD 1 為 EMPTY、效果在 PAD 2–16、B3 切換 Quantize、K1 為 One Shot 或 Loop、K3 為乾濕 Mix',
     '操作流程為實機實測後自行撰寫',
   ],
+  videos: [
+    {
+      youtubeId: 'Hhmd6B87oCA',
+      title: 'Akai MPC Sample Part 13 - Simple Flex Beat Resample Tip!',
+      channel: 'DnC Music',
+      why: 'Flex Beat 的實際聲音效果，用聽的比讀文字有用。',
+      lang: 'en',
+      reviewed: false,
+    },
+  ],
   checkpoints: [
     '你知道 PAD 1 是 EMPTY 不做事',
     '你試過 One Shot 與 Loop 兩種模式',

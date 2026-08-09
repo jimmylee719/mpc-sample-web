@@ -17,6 +17,16 @@ export const s4_02: Lesson = {
     'Akai 官方使用手冊 v1.3.0 (RevA)：Pad FX 用 PADS 1–16 觸發、力道越大效果越重、同時最多四個、B1 為 Latch',
     '操作流程為實機實測後自行撰寫',
   ],
+  videos: [
+    {
+      youtubeId: '6nM5ujdDkmY',
+      title: 'Akai MPC Sample Part 9 - Resampling Pad FX!',
+      channel: 'DnC Music',
+      why: '示範把 Pad FX 的結果 resample 收起來。文字講不清楚的手感，看影片最快。',
+      lang: 'en',
+      reviewed: false,
+    },
+  ],
   checkpoints: [
     '你試過至少五種 Pad FX',
     '你感覺得出按壓力道會改變效果量',

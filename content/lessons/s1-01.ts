@@ -17,6 +17,24 @@ export const s1_01: Lesson = {
     'Akai 官方使用手冊 v1.3.0 (RevA)：功能名稱與規格數字',
     '操作流程為實機實測後自行撰寫',
   ],
+  videos: [
+    {
+      youtubeId: '1wt1Vx3-_0k',
+      title: 'Akai MPC SAMPLE // Does it BEAT the Competition? + 5 Power Tips',
+      channel: 'loopop',
+      why: '評測與教學合一，標題註明含五個實用技巧。適合做完本課之後看一遍建立全貌。',
+      lang: 'en',
+      reviewed: false,
+    },
+    {
+      youtubeId: 'b2MUQo3AFaI',
+      title: 'MPC SAMPLE FULL TUTORIAL',
+      channel: 'Tubedigga',
+      why: '標題為完整教學。想一次看完全部功能、而不是照課程一步一步走的人可以先看它。',
+      lang: 'en',
+      reviewed: false,
+    },
+  ],
   checkpoints: [
     '你手上有一段兩小節、自己彈出來的循環',
     '那段循環已經 resample 收成一顆 pad',

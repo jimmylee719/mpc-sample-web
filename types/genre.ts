@@ -5,7 +5,7 @@
  * 例外：每個曲風可嵌入一個迷你播放器，只處理該曲風最難的單一環節。
  */
 
-import type { PadId, Step } from './lesson';
+import type { PadId, Step, VideoRef } from './lesson';
 
 /** 難度分級（PROJECT-PLAN §4.3） */
 export type GenreLevel =
@@ -120,6 +120,12 @@ export interface Genre {
     title: string;
     steps: Step[];
   };
+
+  /**
+   * 延伸觀看。曲風頁最需要影片，因為律動與音色用文字講不清楚。
+   * 但配方卡的八段式內容不可以因為有影片就寫得草率。
+   */
+  videos?: VideoRef[];
 
   firmwareVerified: string;
   verifiedDate: string;
