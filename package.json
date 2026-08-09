@@ -13,6 +13,7 @@
     "validate": "tsx scripts/validate-content.ts",
     "validate:selftest": "tsx scripts/validate-selftest.ts",
     "check:panel": "tsx scripts/panel-smoke.tsx && tsx scripts/panel-parity.ts",
+    "stats": "tsx scripts/stats.ts",
     "check": "npm run typecheck && npm run validate && npm run validate:selftest && npm run check:panel"
   },
   "dependencies": {

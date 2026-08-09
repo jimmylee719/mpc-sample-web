@@ -90,6 +90,12 @@ export const openQuestions: OpenQuestion[] = [
       '官方手冊寫「Approximately 5 hours of continuous playback」，官方 FAQ 寫「Up to 6 hours」。依來源優先序，本站採手冊的約 5 小時。',
   },
   {
+    id: 'sequence-switch-timing',
+    question: '演出中切換序列，是等目前這段跑完才換，還是立刻換？',
+    status:
+      '官方手冊沒有明說。這件事直接影響台上要提早幾拍按，5-2 已標示為尚未驗證，請上台前自己確認一次。',
+  },
+  {
     id: 'update-project-safety',
     question: '韌體更新會不會影響既有專案？',
     status: '官方更新說明只強調「更新中不要拔線」，沒有提到專案。更新前請務必自己先存一次。',
