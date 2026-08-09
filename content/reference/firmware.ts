@@ -96,10 +96,10 @@ export const openQuestions: OpenQuestion[] = [
       '官方有一支「Using Splice with MPC Sample」的影片，但官方手冊 v1.3.0 完全沒有出現 Splice 這個字，手冊也沒有列出任何無線連線功能。Splice 官方說明的整合流程需要在裝置上產生代碼再上網綁定，那是給有網路的機型。本站因此不假設有機上整合，先以「電腦或手機下載再傳進記憶卡」的路徑撰寫。',
   },
   {
-    id: 'audio-in-level',
-    question: '背板 AUDIO IN 能吃多大的訊號？可以直接接唱盤嗎？',
+    id: 'midi-adapter-included',
+    question: 'MIDI 轉接線到底有沒有含在盒裝內？',
     status:
-      '官方手冊沒有列出輸入電平或阻抗規格。唱盤輸出的 phono 訊號遠低於線路電平，依一般音訊常識需要唱頭放大器，但這台的實際容許範圍尚未實測。',
+      '官方手冊寫接五針 MIDI 需要 1/8" TRS (Type A) 轉接線，並註明 not included。但官方 FAQ 提到隨機附的轉接線是 Type A 規格。兩份官方文件說法不一致，依來源優先序以手冊為準，請自行確認盒裝內容。',
   },
   {
     id: 'update-project-safety',
@@ -121,5 +121,7 @@ export const VERIFIED_FACTS = {
   padFxSimultaneous: 'Pad FX 同時最多四個，超過會從最早開啟的開始被暫停',
   exportPath: 'Song 頁按 B1 匯出，B2 存成音檔，用 ENCODER 命名後按 B3 執行',
   transferPath: 'Project 選單的 SD Card Access 會把 microSD 掛載成電腦的外接磁碟',
-  microSdIncluded: 'microSD 卡不含在盒裝內',
+  microSdIncluded: 'microSD 卡不含在盒裝內，卡槽在機身左側',
+  audioInLevel: 'AUDIO IN 為 1/4" TRS 線路電平輸入，唱盤需先經唱頭放大器',
+  charging: '視線材與電源而定，充電可能只在關機時有效；官方建議至少 5V 2A',
 } as const;

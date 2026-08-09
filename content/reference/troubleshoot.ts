@@ -71,7 +71,7 @@ export const troubles: TroubleEntry[] = [
     symptom: '唱盤接進背板，聲音超小而且很悶',
     cause: '唱盤輸出的是 phono 訊號，電平遠低於線路電平，而且頻率響應還沒被還原。',
     fix: '中間要接唱頭放大器，或改用內建放大器的唱盤。先進混音器再拉線進來也可以。',
-    source: '一般音訊常識。這台的輸入電平規格官方手冊未列出，見韌體對照頁的尚未驗證清單',
+    source: 'Akai 官方使用手冊 v1.3.0 (RevA)：AUDIO IN 為線路電平輸入，適用麥克風、樂器、混音器、合成器、鼓機',
   },
   {
     id: 'automation-stuck',

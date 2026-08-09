@@ -15,7 +15,8 @@ export const s2_01: Lesson = {
   prerequisites: ['s1-01', 's1-02'],
   sources: [
     'Akai 官方使用手冊 v1.3.0 (RevA)：Input Configuration 的 Source 八個選項、Rec Length 的 FREE 與 SEQ、Rec Input Effects、Threshold；Sample Record 頁 K1 選來源、K3 調 Threshold、B1 切換 Monitor 三段；錄音以敲 pad 開始、錄音中可再敲 pad 切片、三種停止方式的差別；SHIFT + SAMPLE RECORD 撈回最後 25 秒',
-    '唱盤需經唱頭放大器為一般音訊常識，本機輸入電平規格官方未列出',
+    'Akai 官方使用手冊 v1.3.0 (RevA)：AUDIO IN 為 1/4" TRS 線路電平輸入，適用麥克風、樂器、混音器、合成器、鼓機；USB-C 可與電腦或行動裝置互傳音訊與 MIDI；接上耳機時內建喇叭停用',
+    '唱盤需經唱頭放大器為一般音訊常識',
   ],
   checkpoints: [
     '你知道八個錄音來源分別是什麼',
@@ -69,7 +70,19 @@ export const s2_01: Lesson = {
     },
     {
       ch: 1,
-      say: '接上之後把 Source 轉到 <b>USB</b>。用不能傳資料的充電線會完全沒反應。',
+      say: '接上之後把 Source 轉到 <b>USB</b>。<b>手機上放什麼，它就錄什麼</b>。',
+      targets: ['r_usb'],
+      screen: { t1: 'SOURCE   USB' },
+      hear: '手機正在播的聲音',
+      note: {
+        kind: 'warn',
+        title: '技術上做得到，法律上要先想清楚',
+        body: '串流平台、影音網站、你自己的音樂檔，只要手機播得出來就錄得進來。但平台的服務條款本身就禁止錄製，那跟著作權是兩條各自獨立的責任線。動手前先看 2-2。',
+      },
+    },
+    {
+      ch: 1,
+      say: '用<b>不能傳資料的充電線</b>會完全沒反應。線要選確定支援資料傳輸的。',
       targets: ['r_usb'],
       screen: { t1: 'SOURCE   USB' },
       hear: '—',
@@ -88,7 +101,7 @@ export const s2_01: Lesson = {
       note: {
         kind: 'warn',
         title: '唱盤一定要先過唱頭放大器',
-        body: '唱盤輸出的是 phono 訊號，電平遠低於線路電平，高低頻也還沒還原。少了這一步，錄進來一定又小又悶。',
+        body: '官方手冊寫 AUDIO IN 是給線路電平來源用的。唱盤輸出的 phono 訊號遠低於線路電平，高低頻也還沒還原。少了這一步，錄進來一定又小又悶。',
       },
     },
     {
@@ -117,9 +130,9 @@ export const s2_01: Lesson = {
       screen: { t1: 'SOURCE   REAR' },
       hear: '訊號變大或變小',
       note: {
-        kind: 'warn',
-        title: '尚未驗證',
-        body: '背板輸入接受的電平範圍官方沒有列出。第一次接請先把來源音量開小再慢慢加。',
+        kind: 'tip',
+        title: '官方寫得很明白',
+        body: '手冊寫 AUDIO IN 是給線路電平來源用的。麥克風、樂器、混音器、合成器、鼓機都算。REC GAIN 調的就是這一路的錄音電平。',
       },
     },
 

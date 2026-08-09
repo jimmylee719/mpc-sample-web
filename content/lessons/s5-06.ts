@@ -53,15 +53,22 @@ export const s5_06: Lesson = {
     },
     {
       ch: 0,
-      say: '背板那兩個是 <b>1/8 吋 TRS Type A</b>。<b>轉接線盒裝有附</b>，是 Type A 規格。',
+      say: '背板那兩個是 <b>1/8 吋 TRS Type A</b>。要接傳統五針 MIDI 設備需要轉接線。',
       targets: ['r_midiout'],
       screen: { t1: 'TRS TYPE A' },
       hear: '—',
       note: {
         kind: 'warn',
-        title: 'Type A 跟 Type B 不通用',
-        body: '市面上兩種都有。買錯線接上去不會壞，但完全不會動。',
+        title: '官方說法不一致，先當作要自己買',
+        body: '手冊寫轉接線「not included」，但官方 FAQ 提到有附 Type A 轉接線。依來源優先序以手冊為準，出門前自己確認盒裝裡有沒有。',
       },
+    },
+    {
+      ch: 0,
+      say: '買線要認明 <b>Type A</b>。市面上 Type B 也很多，接上去不會壞但完全不會動。',
+      targets: ['r_midiin', 'r_midiout'],
+      screen: { t1: 'TRS TYPE A' },
+      hear: '—',
     },
     {
       ch: 1,
@@ -98,14 +105,14 @@ export const s5_06: Lesson = {
     },
     {
       ch: 2,
-      say: '<b>帶一顆行動電源</b>。官方寫的規格是 5V 2A，而且要另外買。',
+      say: '<b>帶一顆行動電源</b>。官方建議至少 <b>5V 2A</b>，而且變壓器不含在盒裝內。',
       targets: ['r_usb'],
       screen: { t1: 'POWER  5V 2A' },
       hear: '—',
       note: {
         kind: 'warn',
-        title: '線也要帶兩條',
-        body: '有些 USB-C 線只能充電。帶一條確定能傳資料的，一條備用。',
+        title: '有些組合只有關機才充得進去',
+        body: '官方明說：視線材與電源而定，充電可能只在關機時有效。所以要用盒裝那條線加上足夠的電源，別賭。',
       },
     },
     {
