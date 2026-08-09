@@ -14,7 +14,7 @@ export const s5_02: Lesson = {
   verifiedDate: '2026-08-08',
   prerequisites: ['s5-01'],
   sources: [
-    'Akai 官方使用手冊 v1.3.0 (RevA)：Sequence Mode 中有內容的 pad 亮、空的暗；PAD BANK 按一下循環 A–H，按住它再按 PADS 1–8 可直接跳到該 Bank，目前 Bank 顯示在 MAIN VOLUME 旁',
+    'Akai 官方使用手冊 v1.3.0 (RevA)：Sequence Mode 中有內容的 pad 亮、空的暗；播放中按另一顆 pad 會閃亮綠代表排隊，等目前序列結束才切換；PAD BANK 按一下循環 A–H，按住它再按 PADS 1–8 可直接跳到該 Bank，目前 Bank 顯示在 MAIN VOLUME 旁',
     '演出配置建議為本站整理',
   ],
   checkpoints: [
@@ -44,14 +44,26 @@ export const s5_02: Lesson = {
     },
     {
       ch: 1,
-      say: '敲一顆亮的 <b>pad</b> 就切到那一段。播放中切換，會等目前這段跑完才換。',
+      say: '播放中敲另一顆亮的 <b>pad</b>，它會<b>開始閃亮綠</b>，代表排隊中。',
+      targets: ['p2'],
+      screen: { t1: 'SEQ 02  QUEUED' },
+      hear: '目前這段繼續播，還沒換',
+      note: {
+        kind: 'tip',
+        title: '閃爍就是排隊',
+        body: '正在播的那一顆是持續亮綠，排隊中的那一顆會閃。用燈就分得出來。',
+      },
+    },
+    {
+      ch: 1,
+      say: '<b>等目前這段跑完，新的才會接上</b>。接上之後那顆 pad 就變成持續亮綠。',
       targets: ['p2'],
       screen: { t1: 'SEQ 02  ▶' },
-      hear: '這一輪跑完才換段',
+      hear: '跑完一輪之後乾淨接到新段落',
       note: {
-        kind: 'warn',
-        title: '尚未驗證',
-        body: '切換到底是等整段跑完還是立刻換，我們還沒實測。上台前務必自己確認一次。',
+        kind: 'tip',
+        title: '這是好消息',
+        body: '你不會切在半路上。所以提早按沒關係，機器會幫你等到正確的時間點。',
       },
     },
     {

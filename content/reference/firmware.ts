@@ -102,12 +102,6 @@ export const openQuestions: OpenQuestion[] = [
       '官方手冊沒有列出輸入電平或阻抗規格。唱盤輸出的 phono 訊號遠低於線路電平，依一般音訊常識需要唱頭放大器，但這台的實際容許範圍尚未實測。',
   },
   {
-    id: 'sequence-switch-timing',
-    question: '演出中切換序列，是等目前這段跑完才換，還是立刻換？',
-    status:
-      '官方手冊沒有明說。這件事直接影響台上要提早幾拍按，5-2 已標示為尚未驗證，請上台前自己確認一次。',
-  },
-  {
     id: 'update-project-safety',
     question: '韌體更新會不會影響既有專案？',
     status: '官方更新說明只強調「更新中不要拔線」，沒有提到專案。更新前請務必自己先存一次。',
