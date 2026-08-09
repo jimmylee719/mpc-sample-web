@@ -52,7 +52,7 @@ export const officialVideos: Record<string, VideoRef[]> = {
     v('0AFQVjzrGCc', 'Using USB-C Audio and MIDI', 'USB-C 同時走音訊與 MIDI 的官方說明。'),
   ],
   's2-02': [
-    v('0lGotNt39W4', 'Using Splice with MPC Sample', '本課第四種乾淨來源是付費素材包。這支示範官方與 Splice 的整合。'),
+    v('0lGotNt39W4', 'Using Splice with MPC Sample', '官方唯一的 Splice 說明。手冊完全沒提 Splice，實際流程以這支為準。'),
   ],
   's2-03': [
     v('yCWCuo6OZX0', 'Sampling From Vinyl', '從黑膠取樣的官方示範。本課教怎麼找乾淨段落，這支示範怎麼把它收進來。'),
@@ -81,12 +81,14 @@ export const officialVideos: Record<string, VideoRef[]> = {
     v('wUOQ_pbrAVE', 'How to Step Edit', '對應本課第 1 段的逐格編輯。'),
     v('A7hU4e67_F8', 'Using Swing and Quantize', '對應本課第 3 段的 Swing 與量化。'),
     v('dqMew85jKsk', 'Using The Legacy Fader', '對應本課第 4 段的推桿選單。'),
-    v('MlQfZ2H284o', 'Recording Automation', '⚠️ 自動化錄製本站目前沒有課，這支是唯一來源。'),
   ],
   's3-08': [
-    v('oqpx53UpylY', 'How to use Song Mode', 'Song Mode 串接的官方示範。'),
+    v('MlQfZ2H284o', 'Recording Automation', '本課的官方示範。自動化的實際效果用聽的最快。'),
   ],
   's3-09': [
+    v('oqpx53UpylY', 'How to use Song Mode', 'Song Mode 串接的官方示範。'),
+  ],
+  's3-10': [
     v('icD6d6H79cM', 'Loading Kits and Samples', '對應本課的 Load Kit 換音色不換編曲。'),
   ],
 

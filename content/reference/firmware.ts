@@ -90,6 +90,18 @@ export const openQuestions: OpenQuestion[] = [
       '官方手冊寫「Approximately 5 hours of continuous playback」，官方 FAQ 寫「Up to 6 hours」。依來源優先序，本站採手冊的約 5 小時。',
   },
   {
+    id: 'splice-workflow',
+    question: 'Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？',
+    status:
+      '官方有一支「Using Splice with MPC Sample」的影片，但官方手冊 v1.3.0 完全沒有出現 Splice 這個字，手冊也沒有列出任何無線連線功能。Splice 官方說明的整合流程需要在裝置上產生代碼再上網綁定，那是給有網路的機型。本站因此不假設有機上整合，先以「電腦或手機下載再傳進記憶卡」的路徑撰寫。',
+  },
+  {
+    id: 'audio-in-level',
+    question: '背板 AUDIO IN 能吃多大的訊號？可以直接接唱盤嗎？',
+    status:
+      '官方手冊沒有列出輸入電平或阻抗規格。唱盤輸出的 phono 訊號遠低於線路電平，依一般音訊常識需要唱頭放大器，但這台的實際容許範圍尚未實測。',
+  },
+  {
     id: 'sequence-switch-timing',
     question: '演出中切換序列，是等目前這段跑完才換，還是立刻換？',
     status:

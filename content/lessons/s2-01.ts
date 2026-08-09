@@ -89,6 +89,30 @@ export const s2_01: Lesson = {
     },
     {
       ch: 2,
+      say: '<b>唱盤是最經典的取樣來源</b>，但它不能直接接進來。訊號太小，要先放大。',
+      targets: ['r_in1'],
+      screen: { t1: 'SOURCE   REAR' },
+      hear: '直接接會非常小聲而且很悶',
+      note: {
+        kind: 'warn',
+        title: '唱盤需要唱頭放大器',
+        body: '唱盤輸出的是 phono 訊號，比一般線路電平小很多。要嘛用內建放大的唱盤，要嘛外接一台。',
+      },
+    },
+    {
+      ch: 2,
+      say: '接法是<b>唱盤先進放大器或混音器，再從那裡拉線進背板</b>。',
+      targets: ['r_in1', 'r_in2'],
+      screen: { t1: 'SOURCE   REAR' },
+      hear: '音量正常、高低頻平衡的訊號',
+      note: {
+        kind: 'warn',
+        title: '尚未驗證',
+        body: '背板輸入接受的電平範圍官方手冊沒有列出。實際接之前先把音量開小。',
+      },
+    },
+    {
+      ch: 2,
       say: '轉背板的 <b>REC GAIN</b> 調整進來的音量。這一顆決定會不會破音。',
       targets: ['r_gain'],
       screen: { t1: 'SOURCE   REAR' },

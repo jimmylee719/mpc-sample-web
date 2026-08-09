@@ -166,6 +166,31 @@ export const s2_02: Lesson = {
     },
     {
       ch: 4,
+      say: '訂閱制的 <b>Splice</b> 也算這一類。官方有一支專門講它的影片，見本頁下方。',
+      targets: ['r_usb'],
+      screen: { t1: 'SPLICE' },
+      hear: '—',
+      note: {
+        kind: 'warn',
+        title: '尚未驗證',
+        body: '官方手冊完全沒提 Splice，本機規格也沒有無線連線。實際流程請以官方影片為準。',
+      },
+    },
+    {
+      ch: 4,
+      say: '在確認之前，<b>安全的做法是在電腦下載，再傳進記憶卡</b>。這條路一定行得通。',
+      targets: ['p16'],
+      shift: true,
+      screen: { t1: 'SD CARD ACCESS' },
+      hear: '—',
+      note: {
+        kind: 'tip',
+        title: '訂閱制的授權要看清楚',
+        body: '訂閱到期後已下載的素材能不能繼續用於商業發行，各家規定不同。買前先確認。',
+      },
+    },
+    {
+      ch: 4,
       say: '最後一句話。<b>本站不提供法律意見</b>。真的要發行，找律師，不要問論壇。',
       targets: ['p16'],
       shift: true,

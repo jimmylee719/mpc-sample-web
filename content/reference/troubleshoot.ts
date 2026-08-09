@@ -67,6 +67,20 @@ export const troubles: TroubleEntry[] = [
     source: '官方手冊 v1.3.0 (RevA)：SD Card Access 說明「microSD card (not included)」',
   },
   {
+    id: 'turntable-too-quiet',
+    symptom: '唱盤接進背板，聲音超小而且很悶',
+    cause: '唱盤輸出的是 phono 訊號，電平遠低於線路電平，而且頻率響應還沒被還原。',
+    fix: '中間要接唱頭放大器，或改用內建放大器的唱盤。先進混音器再拉線進來也可以。',
+    source: '一般音訊常識。這台的輸入電平規格官方手冊未列出，見韌體對照頁的尚未驗證清單',
+  },
+  {
+    id: 'automation-stuck',
+    symptom: '某顆 pad 的參數會自己亂動，關不掉',
+    cause: '那顆 pad 上錄了自動化。',
+    fix: '選中該 pad，按住 ERASE 並移動那個參數的旋鈕或推桿，畫面出現確認後按 B3。',
+    source: '官方手冊 v1.3.0 (RevA)：清除自動化的步驟',
+  },
+  {
     id: 'all-sound-stuck',
     symptom: '有聲音卡住不停，關不掉',
     cause: '可能有 pad 停在持續發聲狀態。',
