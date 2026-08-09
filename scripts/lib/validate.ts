@@ -421,3 +421,49 @@ export function validateGenre(input: unknown): Issue[] {
 export function validateGenres(genres: readonly unknown[]): Issue[] {
   return genres.flatMap((g) => validateGenre(g));
 }
+
+/**
+ * 驗證官方影片對照表。
+ * 重點是兩件事：對照的 key 必須真的存在，同一支影片不可以掛在多個地方。
+ * 影片重複掛會讓讀者以為有 30 支不同的內容，其實是同一支。
+ */
+export function validateVideoRegistry(
+  registry: unknown,
+  knownKeys: ReadonlySet<string>,
+): Issue[] {
+  const issues: Issue[] = [];
+  if (!isObject(registry)) {
+    return [{ code: 'BAD_VIDEO', where: 'videos', detail: '影片對照表不是物件' }];
+  }
+
+  const seenIds = new Map<string, string>();
+
+  for (const [key, list] of Object.entries(registry)) {
+    if (!knownKeys.has(key)) {
+      issues.push({
+        code: 'BAD_VIDEO',
+        where: `videos · ${key}`,
+        detail: `對照到不存在的課程或曲風「${key}」`,
+      });
+    }
+    checkVideos(list, `videos · ${key}`, issues);
+
+    if (Array.isArray(list)) {
+      for (const raw of list) {
+        if (!isObject(raw)) continue;
+        const id = String(raw.youtubeId ?? '');
+        const prev = seenIds.get(id);
+        if (prev !== undefined) {
+          issues.push({
+            code: 'BAD_VIDEO',
+            where: `videos · ${key}`,
+            detail: `影片「${id}」已經掛在「${prev}」，不要重複掛`,
+          });
+        }
+        seenIds.set(id, key);
+      }
+    }
+  }
+
+  return issues;
+}

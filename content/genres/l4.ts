@@ -167,4 +167,57 @@ export const pop: Genre = {
   ],
 };
 
-export const l4Genres: Genre[] = [rnb, neoSoul, pop];
+export const cityPop: Genre = {
+  ...COMMON,
+  slug: 'city-pop',
+  title: 'City Pop',
+  titleEn: 'City Pop',
+  level: 'L4',
+  tagline: '和弦厚、樂器多、編曲滿。機上能做骨架，滿編做不出來。',
+  limitation:
+    'City Pop 的特色是編曲很滿：厚和弦、貝斯獨立走線、電鋼琴、吉他、銅管、合成器主奏，還有多層和聲。這台機器一個 pad 一個聲音，光和弦就會吃掉四到六顆，再加上其他樂器根本不夠。你在機上能做出很完整的骨架：鼓、貝斯、四到六個和弦、一段主旋律。銅管與多層和聲請另外處理。做完記得把各段落分別匯出，之後才好接。',
+  intro: {
+    body: 'City Pop 聽起來輕鬆，做起來很滿。它的和弦比一般流行歌複雜，樂器也多。這台機器適合把它的骨架快速做出來，但要做到原汁原味的滿編，pad 會先用完。',
+  },
+  tempo: { bpmMin: 95, bpmMax: 120, grid: '1/16', note: '節奏乾淨俐落，Swing 不要開太多' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Closed Hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p4', role: 'Open Hat 或 Ride', source: '內建 kit' },
+    { bank: 'A', pad: 'p5', role: '和弦 1–6', source: '自錄電鋼琴，一個 pad 一個和弦' },
+    { bank: 'A', pad: 'p13', role: 'Bass', source: '自錄，要有走動感' },
+    { bank: 'B', pad: 'p1', role: '第一次 resample：鼓組', source: 'Resample 產物' },
+    { bank: 'B', pad: 'p2', role: '第二次 resample：和弦進行', source: 'Resample 產物' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1、3 拍為主', character: '緊、乾淨' },
+    { name: 'Snare', timing: '第 2、4 拍，位置準', character: '亮、有房間感', tip: '這個曲風的鼓要準，不要刻意推移' },
+    { name: 'Hi-hat / Ride', timing: '八分音符持續', character: '亮、細' },
+    { name: 'Bass', timing: '一直在走，很少停', character: '圓潤、有滑音', tip: '貝斯是 City Pop 的第二主角，不要只放根音' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '電鋼琴和弦', how: '一個和弦錄成一個 pad，先決定要用幾個再開始' },
+    { kind: 'self-record', what: '貝斯走線', how: '要有經過音與滑音，不能只彈根音' },
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit，選乾淨明亮的' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組四顆收成一顆', frees: '空出 pad 給更多和弦' },
+    { pass: 2, what: '和弦進行收成一顆', frees: '空出 pad 給主旋律與變化' },
+    { pass: 3, what: '整段收成一顆', frees: '空出整個 Bank 做副歌' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Multi-Chorus', setting: '給電鋼琴，K1 Rate 慢', why: '八零年代的厚度就是靠這個' },
+    { engine: 'knobfx', name: 'Reverb Medium', setting: '給小鼓與和弦', why: '空間要開，但不能糊' },
+    { engine: 'knobfx', name: 'Tape Emulator', setting: 'K1 Wow 開一點點', why: '一點點類比的不穩，年代感就出來了' },
+    { engine: 'knobfx', name: 'Bus Compressor', setting: '輕壓', why: '把層次黏起來但保住動態' },
+  ],
+  checkpoints: [
+    '貝斯有走動，不是只放根音',
+    '和弦至少四個，聽得出色彩變化',
+    '鼓的位置準，沒有刻意推移',
+    '你清楚哪些樂器要另外處理',
+  ],
+};
+
+export const l4Genres: Genre[] = [rnb, neoSoul, pop, cityPop];

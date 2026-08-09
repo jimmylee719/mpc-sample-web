@@ -215,4 +215,154 @@ export const amapiano: Genre = {
   },
 };
 
-export const l3Genres: Genre[] = [edm, drumAndBass, amapiano];
+export const jungle: Genre = {
+  ...COMMON,
+  slug: 'jungle',
+  title: 'Jungle',
+  titleEn: 'Jungle',
+  level: 'L3',
+  tagline: '一段鼓被切成碎片再重排，快到極限，底下壓著很慢的低音。',
+  intro: {
+    body: 'Jungle 跟 Drum and Bass 是親戚，但鼓切得更碎、重排得更瘋。整首的核心是一段被拆解重組的鼓循環。低音則慢得像另一首歌，兩者的落差就是張力來源。',
+  },
+  tempo: { bpmMin: 160, bpmMax: 175, grid: '1/16', note: '鼓很快，低音的感覺是速度的四分之一' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: '鼓循環切片 1–8', source: '自錄打擊，用 Chop 切成八塊' },
+    { bank: 'A', pad: 'p9', role: '切片 9–12：反轉與變速版', source: 'Extract 後單獨處理' },
+    { bank: 'A', pad: 'p13', role: 'Sub 低音', source: '自錄長低音' },
+    { bank: 'B', pad: 'p1', role: '第一次 resample：重排後的鼓', source: 'Resample 產物' },
+    { bank: 'B', pad: 'p2', role: '第二次 resample：鼓加低音', source: 'Resample 產物' },
+    { bank: 'B', pad: 'p9', role: '氛圍層', source: '自錄環境音' },
+  ],
+  drums: [
+    { name: '鼓切片', timing: '刻意不照原順序，每兩小節換一種排法', character: '快、碎', tip: '同一段素材排三種順序，就有三個段落' },
+    { name: 'Snare', timing: '第 3 拍附近，位置常被移動', character: '亮、有殘響' },
+    { name: 'Ghost note', timing: '十六分音符的縫隙，力度極小', character: '幾乎聽不見', tip: '這些小音符就是速度感的來源' },
+    { name: 'Sub 低音', timing: '兩到四小節一個音', character: '極低、極長' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '一段自己打的鼓循環', how: '拍手加敲桌子錄四小節，這是最乾淨也最個人的做法' },
+    { kind: 'self-record', what: '低音長音', how: '哼最低的音，用 Warp 拉到很長' },
+    { kind: 'cc0', what: '氛圍墊', how: 'CC0 素材，下載時保留授權頁面' },
+  ],
+  resamples: [
+    { pass: 1, what: '重排後的鼓循環收成一顆', frees: '空出切片用的八顆 pad' },
+    { pass: 2, what: '鼓加低音收成一顆', frees: '空出 pad 做第二種鼓的排法' },
+    { pass: 3, what: '整段收成一顆', frees: '空出整個 Bank 做段落變化' },
+  ],
+  fx: [
+    { engine: 'padfx', name: 'Rev Stepper', setting: '過門時踩', why: '一段一段倒著播，是這個曲風的招牌過門' },
+    { engine: 'knobfx', name: 'LP Filter', setting: '低音上壓掉高頻', why: 'Sub 只留低頻' },
+    { engine: 'knobfx', name: 'Transient', setting: 'K1 Attack 往正', why: '快速度下每一下都要聽得清楚' },
+    { engine: 'knobfx', name: 'Reverb Medium', setting: '只給小鼓', why: '小鼓要有空間，鼓的其他部分保持乾' },
+  ],
+  checkpoints: [
+    '鼓的順序跟原始錄音完全不同',
+    '同一段素材至少排出三種順序',
+    '低音的速度感明顯比鼓慢很多',
+    '三次 resample 之後 pad 還有剩',
+  ],
+};
+
+export const dubstep: Genre = {
+  ...COMMON,
+  slug: 'dubstep',
+  title: 'Dubstep',
+  titleEn: 'Dubstep',
+  level: 'L3',
+  tagline: '低音是主角，而且它會動。空間留很大，衝擊才有效。',
+  intro: {
+    body: 'Dubstep 的主旋律其實是低音。它不只低，還會扭動、會變音色。鼓很簡單，小鼓落在第三拍，留白很多。層數多，所以 pad 一定要先規劃。',
+  },
+  tempo: { bpmMin: 138, bpmMax: 142, grid: '1/16', note: '小鼓只在第三拍，聽感是速度的一半' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Hi-hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p5', role: '低音基礎音', source: '自錄長低音' },
+    { bank: 'A', pad: 'p9', role: '低音變體 A：加失真', source: 'Resample 加效果後的產物' },
+    { bank: 'A', pad: 'p10', role: '低音變體 B：加濾波掃動', source: 'Resample 加效果後的產物' },
+    { bank: 'B', pad: 'p1', role: '第一次 resample：鼓組', source: 'Resample 產物' },
+    { bank: 'B', pad: 'p9', role: 'Build-up 素材', source: '自錄或用濾波做' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1 拍與切分位置', character: '短、低頻集中' },
+    { name: 'Snare', timing: '每小節第 3 拍', character: '大、有殘響', tip: '這一下要夠大，它是整段的支點' },
+    { name: 'Hi-hat', timing: '八分或十六分，疏一點', character: '很短' },
+    { name: '低音', timing: '一小節兩到四個音，音色一直在變', character: '很低、會扭動', tip: '同一個音用不同效果做成好幾顆 pad，輪流敲就有變化' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '低音基礎音', how: '哼一個低音，或錄空紙箱的悶響，之後靠效果變形' },
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit' },
+    { kind: 'self-record', what: 'Riser 上升音', how: '哼一個往上的長音，用 Warp 拉長' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組收成一顆', frees: '空出 pad 給低音的各種變體' },
+    { pass: 2, what: '低音加 Tube Drive 收成一顆', frees: '得到失真版低音，原始音留著' },
+    { pass: 3, what: '低音加濾波掃動收成一顆', frees: '得到會動的版本，湊成低音組' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Tube Drive', setting: 'K1 Drive 開大做低音變體', why: '低音要有攻擊性，靠失真' },
+    { engine: 'knobfx', name: 'LP Filter', setting: 'K1 慢慢掃，收成另一顆 pad', why: '會動的低音就是這樣做出來的' },
+    { engine: 'knobfx', name: 'Limiter', setting: 'Drop 段落壓緊', why: '低音很容易把整體頂爆' },
+    { engine: 'padfx', name: 'Beat Repeat', setting: 'Drop 前兩拍踩', why: '製造懸空感再落下' },
+  ],
+  checkpoints: [
+    '低音至少有三種不同音色',
+    '小鼓落在每小節第三拍',
+    '留白明顯，不是塞滿',
+    'Drop 進來時音量沒有爆掉',
+  ],
+};
+
+export const hardstyle: Genre = {
+  ...COMMON,
+  slug: 'hardstyle',
+  title: 'Hardstyle',
+  titleEn: 'Hardstyle',
+  level: 'L3',
+  tagline: '大鼓本身就是低音。做好那一顆，整首就成立。',
+  intro: {
+    body: 'Hardstyle 最特別的地方是大鼓：它同時擔任節奏與低音，尾巴會往下滑。做這個曲風八成的時間都花在做那一顆大鼓上，其他都是配套。',
+  },
+  tempo: { bpmMin: 150, bpmMax: 160, grid: '1/16' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: '大鼓的衝擊部分', source: '內建 kit，取極短的頭' },
+    { bank: 'A', pad: 'p2', role: '大鼓的低音尾巴', source: '自錄低音，調成往下滑' },
+    { bank: 'A', pad: 'p3', role: 'Clap', source: '內建 kit' },
+    { bank: 'A', pad: 'p4', role: 'Hi-hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p9', role: '主旋律', source: '自錄' },
+    { bank: 'B', pad: 'p1', role: '第一次 resample：合成後的大鼓', source: 'Resample 產物' },
+    { bank: 'B', pad: 'p2', role: '第二次 resample：鼓組整體', source: 'Resample 產物' },
+  ],
+  drums: [
+    { name: '大鼓衝擊', timing: '每一拍', character: '極短、失真', tip: '這是頭，要夠尖' },
+    { name: '大鼓尾巴', timing: '緊接在衝擊之後', character: '低、會往下滑', tip: '用 16 Levels 的 Tune 型式做出下滑感' },
+    { name: 'Clap', timing: '第 2、4 拍', character: '寬' },
+    { name: 'Hi-hat', timing: '反拍', character: '亮' },
+  ],
+  samples: [
+    { kind: 'built-in', what: '大鼓的頭', how: '原廠 kick 用 Trim 只留最前面極短一段' },
+    { kind: 'self-record', what: '低音尾巴', how: '哼一個低音，用 Tune 做出往下滑的感覺' },
+    { kind: 'self-record', what: '主旋律', how: '自己彈，四到八個音就夠' },
+  ],
+  resamples: [
+    { pass: 1, what: '衝擊加尾巴合成一顆大鼓', frees: '這一步是整個曲風的關鍵，做好再往下' },
+    { pass: 2, what: '大鼓加 Clap 加 Hat 收成鼓組', frees: '空出 pad 給旋律與變化' },
+    { pass: 3, what: '整段收成一顆', frees: '空出整個 Bank 做段落' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Soft Clipper', setting: 'K1 Drive 開大給大鼓的頭', why: '衝擊要夠硬，靠削波' },
+    { engine: 'knobfx', name: 'Tube Drive', setting: '給大鼓尾巴', why: '低音也要有顆粒，不能太乾淨' },
+    { engine: 'knobfx', name: 'Limiter', setting: 'K2 Ceiling 壓住', why: '這個曲風最容易整體爆掉' },
+    { engine: 'knobfx', name: 'Reverb Medium', setting: '只給旋律', why: '旋律要遠，大鼓要近' },
+  ],
+  checkpoints: [
+    '大鼓的尾巴聽得出往下滑',
+    '大鼓同時擔任節奏與低音',
+    '整體音量沒有爆掉',
+    '三次 resample 之後 pad 還有剩',
+  ],
+};
+
+export const l3Genres: Genre[] = [edm, drumAndBass, amapiano, jungle, dubstep, hardstyle];

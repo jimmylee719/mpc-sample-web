@@ -157,4 +157,98 @@ export const trap: Genre = {
   ],
 };
 
-export const l1Genres: Genre[] = [boomBap, lofiHipHop, trap];
+export const phonk: Genre = {
+  ...COMMON,
+  slug: 'phonk',
+  title: 'Phonk',
+  titleEn: 'Phonk',
+  level: 'L1',
+  tagline: '牛鈴當旋律，低音刻意推爆。髒是這個曲風的目標。',
+  intro: {
+    body: 'Phonk 的兩個記號很好認：牛鈴敲出來的旋律，還有推到失真的低音。它速度不慢，但小鼓落在第三拍，所以聽起來像慢歌。做這個曲風不要修得太乾淨。',
+  },
+  tempo: { bpmMin: 130, bpmMax: 150, grid: '1/16', note: '小鼓只落在第三拍，所以聽感是速度的一半' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: '808 低音', source: '內建 kit，之後推失真' },
+    { bank: 'A', pad: 'p3', role: 'Snare 或 Clap', source: '內建 kit' },
+    { bank: 'A', pad: 'p4', role: 'Hi-hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p5', role: '牛鈴', source: '自錄：敲玻璃杯或金屬罐' },
+    { bank: 'A', pad: 'p9', role: '人聲碎片', source: '自錄，壓低後切碎' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1 拍與切分位置', character: '短、悶', tip: '不要太乾淨，一點糊反而對' },
+    { name: 'Snare', timing: '每小節第 3 拍', character: '乾、薄' },
+    { name: 'Hi-hat', timing: '八分或十六分，過門連打', character: '很短' },
+    { name: '牛鈴旋律', timing: '一小節四到六個音，音高會動', character: '金屬、穿透', tip: '用 16 Levels 的 Tune 型式彈音高，原始音高在 PAD 4' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '金屬敲擊當牛鈴', how: '玻璃杯、鐵罐、湯匙敲一下，修剪成極短的一點' },
+    { kind: 'built-in', what: '鼓組與 808', how: '原廠 kit 直接用，重點在後面的失真' },
+    { kind: 'self-record', what: '自己的人聲', how: '講一句話錄下來，調低音高再切碎' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組加 808 收成一顆', frees: '空出 pad 給牛鈴的各種音高' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Tube Drive', setting: 'K1 Drive 開大', why: '低音要推到失真，這是 Phonk 的核心音色' },
+    { engine: 'knobfx', name: 'Vintage Emulator', setting: 'K1 Type 選 SP1200', why: '降低解析度，做出翻錄卡帶的質地' },
+    { engine: 'padfx', name: 'LoFi', setting: '中等力度', why: '再加一層粗糙感' },
+    { engine: 'knobfx', name: 'Limiter', setting: 'K2 Ceiling 壓住', why: '失真之後尖峰很容易爆' },
+  ],
+  checkpoints: [
+    '牛鈴是一條會動的旋律，不是同一個音重複',
+    '低音明顯帶失真，不乾淨',
+    '小鼓只落在第三拍',
+    '整體音量沒有爆掉',
+  ],
+};
+
+export const reggaeton: Genre = {
+  ...COMMON,
+  slug: 'reggaeton',
+  title: 'Reggaeton',
+  titleEn: 'Reggaeton',
+  level: 'L1',
+  tagline: '一個固定的鼓組節奏撐全場，其他都是配菜。',
+  intro: {
+    body: 'Reggaeton 的核心是一個固定的鼓組節奏，幾乎每首歌都一樣。學會那個節奏，這個曲風就通了一半。剩下的是找到對的音色與一段簡單的和弦。',
+  },
+  tempo: { bpmMin: 90, bpmMax: 100, grid: '1/16', note: '節奏本身有一點搖擺，不要完全對齊' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare 或 Rim', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Hi-hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p4', role: 'Shaker', source: '自錄：米粒罐' },
+    { bank: 'A', pad: 'p5', role: '和弦', source: '自錄鋼琴或吉他' },
+    { bank: 'A', pad: 'p13', role: 'Bass', source: '自錄' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1 拍與第 3 拍', character: '飽滿、圓', tip: '這兩下是地基，不要動' },
+    { name: 'Snare', timing: '固定落在大鼓之間的切分位置', character: '乾、短', tip: '這個切分就是整個曲風的識別記號' },
+    { name: 'Hi-hat', timing: '八分音符持續', character: '輕' },
+    { name: 'Shaker', timing: '十六分音符，力度有起伏', character: '細碎' },
+  ],
+  samples: [
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit 的 kick 與 rim 就夠' },
+    { kind: 'self-record', what: '和弦', how: '四個和弦錄成四顆 pad，簡單就好' },
+    { kind: 'self-record', what: 'Shaker', how: '米粒裝罐搖，零成本' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組四顆收成一顆', frees: '空出 pad 給和弦與變化' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Reverb Small', setting: '短殘響給 Rim', why: '打擊樂器要一點房間感，但不能糊' },
+    { engine: 'knobfx', name: 'Bus Compressor', setting: '中等', why: '把固定節奏黏成一塊，推力才出得來' },
+    { engine: 'knobfx', name: 'Transient', setting: 'K1 Attack 往正', why: '大鼓的衝擊要清楚' },
+    { engine: 'padfx', name: 'HP Filter', setting: '過門時踩', why: '抽掉低頻做段落交接' },
+  ],
+  checkpoints: [
+    '鼓組節奏固定，整首不太變',
+    '切分的那一下位置抓得準',
+    '和弦只用四個以內',
+    'Shaker 的力度有起伏',
+  ],
+};
+
+export const l1Genres: Genre[] = [boomBap, lofiHipHop, trap, phonk, reggaeton];

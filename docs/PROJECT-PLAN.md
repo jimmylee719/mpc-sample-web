@@ -189,17 +189,22 @@
 | 5-5 | 轉場技巧 | 濾波 build-up、Flex Beat、轉場序列 |
 | 5-6 | 同步外部設備與上台檢查表 | MIDI Port 二選一；電力備援 |
 
-### 4.3 曲風工廠（16 頁，配方卡格式）
+### 4.3 曲風工廠（24 頁，配方卡格式）
+
+> **2026-08-09 修訂**：原標題寫「16 頁」但下表只列出 15 個曲風，屬筆誤。
+> 現已擴充到 **24 個**，級別分配如下表。
 
 **介面決策：配方卡，不用步驟播放器。** 曲風頁是「邊做邊瞄」的參考，不是線性學習。
 **例外：** 每個曲風可嵌入**一個**迷你播放器，只處理該曲風最難的單一環節（例如 Amapiano 的 log drum 調音）。
 
 | 級別 | 定義 | 曲風 |
 |---|---|---|
-| L1 | 機上直接完成，0–1 次 resample | Boom Bap、Lo-fi Hip Hop、Trap |
-| L2 | 1–2 次 resample | House、Tech House、Techno、Jersey Club、Footwork、Afrobeats |
-| L3 | 3 次以上，pad 預算吃緊 | EDM、Drum & Bass、Amapiano |
-| L4 | 機上難以完整實現 | R&B、Neo Soul、Pop |
+| 級別 | 數量 | 曲風 |
+|---|---|---|
+| L1 | 5 | Boom Bap、Lo-fi Hip Hop、Trap、**Phonk**、**Reggaeton** |
+| L2 | 9 | House、Tech House、Techno、Jersey Club、Footwork、Afrobeats、**UK Garage**、**Dancehall**、**Dub** |
+| L3 | 6 | EDM、Drum & Bass、Amapiano、**Jungle**、**Dubstep**、**Hardstyle** |
+| L4 | 4 | R&B、Neo Soul、Pop、**City Pop** |
 
 **L4 頁面必須在開頭明說做不完整，並告訴讀者做到哪裡、之後怎麼接。**
 

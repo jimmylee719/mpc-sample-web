@@ -6,6 +6,7 @@ import { LessonPlayer } from '@/components/lesson/LessonPlayer';
 import { FirmwareBadge } from '@/components/badges/FirmwareBadge';
 import { NeedsComputerBadge } from '@/components/badges/NeedsComputerBadge';
 import { VideoList } from '@/components/video/VideoList';
+import { videosFor } from '@/content/videos';
 
 export const dynamicParams = false;
 
@@ -145,7 +146,8 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
         </ul>
       </section>
 
-      {lesson.videos && <VideoList videos={lesson.videos} />}
+      {/* 官方系列影片在前，第三方補充在後 */}
+      <VideoList videos={[...videosFor(lesson.id), ...(lesson.videos ?? [])]} />
 
       <nav className="mt-8 border-t border-[#2C3036] pt-4">
         <Link href="/learn" className="label-mono text-[#8D9299] hover:text-white">

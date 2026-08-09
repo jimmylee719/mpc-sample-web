@@ -6,6 +6,7 @@ import { troubles } from '../content/reference/troubleshoot';
 import { knobRows } from '../content/reference/knobs';
 import { fxEntries, padFx, knobFx } from '../content/reference/fx';
 import { openQuestions } from '../content/reference/firmware';
+import { officialVideos } from '../content/videos';
 
 const steps = lessons.reduce((a, l) => a + l.steps.length, 0);
 console.log(`課程 ${lessons.length} 課，共 ${steps} 步`);
@@ -25,9 +26,11 @@ console.log(`尚未驗證項目 ${openQuestions.length}`);
 
 // 延伸觀看：待人工確認的影片要看得見，否則會一直躺在那裡沒人處理
 const allVideos = [
+  ...Object.entries(officialVideos).flatMap(([k, vs]) => vs.map((v) => ({ where: k, v }))),
   ...lessons.flatMap((l) => (l.videos ?? []).map((v) => ({ where: l.id, v }))),
   ...genres.flatMap((g) => (g.videos ?? []).map((v) => ({ where: g.slug, v }))),
 ];
+console.log(`官方系列影片 ${Object.values(officialVideos).flat().length} 支，對應到 ${Object.keys(officialVideos).length} 個頁面`);
 const unreviewed = allVideos.filter((x) => !x.v.reviewed);
 console.log(`延伸觀看影片 ${allVideos.length} 支，其中 ${unreviewed.length} 支尚未人工確認`);
 for (const { where, v } of unreviewed) {

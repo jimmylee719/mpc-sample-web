@@ -295,4 +295,150 @@ export const afrobeats: Genre = {
   ],
 };
 
-export const l2Genres: Genre[] = [house, techHouse, techno, jerseyClub, footwork, afrobeats];
+export const ukGarage: Genre = {
+  ...COMMON,
+  slug: 'uk-garage',
+  title: 'UK Garage',
+  titleEn: 'UK Garage',
+  level: 'L2',
+  tagline: '大鼓刻意不落在每一拍，加上被切碎的人聲。',
+  intro: {
+    body: 'UK Garage 最好認的是它的鼓：大鼓不像 House 那樣每拍都有，而是跳著走。加上明顯的搖擺與切碎的人聲，整段聽起來一直在往前絆。',
+  },
+  tempo: { bpmMin: 130, bpmMax: 138, grid: '1/16', note: 'Swing 一定要開，這個曲風靠搖擺活著' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Closed Hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p4', role: 'Shaker 或 Rim', source: '自錄' },
+    { bank: 'A', pad: 'p5', role: '人聲切片 1–8', source: '自錄人聲，用 Chop 切成八塊' },
+    { bank: 'A', pad: 'p13', role: 'Sub 低音', source: '自錄低音長音' },
+    { bank: 'B', pad: 'p1', role: '第一次 resample：鼓組', source: 'Resample 產物' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1 拍，然後跳到切分位置', character: '短、緊', tip: '重點就是不要每拍都放' },
+    { name: 'Snare', timing: '第 2、4 拍', character: '亮、乾脆' },
+    { name: 'Closed Hat', timing: '十六分音符，Swing 開大', character: '很短' },
+    { name: 'Sub 低音', timing: '一小節一到兩個音', character: '很低、很圓' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '自己的人聲', how: '唱或講一句，切成八塊只用其中幾塊' },
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit' },
+    { kind: 'self-record', what: '低音', how: '哼一個低音，用 Warp 拉長' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組加 Shaker 收成一顆', frees: '空出 pad 給人聲切片' },
+    { pass: 2, what: '人聲切片編排收成一顆', frees: '空出 pad 做第二段落' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'LP Filter', setting: '低音上壓掉高頻', why: 'Sub 只要低頻，其他都是雜訊' },
+    { engine: 'knobfx', name: 'Reverb Small', setting: '給人聲切片', why: '碎片太乾會像斷掉，一點空間就夠' },
+    { engine: 'knobfx', name: 'Bus Compressor', setting: '中等', why: '搖擺的節奏需要黏在一起' },
+    { engine: 'padfx', name: 'Beat Repeat', setting: '過門時輕點', why: '把人聲碎片再切一次' },
+  ],
+  checkpoints: [
+    '大鼓明顯沒有每一拍都放',
+    'Swing 開到聽得出來',
+    '人聲被切成至少八塊',
+    '低音只有低頻，不搶中頻',
+  ],
+};
+
+export const dancehall: Genre = {
+  ...COMMON,
+  slug: 'dancehall',
+  title: 'Dancehall',
+  titleEn: 'Dancehall',
+  level: 'L2',
+  tagline: '鼓組像在對話，一問一答。速度不快但很跳。',
+  intro: {
+    body: 'Dancehall 的鼓是有對話感的：大鼓問一句，小鼓答一句。速度中等，但重音錯開正拍，所以聽起來一直在跳。空隙很重要，不要填滿。',
+  },
+  tempo: { bpmMin: 90, bpmMax: 105, grid: '1/16', note: '重音刻意錯開正拍' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Rim', source: '自錄敲擊' },
+    { bank: 'A', pad: 'p4', role: 'Shaker', source: '自錄' },
+    { bank: 'A', pad: 'p5', role: '和弦 stab', source: '自錄吉他或鍵盤，短促' },
+    { bank: 'A', pad: 'p13', role: 'Bass', source: '自錄' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 1 拍與第 3 拍前的切分', character: '圓、有彈性' },
+    { name: 'Snare', timing: '緊接在大鼓之後回應', character: '乾脆', tip: '大鼓與小鼓的間距就是這個曲風的個性' },
+    { name: 'Rim', timing: '填縫，位置每小節略有變化', character: '木質、清脆' },
+    { name: 'Shaker', timing: '十六分音符', character: '細碎' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '木質敲擊', how: '筆敲桌子、拍手，都是很好的 Rim 來源' },
+    { kind: 'self-record', what: '短促和弦', how: '彈下去馬上放開，用 Trim 把尾巴切掉' },
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組四顆收成一顆', frees: '空出 pad 給和弦與低音變化' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Spring Reverb', setting: '給 Rim 與和弦', why: '彈簧殘響是這個曲風最典型的空間感' },
+    { engine: 'knobfx', name: 'Tape Delay', setting: 'K1 Time 對到 1/8', why: '回聲讓對話感更明顯' },
+    { engine: 'knobfx', name: 'Transient', setting: 'K3 Sustain 收短', why: '打擊要乾脆，尾巴不要拖' },
+    { engine: 'padfx', name: 'HP Filter', setting: '過門時踩', why: '抽低頻做段落交接' },
+  ],
+  checkpoints: [
+    '大鼓與小鼓聽起來像一問一答',
+    '重音沒有全部落在正拍',
+    '整段有明顯留白',
+    '和弦是短促的，不是長音',
+  ],
+};
+
+export const dub: Genre = {
+  ...COMMON,
+  slug: 'dub',
+  title: 'Dub',
+  titleEn: 'Dub',
+  level: 'L2',
+  tagline: '效果就是樂器。同一段素材，靠回聲與殘響變出整首。',
+  intro: {
+    body: 'Dub 的做法跟其他曲風相反：素材可以很少，變化全部來自效果。回聲與殘響不是裝飾，它們就是樂器本身。這個曲風很適合這台機器，因為手指按下去就有反應。',
+  },
+  tempo: { bpmMin: 60, bpmMax: 90, grid: '1/16', note: '速度慢，空間感才鋪得開' },
+  padPlan: [
+    { bank: 'A', pad: 'p1', role: 'Kick', source: '內建 kit' },
+    { bank: 'A', pad: 'p2', role: 'Snare', source: '內建 kit' },
+    { bank: 'A', pad: 'p3', role: 'Hi-hat', source: '內建 kit' },
+    { bank: 'A', pad: 'p5', role: '和弦 skank', source: '自錄吉他，短促上拍' },
+    { bank: 'A', pad: 'p9', role: '管樂或旋律片段', source: '自錄' },
+    { bank: 'A', pad: 'p13', role: 'Bass', source: '自錄，圓潤長音' },
+  ],
+  drums: [
+    { name: 'Kick', timing: '第 3 拍為主，第 1 拍常常留空', character: '深、圓', tip: '第 1 拍不放大鼓，是 Dub 最常見的手法' },
+    { name: 'Snare', timing: '第 3 拍，與大鼓同時', character: '厚、帶殘響' },
+    { name: 'Hi-hat', timing: '八分音符，輕', character: '很輕' },
+    { name: '和弦 skank', timing: '每拍的後半，也就是上拍', character: '極短、乾脆' },
+  ],
+  samples: [
+    { kind: 'self-record', what: '吉他短和弦', how: '刷一下馬上悶住，這就是 skank' },
+    { kind: 'self-record', what: '人聲或管樂片段', how: '錄一小段，之後整段丟進回聲裡' },
+    { kind: 'built-in', what: '鼓組', how: '原廠 kit，選厚一點的' },
+  ],
+  resamples: [
+    { pass: 1, what: '鼓組加低音收成一顆', frees: '空出 pad 專門拿來玩效果' },
+  ],
+  fx: [
+    { engine: 'knobfx', name: 'Tape Delay', setting: 'K2 Feedback 開大，K1 Time 對到 1/4', why: '這是 Dub 的靈魂，回聲要能自己疊上去' },
+    { engine: 'knobfx', name: 'Spring Reverb', setting: '給小鼓與和弦', why: '彈簧殘響是這個曲風的標準配備' },
+    { engine: 'padfx', name: 'LP Filter', setting: '演出中即時踩', why: '把某一層突然推到遠處再拉回來' },
+    { engine: 'knobfx', name: 'HP Filter', setting: '段落之間往上掃', why: '抽掉低頻讓空間變空曠' },
+  ],
+  checkpoints: [
+    '第 1 拍常常沒有大鼓',
+    '回聲的量足以自己疊成一層',
+    '你有即時操作效果，而不是全部先錄好',
+    '素材數量很少，變化來自效果',
+  ],
+};
+
+export const l2Genres: Genre[] = [
+  house, techHouse, techno, jerseyClub, footwork, afrobeats,
+  ukGarage, dancehall, dub,
+];

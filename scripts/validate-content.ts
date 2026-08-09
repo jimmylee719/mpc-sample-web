@@ -5,14 +5,20 @@
 
 import { lessons } from '../content/lessons/index';
 import { genres } from '../content/genres/index';
-import { validateLessons, validateGenres } from './lib/validate';
+import { officialVideos } from '../content/videos';
+import { validateLessons, validateGenres, validateVideoRegistry } from './lib/validate';
 import { printIssues } from './lib/report';
 
 function main(): void {
   console.log('內容驗證開始…');
   console.log(`  課程 ${lessons.length} 課、曲風 ${genres.length} 個`);
 
-  const issues = [...validateLessons(lessons), ...validateGenres(genres)];
+  const knownKeys = new Set([...lessons.map((l) => l.id), ...genres.map((g) => g.slug)]);
+  const issues = [
+    ...validateLessons(lessons),
+    ...validateGenres(genres),
+    ...validateVideoRegistry(officialVideos, knownKeys),
+  ];
 
   if (issues.length > 0) {
     console.error(`\n內容驗證失敗，共 ${issues.length} 個問題：\n`);
