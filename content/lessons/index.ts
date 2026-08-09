@@ -5,6 +5,12 @@ import { s1_03 } from './s1-03';
 import { s1_04 } from './s1-04';
 import { s2_01 } from './s2-01';
 import { s2_02 } from './s2-02';
+import { s2_03 } from './s2-03';
+import { s2_04 } from './s2-04';
+import { s2_05 } from './s2-05';
+import { s2_06 } from './s2-06';
+import { s2_07 } from './s2-07';
+import { s2_08 } from './s2-08';
 import { s3_01 } from './s3-01';
 import { s3_02 } from './s3-02';
 import { s3_03 } from './s3-03';
@@ -34,7 +40,7 @@ import { s5_06 } from './s5-06';
  */
 export const lessons: Lesson[] = [
   s1_01, s1_02, s1_03, s1_04,
-  s2_01, s2_02,
+  s2_01, s2_02, s2_03, s2_04, s2_05, s2_06, s2_07, s2_08,
   s3_01, s3_02, s3_03, s3_04, s3_05, s3_06, s3_07, s3_08, s3_09,
   s4_01, s4_02, s4_03, s4_04, s4_05, s4_06, s4_07,
   s5_01, s5_02, s5_03, s5_04, s5_05, s5_06,
