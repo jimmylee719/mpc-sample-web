@@ -14,6 +14,19 @@ import { s3_06 } from './s3-06';
 import { s3_07 } from './s3-07';
 import { s3_08 } from './s3-08';
 import { s3_09 } from './s3-09';
+import { s4_01 } from './s4-01';
+import { s4_02 } from './s4-02';
+import { s4_03 } from './s4-03';
+import { s4_04 } from './s4-04';
+import { s4_05 } from './s4-05';
+import { s4_06 } from './s4-06';
+import { s4_07 } from './s4-07';
+import { s5_01 } from './s5-01';
+import { s5_02 } from './s5-02';
+import { s5_03 } from './s5-03';
+import { s5_04 } from './s5-04';
+import { s5_05 } from './s5-05';
+import { s5_06 } from './s5-06';
 
 /**
  * 全站課程註冊表。加課只要 import 進來、放進這個陣列，
@@ -23,6 +36,8 @@ export const lessons: Lesson[] = [
   s1_01, s1_02, s1_03, s1_04,
   s2_01, s2_02,
   s3_01, s3_02, s3_03, s3_04, s3_05, s3_06, s3_07, s3_08, s3_09,
+  s4_01, s4_02, s4_03, s4_04, s4_05, s4_06, s4_07,
+  s5_01, s5_02, s5_03, s5_04, s5_05, s5_06,
 ];
 
 export const lessonById = new Map<string, Lesson>(lessons.map((l) => [l.id, l]));
