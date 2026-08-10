@@ -110,6 +110,16 @@ export interface VideoRef {
   channel: string;
   /** 為什麼選這一支：它補足了本站文字教不了的什麼 */
   why: string;
+  /**
+   * 中文摘要：**看過這支影片的人**用自己的話寫的重點（2026-08-10 開放，上限 200 字）。
+   *
+   * 允許的是摘要，不是重製。逐字稿、完整翻譯的字幕檔、跟原片等長的文字版
+   * 仍然是紅線（重製與改作）。摘要要明顯短於原片，而且是自己的話。
+   *
+   * 填了這一欄，`reviewed` 就必須是 `true` —— 沒看過的人寫不出摘要，
+   * 硬寫就是編造。驗證腳本會擋。
+   */
+  summary?: string;
   lang: 'zh-Hant' | 'zh-Hans' | 'en' | 'ja' | 'other';
   /** 是否為 Akai 官方頻道 */
   official?: boolean;

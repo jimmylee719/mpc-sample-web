@@ -33,6 +33,12 @@ export interface Issue {
 /** 單句字數上限（PROJECT-PLAN §2.2 L-01） */
 export const MAX_SENTENCE_LENGTH = 40;
 
+/**
+ * 影片中文摘要的字數上限。
+ * 這個數字就是「摘要」與「重製」之間那條線 —— 摘要必須明顯短於原片。
+ */
+export const MAX_VIDEO_SUMMARY = 200;
+
 const LEGAL_CONTROL_IDS = new Set<string>(CONTROL_IDS as readonly string[]);
 
 const isObject = (v: unknown): v is Record<string, unknown> =>
@@ -105,13 +111,42 @@ function checkVideos(value: unknown, where: string, issues: Issue[]): void {
         detail: `影片「${id}」必須明確標示 reviewed，沒看過就寫 false`,
       });
     }
-    // 防呆：如果有人想把逐字稿塞進資料，直接擋下來
+    /**
+     * summary：2026-08-10 開放的中文摘要。兩條規則都是硬性的。
+     *
+     * 1. 上限 200 字。摘要必須明顯短於原片，長到接近文字版就變成重製了。
+     * 2. 有摘要就必須 reviewed: true。沒看過影片的人寫不出摘要，硬寫就是編造，
+     *    而本站的整個信用建立在「不確定就說不確定」。
+     */
+    if ('summary' in raw && raw.summary !== undefined) {
+      if (!isNonEmptyString(raw.summary)) {
+        issues.push({ code: 'BAD_VIDEO', where, detail: `影片「${id}」的 summary 不是非空字串` });
+      } else {
+        const len = [...raw.summary.replace(/\s/g, '')].length;
+        if (len > MAX_VIDEO_SUMMARY) {
+          issues.push({
+            code: 'BAD_VIDEO',
+            where,
+            detail: `影片「${id}」的 summary 有 ${len} 字，超過 ${MAX_VIDEO_SUMMARY} 字上限。摘要要明顯短於原片，不是文字版`,
+          });
+        }
+        if (raw.reviewed !== true) {
+          issues.push({
+            code: 'BAD_VIDEO',
+            where,
+            detail: `影片「${id}」有 summary 但 reviewed 不是 true。沒看過影片寫不出摘要，這是編造`,
+          });
+        }
+      }
+    }
+
+    // 防呆：摘要可以，逐字稿與整份字幕不行。那是重製與改作。
     for (const banned of ['transcript', 'subtitles', 'captions', 'fullText']) {
       if (banned in raw) {
         issues.push({
           code: 'BAD_VIDEO',
           where,
-          detail: `影片「${id}」出現 ${banned} 欄位。轉錄影片內容是著作權紅線，不可以存在`,
+          detail: `影片「${id}」出現 ${banned} 欄位。逐字稿與完整字幕是重製，紅線未解除；要寫請用 summary（自己的話，${MAX_VIDEO_SUMMARY} 字內）`,
         });
       }
     }
@@ -430,10 +465,23 @@ export function validateGenres(genres: readonly unknown[]): Issue[] {
 export function validateVideoRegistry(
   registry: unknown,
   knownKeys: ReadonlySet<string>,
+  opts: {
+    /** 對照表名稱，錯誤訊息用 */
+    label?: string;
+    /**
+     * 允許同一支影片掛在多個頁面。
+     *
+     * 官方系列是一集對一個主題，重複掛通常是貼錯，所以預設不允許。
+     * 社群影片相反：一支「Filters & Filter Envelope」本來就同時對得上低通與高通兩課，
+     * 硬要一支只掛一處反而是假的。
+     */
+    allowCrossKeyReuse?: boolean;
+  } = {},
 ): Issue[] {
+  const label = opts.label ?? 'videos';
   const issues: Issue[] = [];
   if (!isObject(registry)) {
-    return [{ code: 'BAD_VIDEO', where: 'videos', detail: '影片對照表不是物件' }];
+    return [{ code: 'BAD_VIDEO', where: label, detail: '影片對照表不是物件' }];
   }
 
   const seenIds = new Map<string, string>();
@@ -442,13 +490,13 @@ export function validateVideoRegistry(
     if (!knownKeys.has(key)) {
       issues.push({
         code: 'BAD_VIDEO',
-        where: `videos · ${key}`,
+        where: `${label} · ${key}`,
         detail: `對照到不存在的課程或曲風「${key}」`,
       });
     }
-    checkVideos(list, `videos · ${key}`, issues);
+    checkVideos(list, `${label} · ${key}`, issues);
 
-    if (Array.isArray(list)) {
+    if (!opts.allowCrossKeyReuse && Array.isArray(list)) {
       for (const raw of list) {
         if (!isObject(raw)) continue;
         const id = String(raw.youtubeId ?? '');
@@ -456,7 +504,7 @@ export function validateVideoRegistry(
         if (prev !== undefined) {
           issues.push({
             code: 'BAD_VIDEO',
-            where: `videos · ${key}`,
+            where: `${label} · ${key}`,
             detail: `影片「${id}」已經掛在「${prev}」，不要重複掛`,
           });
         }

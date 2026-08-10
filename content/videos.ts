@@ -10,7 +10,9 @@ import type { VideoRef } from '@/types/lesson';
  * oEmbed 端點逐一驗證存在。但本站尚未有人實際觀看影片內容，
  * 所以每一支都標 `reviewed: false`，前台會顯示「尚未人工確認」。
  *
- * 影片內容絕對不可以轉錄成文字（著作權），這裡只存標題、頻道與對應關係。
+ * 逐字稿與整份翻譯字幕仍然不可以存在（那是重製與改作）。
+ * 2026-08-10 起開放 `summary`：看過影片的人可以用**自己的話**寫 200 字內的中文重點，
+ * 而且必須同時把 `reviewed` 設成 true。沒看過就寫摘要等於編造，驗證腳本會擋。
  */
 
 const OFFICIAL = {
@@ -140,6 +142,13 @@ interface CommunityInput {
   /** 非 MPC Sample 才填 */
   device?: string;
   lang?: VideoRef['lang'];
+  /**
+   * 看過影片的人用自己的話寫的中文重點，200 字內。
+   * 填了這一欄就必須同時填 `reviewed: true`，驗證腳本會擋。
+   */
+  summary?: string;
+  /** 只有實際看過的人可以設成 true */
+  reviewed?: boolean;
 }
 
 const c = (v: CommunityInput): VideoRef => ({
@@ -148,8 +157,10 @@ const c = (v: CommunityInput): VideoRef => ({
   channel: v.channel,
   why: v.why,
   device: v.device,
+  summary: v.summary,
   lang: v.lang ?? 'en',
-  reviewed: false,
+  // 預設沒看過。要改成 true 必須是真的有人看過那支影片。
+  reviewed: v.reviewed ?? false,
 });
 
 // NervousCook$ 的 MPC Sample 專門系列，是目前唯一逐項拆解本機功能的第三方教學

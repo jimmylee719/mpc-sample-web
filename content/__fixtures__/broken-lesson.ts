@@ -34,6 +34,26 @@ export const brokenLesson = {
       reviewed: false,
       transcript: '這裡如果放得進逐字稿，就代表防線失效了',
     },
+    // 錯誤 ⑦：沒看過影片（reviewed: false）卻寫了摘要 —— 那是編造
+    {
+      youtubeId: 'aaaaaaaaaaa',
+      title: '沒看過卻有摘要',
+      channel: '測試頻道',
+      why: '用來確認「有摘要就必須看過」這條規則有效',
+      lang: 'en',
+      reviewed: false,
+      summary: '這段摘要不可能存在，因為填表的人根本沒看過這支影片。',
+    },
+    // 錯誤 ⑧：摘要長到變成文字版，超過 200 字上限
+    {
+      youtubeId: 'bbbbbbbbbbb',
+      title: '摘要長到變重製',
+      channel: '測試頻道',
+      why: '用來確認摘要字數上限有效',
+      lang: 'en',
+      reviewed: true,
+      summary: '摘要必須明顯短於原片。'.repeat(30),
+    },
   ],
   steps: [
     // 錯誤 ①：targets 用了不存在的控制項 ID

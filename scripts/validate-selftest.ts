@@ -2,7 +2,7 @@
  * 驗證腳本的自我測試。
  *
  * 回答一個問題：驗證腳本真的擋得住嗎？
- *   1. 拿刻意寫錯的資料去餵，五種指定錯誤必須全部被抓到（抓不到就 exit 1）
+ *   1. 拿刻意寫錯的資料去餵，指定的每一種錯誤都必須被抓到（抓不到就 exit 1）
  *   2. 拿完全合法的資料去餵，必須零錯誤（會誤報也 exit 1）
  *
  * 這支不進建置流程，是給人手動確認用的：`npm run validate:selftest`
@@ -13,14 +13,14 @@ import { validLesson } from '../content/__fixtures__/valid-lesson';
 import { validateLesson, type IssueCode } from './lib/validate';
 import { labelOf, printIssues } from './lib/report';
 
-/** P0 驗證閘門指定必須攔下的五種錯誤 */
+/** P0 驗證閘門指定必須攔下的錯誤種類 */
 const MUST_CATCH: readonly IssueCode[] = [
   'MISSING_HEAR',
   'MISSING_SCREEN',
   'SAY_NO_BOLD',
   'BAD_CONTROL_ID',
   'SENTENCE_TOO_LONG',
-  // 影片相關：ID 格式錯誤，以及有人試圖把逐字稿存進資料
+  // 影片相關：ID 格式錯誤、塞逐字稿、沒看過卻寫摘要、摘要長到變成文字版
   'BAD_VIDEO',
 ];
 
@@ -28,7 +28,7 @@ function main(): void {
   let failed = false;
 
   // ---- 測試 1：壞資料必須被攔下 ----
-  console.log('測試 1／2：刻意寫錯的資料，五種錯誤是否都被攔下\n');
+  console.log(`測試 1／2：刻意寫錯的資料，${MUST_CATCH.length} 種錯誤是否都被攔下\n`);
   const brokenIssues = validateLesson(brokenLesson, new Set(['s9-99']));
   const caught = new Set(brokenIssues.map((i) => i.code));
 
@@ -62,7 +62,7 @@ function main(): void {
     console.error('\n自我測試失敗。驗證腳本不可信，不要 commit。');
     process.exit(1);
   }
-  console.log('\n自我測試通過 ✅ 驗證腳本確實擋得住這五種錯誤。');
+  console.log(`\n自我測試通過 ✅ 驗證腳本確實擋得住這 ${MUST_CATCH.length} 種錯誤。`);
 }
 
 main();

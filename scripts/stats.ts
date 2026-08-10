@@ -38,6 +38,10 @@ const unreviewed = allVideos.filter((x) => !x.v.reviewed);
 console.log(`延伸觀看共 ${allVideos.length} 則引用（不重複 ${uniqueIds} 支），其中 ${unreviewed.length} 則尚未人工確認`);
 const noVideo = genres.filter((g) => (officialVideos[g.slug]?.length ?? 0) + (communityVideos[g.slug]?.length ?? 0) === 0);
 console.log(`尚無影片的曲風 ${noVideo.length}：${noVideo.map((g) => g.slug).join(', ') || '無'}`);
+
+// 中文摘要只有看過影片的人能寫，這裡把進度攤開來，不然會一直是 0 也沒人發現
+const withSummary = new Set(allVideos.filter((x) => x.v.summary).map((x) => x.v.youtubeId));
+console.log(`已寫中文摘要 ${withSummary.size}/${uniqueIds} 支`);
 for (const { where, v } of unreviewed) {
   console.log(`  待確認  ${where.padEnd(10)} [${v.channel}] ${v.title}`);
 }

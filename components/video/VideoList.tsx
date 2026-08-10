@@ -15,9 +15,8 @@ import type { VideoRef } from '@/types/lesson';
  *    `cc_lang_pref=zh-Hant`，播放器會自動開啟字幕並優先選繁體中文，
  *    包含 YouTube 自己的自動翻譯。
  *
- *    本站**不會**、也永遠不會把影片內容轉成逐字稿或翻譯成文字
- *    （CLAUDE.md §7 的永久紅線，那是著作權問題）。用平台原生的字幕功能
- *    可以達到同樣效果，而且合法。
+ *    另外 2026-08-10 起開放 `summary`：看過影片的人可以用**自己的話**寫
+ *    200 字內的中文重點。逐字稿與完整翻譯的字幕仍然是紅線（重製與改作）。
  * 4. **不是 MPC Sample 的影片一定要標機型**。MPC One、MPC Live 有本機沒有的功能，
  *    不標清楚讀者會照著影片找不存在的按鍵。
  *
@@ -77,6 +76,14 @@ function VideoItem({ video }: { video: VideoRef }) {
       <p className="label-mono mt-[2px] text-muted">{video.channel}</p>
       <p className="mt-2 text-sm leading-relaxed text-[#B7BDC4]">{video.why}</p>
 
+      {/* 中文摘要：看過的人用自己的話寫的。沒有就不顯示，不留空位。 */}
+      {video.summary && (
+        <div className="mt-3 rounded-lg border-l-2 border-live bg-[#1A211C] px-3 py-[10px]">
+          <p className="label-mono text-live">中文重點</p>
+          <p className="mt-[5px] text-sm leading-relaxed text-[#C6CCD2]">{video.summary}</p>
+        </div>
+      )}
+
       {video.device && (
         <p className="mt-2 rounded-lg bg-[#241E14] px-3 py-2 text-[13px] leading-relaxed text-[#E0B36B]">
           這支不是用 MPC Sample 拍的。觀念可以參考，<b className="font-bold">按鍵位置不要照抄</b>。
@@ -128,7 +135,8 @@ export function VideoList({ videos }: { videos: VideoRef[] }) {
       </p>
       <p className="mt-2 max-w-[62ch] text-[13px] leading-relaxed text-[#6B7178]">
         字幕已預設開啟並優先選繁體中文。影片本身沒有中文字幕時，可以在播放器右下角的
-        設定 → 字幕 → 自動翻譯 裡選中文（繁體）。本站不轉寫也不翻譯影片內容，那是著作權問題。
+        設定 → 字幕 → 自動翻譯 裡選中文（繁體）。標了「中文重點」的是我們看過之後
+        用自己的話寫的摘要；本站不做逐字稿也不做整份翻譯字幕，那是著作權問題。
       </p>
 
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">

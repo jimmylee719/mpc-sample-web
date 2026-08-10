@@ -5,7 +5,7 @@
 
 import { lessons } from '../content/lessons/index';
 import { genres } from '../content/genres/index';
-import { officialVideos } from '../content/videos';
+import { officialVideos, communityVideos } from '../content/videos';
 import { validateLessons, validateGenres, validateVideoRegistry } from './lib/validate';
 import { printIssues } from './lib/report';
 
@@ -17,7 +17,12 @@ function main(): void {
   const issues = [
     ...validateLessons(lessons),
     ...validateGenres(genres),
-    ...validateVideoRegistry(officialVideos, knownKeys),
+    ...validateVideoRegistry(officialVideos, knownKeys, { label: 'officialVideos' }),
+    // 社群影片同一支可以合理對到多課，所以放行跨頁重複，其餘規則一樣嚴
+    ...validateVideoRegistry(communityVideos, knownKeys, {
+      label: 'communityVideos',
+      allowCrossKeyReuse: true,
+    }),
   ];
 
   if (issues.length > 0) {

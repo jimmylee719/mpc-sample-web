@@ -22,6 +22,18 @@ export const validLesson: Lesson = {
   prerequisites: [],
   checkpoints: ['驗證腳本對這一課回報零錯誤'],
   sources: ['內部測試用，非教學內容'],
+  // 對照組：一段合法的摘要 —— 自己的話、夠短、而且填表的人確實看過
+  videos: [
+    {
+      youtubeId: 'ccccccccccc',
+      title: '合法的摘要對照組',
+      channel: '測試頻道',
+      why: '用來確認合法的 summary 不會被誤報',
+      summary: '看過之後用自己的話寫的重點，明顯短於原片，也沒有逐字照抄。',
+      lang: 'en',
+      reviewed: true,
+    },
+  ],
   steps: [
     {
       ch: 0,
