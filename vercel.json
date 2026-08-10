@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/learn/s2/four-ways-to-chop",
+      "destination": "/learn/s2/three-ways-to-chop",
+      "permanent": true
+    }
+  ]
+}

@@ -2,11 +2,11 @@ import type { Lesson } from '@/types/lesson';
 
 export const s2_06: Lesson = {
   id: 's2-06',
-  slug: 'four-ways-to-chop',
+  slug: 'three-ways-to-chop',
   season: 2,
   index: 6,
-  title: 'Chop 四種切法',
-  outcome: '同一段素材用四種切法切出來的結果',
+  title: 'Chop 三種切法',
+  outcome: '同一段素材用三種切法切出來的結果',
   minutes: 30,
   chapters: ['先存檔', 'Threshold 自動切', 'Regions 平均切', 'Manual 手動切'],
   needsComputer: false,
@@ -19,7 +19,7 @@ export const s2_06: Lesson = {
   ],
   checkpoints: [
     '你在切之前存過專案',
-    '四種切法你都試過一次',
+    '三種切法你都試過一次',
     '你知道 Threshold 值越高切片越少',
     '你知道切片編輯不能復原',
   ],

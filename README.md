@@ -60,15 +60,15 @@
 | 旋鈕矩陣 | 13 個畫面，**全部查證完成** |
 | 效果字典 | 44 種 = Pad FX 16 + Knob FX 28 |
 | 名詞對照 | 37 組 |
-| 疑難排解 | 10 條（只收有官方依據的） |
-| 韌體對照 | 版本紀錄 + 9 項尚未驗證清單 |
+| 疑難排解 | 12 條（只收有官方依據的） |
+| 韌體對照 | 版本紀錄 + 6 項尚未驗證 + 4 項已排除（含依據） |
 
-### 延伸觀看影片：93 支（103 則引用）
+### 延伸觀看影片：100 支（110 則引用）
 
 | 來源 | 支數 | 覆蓋 |
 |---|---|---|
 | Akai Professional 官方系列 | 30 | 21 個頁面 |
-| 社群頻道（NervousCook$ 專門系列等） | 63 | 41 個頁面 |
+| 社群頻道（NervousCook$ 專門系列等） | 70 | 43 個頁面 |
 
 **35 課全部都有影片。曲風 17/24 有影片**，其餘 7 個（phonk、jersey-club、footwork、
 afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁面直接寫明沒有，
@@ -95,7 +95,7 @@ afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁
 
 播放器是**點擊才載入**：按下播放之前，頁面對 YouTube 零請求，一律走 `youtube-nocookie.com`。
 
-**全站 74 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
+**全站 77 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
 
 ### 介面與 PWA
 
@@ -109,6 +109,11 @@ afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁
   完全沒開過的頁面顯示本站自己的 `/offline`，不是瀏覽器錯誤頁。
 - **音樂元素**：跳動電平表、錄音燈、旋轉黑膠、pad 矩陣、波形分隔線——
   全部純 CSS，沒有任何動畫函式庫，且尊重 `prefers-reduced-motion`。
+- **插畫**：唱盤（俯視，含唱臂與速度推桿）與唱片箱，全部手繪 SVG 路徑。
+  首頁另有整台機器的向量面板。**一張產品照片都沒有用**——Akai 的照片有著作權，
+  而且點陣圖會拖垮 LCP。
+- **法務頁**：`/privacy` 隱私權政策（只寫實際會發生的事）、`/about` 關於本站
+  （凡圖有限公司資訊、事實查核政策、免責與商標聲明）。
 
 ---
 
@@ -151,6 +156,8 @@ NEXT_PUBLIC_R2_BASE=https://你的網域
 /genre                         曲風工廠總覽（L1–L4 分級）
 /genre/[slug]                  單一曲風配方卡
 /reference                     查詢區索引
+/reference/specs               ★官方規格總表
+/reference/techniques          ★延伸技巧（官方依據／社群做法分標）
 /reference/shortcuts           快捷鍵總表
 /reference/knobs               ★互動式旋鈕矩陣
 /reference/fx                  效果字典
@@ -158,7 +165,8 @@ NEXT_PUBLIC_R2_BASE=https://你的網域
 /reference/troubleshoot        疑難排解
 /reference/firmware            韌體對照與尚未驗證清單
 /samples                       素材庫
-/about                         關於
+/about                         關於本站（凡圖有限公司、事實查核、商標聲明）
+/privacy                       隱私權政策
 /offline                       離線備援頁（Service Worker 用）
 ```
 
@@ -266,17 +274,27 @@ npm run check
 | 匯出路徑 | Song 頁 B1 匯出 → B2 音訊混音 → ENCODER 命名 → B3 執行 |
 | 傳檔路徑 | Project → SD Card Access，microSD 掛載成外接磁碟。**手冊明寫 microSD 不含在盒裝內** |
 | 側鏈 | 本機沒有側鏈，用 Knob FX 的 **Pumper**（官方描述即為「類似側鏈壓縮」） |
-| MIDI | MIDI Port 為 **External 或 USB 二選一**；背板為 1/8" TRS **Type A**；轉接線手冊寫 not included、FAQ 說有附，**依優先序以手冊為準** |
+| MIDI | MIDI Port 為 **External 或 USB 二選一**；背板為 1/8" TRS **Type A** |
 | 序列切換 | 播放中按另一顆 pad 會**閃亮綠排隊**，等目前序列跑完才切換（已解決原待驗證項） |
 | 取樣啟動 | **敲 pad 即開始錄**；錄音中再敲其他 pad 可當場切片；停止方式決定停完在哪個模式 |
-| AUDIO IN | 手冊明寫是 **1/4" TRS 線路電平**輸入，唱盤必須先過唱頭放大器 |
+| AUDIO IN | 2 個 **1/4" TRS，Mic/Line-Level**；唱盤必須先過唱頭放大器 |
+| Chop 幾種 | **三種**：Threshold／Regions（4、8、16）／Manual。本站原寫「四種」，2026-08-10 更正 |
+| Recall 秒數 | **音訊 25 秒**；序列 Recall 撈的是「上一個循環」不是秒數。規格表的 30 秒與內文不符 |
+| 沒有記憶卡 | **拿不出作品**。掛載到電腦的是 microSD，不是內建 8 GB |
+| MIDI 轉接線 | **盒裝沒附**，要自己買 TRS Type A |
+| 複音數與容量 | **32 個立體聲聲音**；每專案 16 樣本 × 8 bank、16 序列 × 8 bank，專案數無上限 |
+| 可匯入格式 | .wav、.mp3、.aif／.aiff、.snd、.s1s、.s3s、.flac、.ogg |
+| 錄音規格 | 24-bit／44.1 kHz；內部處理 32-bit 浮點；序列器 960 PPQ |
 | 充電 | 視線材與電源而定，**可能只在關機時充得進去**；官方建議至少 5V 2A |
 
-### 尚未驗證（9 項，前台公開列出）
+### 尚未驗證（6 項，前台公開列出）
 
-Recall 秒數（手冊自相矛盾：規格表 30 秒 vs 內文 25 秒）、沒插記憶卡能否取出作品、microSD 容量上限與格式、
-喇叭是否單聲道、內建儲存是否 eMMC、電池小時數的官方矛盾、韌體更新是否影響既有專案、
-Splice 到底怎麼搭配這台機器、**MIDI 轉接線是否含在盒裝內**（手冊寫沒附、FAQ 說有附）。
+microSD 容量上限與格式、喇叭是否單聲道、內建儲存是否 eMMC、韌體更新是否影響既有專案、
+Splice 到底怎麼搭配這台機器、**官方列出但手冊完全沒說明怎麼操作的三個功能**
+（lazy-chopping、auto-snapping、fixed-length sampling）。
+
+**2026-08-10 排除 4 項**：Recall 秒數、沒有記憶卡能否取出作品、MIDI 轉接線是否附、電池小時數。
+每一項的結論與依據都列在 `/reference/firmware` 的「已排除的疑問」，不是默默刪掉。
 
 **這些在 `/reference/firmware` 頁面對讀者公開。看到「尚未驗證」就代表我們還沒實測，不是定論。**
 

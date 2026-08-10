@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { RecordCrate } from '@/components/site/Deco';
 
 export const metadata: Metadata = {
   title: '素材庫 — 自錄與 CC0',
@@ -43,14 +44,17 @@ const READY = Boolean(process.env.NEXT_PUBLIC_R2_BASE);
 export default function SamplesPage() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
-      <header className="mb-8 border-b border-[#2C3036] pb-4">
-        <p className="label-mono font-bold text-akai">SAMPLES · 自錄與 CC0</p>
-        <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">
-          素材庫
-        </h1>
-        <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          這裡的每一個檔案都是自己錄的，或是 CC0 授權。你可以放心拿去用，包含商業發行。
-        </p>
+      <header className="mb-8 grid items-center gap-6 border-b border-[#2C3036] pb-6 split:grid-cols-[1fr_auto]">
+        <div>
+          <p className="label-mono font-bold text-akai">SAMPLES · 自錄與 CC0</p>
+          <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">
+            素材庫
+          </h1>
+          <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
+            這裡的每一個檔案都是自己錄的，或是 CC0 授權。你可以放心拿去用，包含商業發行。
+          </p>
+        </div>
+        <RecordCrate className="mx-auto w-[190px] shrink-0 split:w-[210px]" />
       </header>
 
       <section className="rounded-[14px] border-l-[3px] border-l-akai bg-[rgba(214,52,44,.07)] px-4 py-4">

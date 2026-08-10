@@ -58,53 +58,92 @@ export interface OpenQuestion {
 
 export const openQuestions: OpenQuestion[] = [
   {
-    id: 'recall-length',
-    question: 'Recall 到底能撈回幾秒？',
-    status: '官方手冊自己不一致：規格表寫 30 秒，內文兩處寫 25 秒。實測前不寫死。',
-  },
-  {
-    id: 'export-without-sd',
-    question: '沒插 microSD 卡，能不能把作品拿出來？',
-    status:
-      '手冊詳細章節寫 SD Card Access 是存取「插在卡槽裡的 microSD（不含在盒裝內）」，但概述又寫成「internal microSD Card Storage」。兩處說法不一致，這是本站最想確認的一項。',
-  },
-  {
     id: 'microsd-limit',
-    question: 'microSD 容量上限與檔案系統格式是什麼？',
-    status: '官方手冊與 FAQ 都沒寫。買大容量卡之前建議先問官方，買錯會白花錢。',
+    question: 'microSD 容量上限是多少？要格式化成哪一種格式？',
+    status:
+      '官方手冊與 MPC Sample 的 FAQ 都沒有寫上限。Akai 通用的「Reformatting Storage Devices」支援文件說明：多數現行機種建議用 exFAT，較舊機種才需要 FAT32，但那份文件沒有點名 MPC Sample，也沒有給容量上限。買大容量卡之前建議先問官方。',
   },
   {
     id: 'speaker-mono',
     question: '內建喇叭是單聲道嗎？',
-    status: '手冊規格寫「3-watt speaker」，用的是單數，內文也一律用單數。但官方沒有明寫 mono。',
+    status:
+      '官方從頭到尾沒有寫過 mono 這個字。手冊規格只寫「3-watt speaker」，用的是單數，內文也一律用單數；MusicRadar 的評測直接寫「3-watt mono built-in speaker」。單聲道的可能性很高，但官方沒明講，所以不寫死。',
   },
   {
     id: 'internal-storage-type',
     question: '內建 8 GB 儲存是不是 eMMC？',
-    status: '官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式。',
-  },
-  {
-    id: 'battery-hours',
-    question: '電池到底幾小時？',
-    status:
-      '官方手冊寫「Approximately 5 hours of continuous playback」，官方 FAQ 寫「Up to 6 hours」。依來源優先序，本站採手冊的約 5 小時。',
+    status: '官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式。手冊全文沒有出現 eMMC。',
   },
   {
     id: 'splice-workflow',
     question: 'Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？',
     status:
-      '官方有一支「Using Splice with MPC Sample」的影片，但官方手冊 v1.3.0 完全沒有出現 Splice 這個字，手冊也沒有列出任何無線連線功能。Splice 官方說明的整合流程需要在裝置上產生代碼再上網綁定，那是給有網路的機型。本站因此不假設有機上整合，先以「電腦或手機下載再傳進記憶卡」的路徑撰寫。',
-  },
-  {
-    id: 'midi-adapter-included',
-    question: 'MIDI 轉接線到底有沒有含在盒裝內？',
-    status:
-      '官方手冊寫接五針 MIDI 需要 1/8" TRS (Type A) 轉接線，並註明 not included。但官方 FAQ 提到隨機附的轉接線是 Type A 規格。兩份官方文件說法不一致，依來源優先序以手冊為準，請自行確認盒裝內容。',
+      '官方有一支「Using Splice with MPC Sample」的影片，但官方手冊 v1.3.0 全文沒有出現 Splice 這個字，也沒有列出任何無線連線功能；手冊另外明寫「Project import and export is not currently supported」。本站因此不假設有機上整合，先以「電腦或手機下載再傳進記憶卡」的路徑撰寫。',
   },
   {
     id: 'update-project-safety',
     question: '韌體更新會不會影響既有專案？',
     status: '官方更新說明只強調「更新中不要拔線」，沒有提到專案。更新前請務必自己先存一次。',
+  },
+  {
+    id: 'undocumented-features',
+    question: 'lazy-chopping、auto-snapping、fixed-length sampling 到底怎麼操作？',
+    status:
+      '這三個詞只出現在官方手冊的功能列表裡（Advanced Sample Editing 與 Key Software Features 兩行），手冊內文從頭到尾沒有任何一段說明怎麼用。fixed-length sampling 我們合理推測就是 Rec Length 設成 SEQ，但官方沒有把兩者連起來寫。另外兩個目前完全查不到操作方式。',
+  },
+];
+
+/**
+ * 已排除的疑問。
+ *
+ * 為什麼要留著而不是直接刪掉：讀者有權看到我們是怎麼把一件事查清楚的，
+ * 尤其是那些「官方自己前後不一致」的項目。把過程留在檯面上，
+ * 下次有人翻到舊資料時才知道我們已經比對過了。
+ */
+export interface ResolvedQuestion {
+  id: string;
+  question: string;
+  /** 結論 */
+  answer: string;
+  /** 依據：講清楚是哪一份文件的哪一句話 */
+  evidence: string;
+  /** ISO 日期 */
+  resolvedDate: string;
+}
+
+export const resolvedQuestions: ResolvedQuestion[] = [
+  {
+    id: 'recall-length',
+    question: 'Recall 到底能撈回幾秒？',
+    answer:
+      '音訊 Recall 是 25 秒。序列 Recall 根本不是用秒算的，它撈的是「上一個循環」裡彈過的東西。',
+    evidence:
+      '手冊內文兩處都寫「retrieve the last 25 seconds of audio input」；序列 Recall 寫的是「events played during the last loop of sequence playback」。只有規格表那一行寫成「30 seconds of audio or pad performance to sequence」，把兩種不同的 Recall 併成一句，數字與內文對不上。MusicRadar 的評測也寫 25 秒。本站採內文。',
+    resolvedDate: '2026-08-10',
+  },
+  {
+    id: 'export-without-sd',
+    question: '沒插 microSD 卡，能不能把作品拿出來？',
+    answer: '不行。沒有記憶卡就沒辦法把檔案傳到電腦。',
+    evidence:
+      '手冊 SD Card Access 章節寫得很明確：這個功能是存取「插在卡槽裡的 microSD（不含在盒裝內）」，而且「The microSD card will mount as an external drive on your computer」——掛載到電腦上的是記憶卡，不是內建的 8 GB。背板說明也寫 microSD 卡槽在機身左側，是「external file storage」。之前的疑問來自概述段落一句寫得比較鬆的話，詳細章節沒有模稜兩可。',
+    resolvedDate: '2026-08-10',
+  },
+  {
+    id: 'midi-adapter-included',
+    question: 'MIDI 轉接線到底有沒有含在盒裝內？',
+    answer: '沒有附。要接五針 MIDI 設備，轉接線要自己買，認明 TRS Type A。',
+    evidence:
+      '手冊寫「1/8" TRS (Type A) to 5-Pin MIDI DIN connectors (not included)」。官方 FAQ 那句「The adaptor provided with the MPC Sample is of Type-A configuration」講的是規格是哪一型，不是說盒裝有附。兩邊其實沒有衝突。',
+    resolvedDate: '2026-08-10',
+  },
+  {
+    id: 'battery-hours',
+    question: '電池到底幾小時？',
+    answer: '約 5 小時。',
+    evidence:
+      '手冊寫「Approximately 5 hours of continuous playback」，官方 FAQ 寫「Up to 6 hours」。MusicRadar 實際使用後寫「around 5 hours of operation」。依來源優先序手冊優先，獨立評測也站在同一邊，FAQ 的 6 小時視為行銷用語。',
+    resolvedDate: '2026-08-10',
   },
 ];
 
@@ -122,6 +161,119 @@ export const VERIFIED_FACTS = {
   exportPath: 'Song 頁按 B1 匯出，B2 存成音檔，用 ENCODER 命名後按 B3 執行',
   transferPath: 'Project 選單的 SD Card Access 會把 microSD 掛載成電腦的外接磁碟',
   microSdIncluded: 'microSD 卡不含在盒裝內，卡槽在機身左側',
-  audioInLevel: 'AUDIO IN 為 1/4" TRS 線路電平輸入，唱盤需先經唱頭放大器',
+  audioInLevel: 'AUDIO IN 為兩個 1/4" TRS 輸入，可吃麥克風或線路電平；唱盤需先經唱頭放大器',
   charging: '視線材與電源而定，充電可能只在關機時有效；官方建議至少 5V 2A',
+  recallAudio: '音訊 Recall 撈回最後 25 秒',
+  recallSequence: '序列 Recall 撈回「上一個循環」彈過的內容，不是固定秒數',
+  midiAdapter: '接五針 MIDI 需要 1/8" TRS Type A 轉接線，盒裝不含，要自己買',
+  chopTypes: 'Chop Type 三種：Threshold、Regions（4／8／16）、Manual',
+  polyphony: '32 個立體聲複音，磁碟串流同樣上限 32 個聲音',
+  perProject: '每個專案 16 個樣本 × 8 個 bank、16 個序列 × 8 個 bank；專案數量本身沒有上限',
+  importFormats: '可匯入 .wav、.mp3、.aif／.aiff、.snd、.s1s、.s3s、.flac、.ogg',
+  sampleRates: '錄音 24-bit／44.1 kHz；匯入支援 16 或 24-bit，44.1／48／96 kHz；內部處理 44.1 kHz／32-bit 浮點',
+  ppq: '序列器解析度 960 PPQ（每四分音符 960 格）',
+  fxTotal: '四套引擎合計 60 種以上效果，路由為 Main Output、Input、Per-Pad',
+  display: '2.4 吋全彩 LCD',
+  padsSpec: '16 顆 RGB 背光、感應力度的 MPC pad，支援 aftertouch',
+  mpc3Support: '目前不支援與 MPC3 互轉專案；官方說未來韌體會讓 MPC 3.8 以上開得起 MPC Sample 專案',
 } as const;
+
+/**
+ * 官方規格表。全部逐字對照 Akai 官方使用手冊 v1.3.0 (RevA) 附錄。
+ * 這一份只放官方白紙黑字寫過的東西，推論與社群說法一律不進來。
+ */
+export interface SpecRow {
+  label: string;
+  value: string;
+  /** 補充說明，非官方原文的部分寫在這裡 */
+  note?: string;
+}
+
+export interface SpecGroup {
+  title: string;
+  rows: SpecRow[];
+}
+
+export const specGroups: SpecGroup[] = [
+  {
+    title: '聲音與容量',
+    rows: [
+      { label: '複音數', value: '32 個立體聲聲音' },
+      { label: '磁碟串流', value: '機上快速串流，同樣上限 32 個聲音' },
+      { label: '單一樣本最長', value: '20 分鐘' },
+      {
+        label: '每個專案',
+        value: '16 樣本 × 8 bank，16 序列 × 8 bank',
+        note: '也就是 128 個樣本、128 個序列。專案本身數量沒有上限。',
+      },
+      { label: '內建儲存', value: '8 GB，內含約 2 GB 原廠資料' },
+      { label: '記憶體', value: '2 GB' },
+      {
+        label: '擴充',
+        value: 'microSD 卡槽（機身左側）',
+        note: '卡片不含在盒裝內。要把檔案傳到電腦一定要有卡，內建儲存不會掛載。',
+      },
+    ],
+  },
+  {
+    title: '取樣與檔案',
+    rows: [
+      { label: '錄音規格', value: '24-bit／44.1 kHz' },
+      { label: '內部處理', value: '44.1 kHz／32-bit 浮點' },
+      { label: '匯入支援', value: '16 或 24-bit；44.1、48 或 96 kHz' },
+      {
+        label: '可匯入格式',
+        value: '.wav、.mp3、.aif／.aiff、.snd、.s1s、.s3s、.flac、.ogg',
+      },
+      { label: '取樣來源', value: '麥克風、AUDIO IN、USB（Mac／Win／iOS／Android）、Resample' },
+      {
+        label: '音訊 Recall',
+        value: '最後 25 秒',
+        note: '規格表那一行寫 30 秒，與內文兩處不符，本站採內文。詳見已排除的疑問。',
+      },
+      { label: '序列 Recall', value: '上一個循環彈過的內容' },
+    ],
+  },
+  {
+    title: '序列與效果',
+    rows: [
+      { label: '序列器解析度', value: '960 PPQ' },
+      { label: '效果總數', value: '四套引擎合計 60 種以上' },
+      { label: '四套引擎', value: 'Pad FX、Knob FX、Flex Beat、Color-Compressor' },
+      {
+        label: '效果路由',
+        value: 'Main Output、Input、Per-Pad',
+        note: 'Per-Pad 屬於 Knob FX。Pad FX 是套整段序列，不能只套一顆 pad。',
+      },
+      { label: 'Chop', value: 'Threshold、Regions 4／8／16、Manual' },
+      { label: '樣本編輯', value: 'Chop、lazy-chopping、auto-snapping、即時 looping、warping' },
+    ],
+  },
+  {
+    title: '硬體',
+    rows: [
+      { label: '打擊墊', value: '16 顆 RGB 背光、感應力度，支援 aftertouch' },
+      { label: '螢幕', value: '2.4 吋（6.1 cm）全彩 LCD' },
+      { label: '輸入', value: '2 個 1/4"（6.35 mm）TRS，麥克風或線路電平' },
+      { label: '喇叭', value: '內建 3 瓦喇叭與麥克風', note: '接上耳機或 1/4" 輸出時自動停用。' },
+      { label: '旋鈕與推桿', value: '3 顆 270° 旋鈕、1 顆可按壓 360° ENCODER、1 支 30 mm 推桿' },
+      { label: '電池', value: '約 5 小時連續播放' },
+      { label: 'MIDI', value: '1/8" TRS Type A，External 與 USB 二選一', note: '轉接線不含在盒裝內。' },
+    ],
+  },
+  {
+    title: '與其他 MPC 的關係',
+    rows: [
+      {
+        label: '專案互轉',
+        value: '目前不支援',
+        note: '官方說未來韌體會讓 MPC 3.8 以上的硬體與桌面軟體開得起 MPC Sample 專案。',
+      },
+      {
+        label: '本機沒有的東西',
+        value: '觸控螢幕、Wi-Fi、外掛效果、Track Mute、Q-Link、EXIT 鍵',
+        note: '看其他 MPC 機型的教學影片時要特別注意，那些按鍵這台沒有。',
+      },
+    ],
+  },
+];

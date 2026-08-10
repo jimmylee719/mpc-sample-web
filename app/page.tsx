@@ -3,6 +3,7 @@ import { lessons, lessonHref, SEASONS } from '@/content/lessons';
 import { genres } from '@/content/genres';
 import { allVideos } from '@/content/videos';
 import { PadGrid, Vinyl, WaveRule, LevelMeter } from '@/components/site/Deco';
+import { MpcPanel } from '@/components/mpc/MpcPanel';
 
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
 const first = lessons[0]!;
@@ -120,6 +121,34 @@ export default function HomePage() {
             <p className="label-mono mt-2 text-[#6B7178]">{s.note}</p>
           </div>
         ))}
+      </section>
+
+      {/* ── 這就是那台機器 ───────────────────────── */}
+      <section className="mt-4 grid items-center gap-7 pb-4 split:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] split:gap-10">
+        <div>
+          <h2 className="chan label-mono font-bold text-white">這就是那台機器</h2>
+          <p className="mt-4 max-w-[44ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
+            全站的面板圖都是這一張向量圖，不是照片。它會跟著課程一步一步變：
+            該按的地方亮綠光，按住 SHIFT 的時候，
+            <b className="font-semibold text-white">整台機器的紅色第二功能字會一起亮起來</b>。
+          </p>
+          <p className="mt-3 max-w-[44ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
+            接背板的步驟會自動翻到背面。你不用一邊看螢幕一邊猜自己的手在哪裡。
+          </p>
+          <Link
+            href="/learn/s1/panel-and-shift-functions"
+            className="mt-5 inline-block border-2 border-[#4A5057] px-5 py-[11px] text-sm font-semibold text-paper transition-colors hover:border-akai hover:bg-akai"
+          >
+            先學會讀面板 →
+          </Link>
+        </div>
+
+        <div className="rounded-[18px] border border-[#2C3036] bg-stage-2 p-4 shadow-[0_18px_44px_rgb(0_0_0/0.4)]">
+          <MpcPanel targets={['pads']} screen={{ t1: '敲敲取樣', wave: 24 }} />
+          <p className="label-mono mt-[10px] text-center text-[#6B7178]">
+            本站自繪向量面板 · 非產品照片
+          </p>
+        </div>
       </section>
 
       {/* ── 四個區塊 ─────────────────────────────── */}

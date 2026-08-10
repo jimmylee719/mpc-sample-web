@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FIRMWARE_BASELINE, MANUAL_REVISION, firmwareLog, openQuestions } from '@/content/reference/firmware';
+import {
+  FIRMWARE_BASELINE,
+  MANUAL_REVISION,
+  firmwareLog,
+  openQuestions,
+  resolvedQuestions,
+} from '@/content/reference/firmware';
 import { lessons, lessonHref } from '@/content/lessons';
 import { FirmwareBadge } from '@/components/badges/FirmwareBadge';
 
@@ -53,6 +59,33 @@ export default function Page() {
             <li key={q.id} className="py-3">
               <p className="text-sm font-semibold text-white">{q.question}</p>
               <p className="mt-1 text-sm leading-relaxed text-[#B7BDC4]">{q.status}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-8">
+        <h2 className="label-mono text-akai">已排除的疑問 · {resolvedQuestions.length} 項</h2>
+        <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-[#8D9299]">
+          這些原本也在上面那份清單裡，後來查清楚了。過程留在這裡，是因為好幾項是
+          <b className="font-semibold text-white">官方自己前後不一致</b>，
+          你在別的地方看到不同數字時，可以直接對照我們是憑什麼下的結論。
+        </p>
+        <ul className="mt-3 space-y-3">
+          {resolvedQuestions.map((q) => (
+            <li key={q.id} className="rounded-xl border border-[#2C3036] bg-stage-2 p-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="label-mono rounded-full bg-[#1E3226] px-[9px] py-[2px] text-live">
+                  已釐清
+                </span>
+                <span className="label-mono text-muted">{q.resolvedDate}</span>
+              </div>
+              <p className="mt-2 text-sm font-semibold text-white">{q.question}</p>
+              <p className="mt-1 text-sm leading-relaxed text-live">{q.answer}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-[#8D9299]">
+                <span className="label-mono text-[#6B7178]">依據　</span>
+                {q.evidence}
+              </p>
             </li>
           ))}
         </ul>

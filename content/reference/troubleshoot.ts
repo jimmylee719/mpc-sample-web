@@ -71,7 +71,24 @@ export const troubles: TroubleEntry[] = [
     symptom: '唱盤接進背板，聲音超小而且很悶',
     cause: '唱盤輸出的是 phono 訊號，電平遠低於線路電平，而且頻率響應還沒被還原。',
     fix: '中間要接唱頭放大器，或改用內建放大器的唱盤。先進混音器再拉線進來也可以。',
-    source: 'Akai 官方使用手冊 v1.3.0 (RevA)：AUDIO IN 為線路電平輸入，適用麥克風、樂器、混音器、合成器、鼓機',
+    source:
+      'Akai 官方使用手冊 v1.3.0 (RevA)：AUDIO IN 為 2 個 1/4" TRS 輸入，規格寫明 Mic/Line-Level，適用麥克風、樂器、混音器、合成器、鼓機。唱盤的 phono 訊號比這兩種都低',
+  },
+  {
+    id: 'no-card-no-transfer',
+    symptom: '想把做好的音檔傳到電腦，但沒有記憶卡',
+    cause: '傳檔掛載到電腦上的是 microSD 卡，不是內建的 8 GB 儲存。沒有卡就沒有東西可以掛。',
+    fix: '買一張 microSD 卡。已經存在內建儲存的樣本，要先在存檔時把目的地改成記憶卡，再走 SD Card Access。',
+    source:
+      'Akai 官方使用手冊 v1.3.0 (RevA)：SD Card Access 存取「插在卡槽裡的 microSD（不含在盒裝內）」，且「The microSD card will mount as an external drive on your computer」',
+  },
+  {
+    id: 'midi-adapter-missing',
+    symptom: '想接五針 MIDI 的合成器，盒裝裡找不到轉接線',
+    cause: '轉接線本來就沒有附。',
+    fix: '自己買一條 1/8" TRS Type A 轉五針 MIDI DIN 的轉接線。認明 Type A，Type B 接上不會壞但不會動。',
+    source:
+      'Akai 官方使用手冊 v1.3.0 (RevA)：「1/8" TRS (Type A) to 5-Pin MIDI DIN connectors (not included)」',
   },
   {
     id: 'automation-stuck',

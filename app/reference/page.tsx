@@ -5,16 +5,31 @@ import { shortcuts } from '@/content/reference/shortcuts';
 import { knobRows } from '@/content/reference/knobs';
 import { glossary } from '@/content/reference/glossary';
 import { troubles } from '@/content/reference/troubleshoot';
-import { openQuestions } from '@/content/reference/firmware';
+import { openQuestions, specGroups } from '@/content/reference/firmware';
+import { allTechniques, verifiedTechniqueCount } from '@/content/reference/techniques';
 import { KNOB_FX_TOTAL } from '@/content/reference/fx';
 
 export const metadata: Metadata = {
   title: '查詢區 — Akai 取樣機速查',
   description:
-    '快捷鍵、旋鈕矩陣、效果字典、名詞對照、疑難排解、韌體與尚未驗證清單。做到一半卡住就翻這裡。',
+    '規格總表、延伸技巧、快捷鍵、旋鈕矩陣、效果字典、名詞對照、疑難排解、韌體與尚未驗證清單。做到一半卡住就翻這裡。',
 };
 
 const PAGES = [
+  {
+    href: '/reference/specs',
+    tag: 'SPECS',
+    title: '規格總表',
+    note: '複音數、可匯入格式、位元與取樣率、每個專案放得下多少東西。逐行對照官方手冊。',
+    count: () => `${specGroups.reduce((n, g) => n + g.rows.length, 0)} 項規格`,
+  },
+  {
+    href: '/reference/techniques',
+    tag: 'TECHNIQUES',
+    title: '延伸技巧',
+    note: '已經會操作之後，讓你快很多的組合技。官方依據與社群做法分開標。',
+    count: () => `${allTechniques.length} 招 · ${verifiedTechniqueCount} 招有官方依據`,
+  },
   {
     href: '/reference/shortcuts',
     tag: 'SHORTCUTS',
@@ -63,7 +78,7 @@ export default function ReferenceIndexPage() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
       <header className="mb-8 border-b border-[#2C3036] pb-4">
-        <p className="label-mono font-bold text-akai">REFERENCE · 六張速查表</p>
+        <p className="label-mono font-bold text-akai">REFERENCE · 八張速查表</p>
         <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">
           查詢區
         </h1>

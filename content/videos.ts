@@ -199,6 +199,9 @@ export const communityVideos: Record<string, VideoRef[]> = {
 
   // ── Season 2 ────────────────────────────────────────
   's2-01': [
+    nc('uYJpqKI4BB0', 'EP-24 - Sample Record Button', '錄音鍵本身的完整拆解，含 Rec Length 與 Threshold 那幾個設定。'),
+    nc('0GcKnS9lRg4', 'EP-26 - Audio Input Sampling', '從背板 AUDIO IN 收音的專門一集，對應本課的外部音源。'),
+    nc('JV4JjVS97M4', 'EP-43 - App Sampling With Audio & Midi', 'USB-C 接手機或電腦，同時走音訊與 MIDI 的實際操作。'),
     c({
       id: 'RZkIOZmxPJk',
       title: 'How To Record on MPC Sample',
@@ -211,6 +214,9 @@ export const communityVideos: Record<string, VideoRef[]> = {
       channel: 'Sarah2ill',
       why: '標題涵蓋黑膠、手機、電腦三種來源，正好對應本課列的八個來源。',
     }),
+  ],
+  's2-03': [
+    nc('Y5lW72IdAhI', 'EP-32 - Warping', 'Warp 的專門一集。本課第 4 段對速度用得到。'),
   ],
   's2-04': [
     nc('It8tP5MPdIY', 'EP-16 - Filters & Filter Envelope', '本機濾波器的逐項拆解，含濾波包絡。這是本課最直接的第三方對照。'),
@@ -237,8 +243,14 @@ export const communityVideos: Record<string, VideoRef[]> = {
     nc(
       'Q7hj6NLBTB8',
       'EP-39 - Sample Chopping/Mute Groups Deep Dive',
-      '切片的深入拆解，也帶到 Mute Group。看完再回來做本課的四種切法。',
+      '切片的深入拆解，也帶到 Mute Group。看完再回來做本課的三種切法。',
     ),
+    c({
+      id: '0NkfzSBaD6c',
+      title: 'Easiest way to CHOP samples on the AKAI MPC SAMPLE',
+      channel: 'Killa Vic',
+      why: '短片，一分鐘看完切片的最快路徑。手感這種東西看一次比讀十遍快。',
+    }),
   ],
   's2-07': [
     nc(
@@ -263,6 +275,9 @@ export const communityVideos: Record<string, VideoRef[]> = {
     nc('ZqNavqlHxlw', 'EP-07 - Load Samples', '把樣本放上 pad 的實際流程，對應本課的分配表怎麼落地。'),
     nc('sBeokGjC_qE', 'EP-12 - Sample Mix', 'pad 之間的音量與聲相配置。分配表寫完之後就是做這件事。'),
   ],
+  's3-05': [
+    nc('yBstZ34Bspk', 'EP-15 - Play/Pad Linking', '★ Pad Link 的專門一集，跟本課主題完全對上。'),
+  ],
   's3-04': [
     nc('uC6ANHWPL4U', 'EP-22 - 16 Levels Overview', '16 Levels 的完整導覽，跟官方那支可以互相補。'),
     nc('w9_y5wBSgTQ', 'EP-23 - 16 Levels Mono vs Poly', '單音與複音的差別。彈貝斯線要選單音，這支講清楚為什麼。'),
@@ -281,6 +296,7 @@ export const communityVideos: Record<string, VideoRef[]> = {
     nc('Nv73ERljLsI', 'EP-41 - Step Edit', '逐格編輯的第三方示範，跟官方那支交叉比對。'),
     nc('DMe5hE404is', 'EP-19 - Editing A Sequence', '序列編輯的整體流程，含刪修與複製。'),
     nc('Gq9NBQ-MqOc', 'EP-21 - Note Repeat', 'Note Repeat 打出來的律動，文字寫不出手感，直接看。'),
+    nc('OtdDq7PNxsA', 'EP-33 - The Fader', '推桿的專門一集，對應本課第 4 段的 Legacy Fader 選單。'),
   ],
   's3-09': [
     nc('CKi_Sc91IUA', 'EP-40 - Song Mode', 'Song Mode 串接的第三方示範，跟官方那支互相驗證。'),
