@@ -114,6 +114,13 @@ export interface VideoRef {
   /** 是否為 Akai 官方頻道 */
   official?: boolean;
   /**
+   * 影片示範的機型。**只有不是 MPC Sample 時才填。**
+   *
+   * 這一欄是必要的防護：MPC One、MPC Live 有 Track Mute、觸控螢幕、
+   * 外掛效果這些本機沒有的東西。不標清楚，讀者會照著影片找不存在的功能。
+   */
+  device?: string;
+  /**
    * 是否已經有人實際看過並確認內容與說明相符。
    * false 時前台會標示「尚未人工確認」——沒看過就說推薦是不誠實的。
    */

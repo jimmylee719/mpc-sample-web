@@ -35,7 +35,7 @@
 | S2 | 取樣工藝 | 8 | 111 |
 | S3 | 編曲 | 10 | 118 |
 | S4 | 聲音設計 | 7 | 70 |
-| S5 | 現場演出 | 6 | 62 |
+| S5 | 現場演出 | 6 | 64 |
 
 需要電腦的課只有一堂：**1-3 韌體更新**。其餘 34 課全部在機器上完成。
 
@@ -61,20 +61,49 @@
 | 效果字典 | 44 種 = Pad FX 16 + Knob FX 28 |
 | 名詞對照 | 37 組 |
 | 疑難排解 | 10 條（只收有官方依據的） |
-| 韌體對照 | 版本紀錄 + 10 項尚未驗證清單 |
+| 韌體對照 | 版本紀錄 + 9 項尚未驗證清單 |
 
-### 延伸觀看影片：36 支
+### 延伸觀看影片：93 支（103 則引用）
 
-Akai Professional 官方「Getting Started with MPC Sample」系列 **30 支全數對應**到 20 個頁面，
-另有 6 支第三方補充。頻道與標題已用 YouTube oEmbed 端點逐一驗證存在。
+| 來源 | 支數 | 覆蓋 |
+|---|---|---|
+| Akai Professional 官方系列 | 30 | 21 個頁面 |
+| 社群頻道（NervousCook$ 專門系列等） | 63 | 41 個頁面 |
 
-**⚠️ 對應方式的誠實說明**：目前是**依影片標題**判斷主題後配到對應課程，
-**本站尚未有人實際觀看影片內容**。因此全部 36 支都標 `reviewed: false`，
-前台顯示「尚未人工確認」。跑 `npm run stats` 會列出待確認清單。
+**35 課全部都有影片。曲風 17/24 有影片**，其餘 7 個（phonk、jersey-club、footwork、
+afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁面直接寫明沒有，
+不拿不相干的影片湊數。
+
+每一支的 ID、標題、頻道都用 YouTube oEmbed 端點驗證過。重跑：`npm run videos:verify`。
+覆蓋率報告：`npm run videos`。
+
+**⚠️ 兩個誠實說明**
+
+1. 對應是**依影片標題**判斷主題配上去的，**本站尚未有人實際觀看影片內容**。
+   全部標 `reviewed: false`，前台顯示「尚未人工確認」。
+2. 不是 MPC Sample 拍的影片一律標示 `device`（MPC One、MPC Live、MPC 軟體⋯⋯），
+   前台會出現橘色警告：**觀念可以參考，按鍵位置不要照抄**。
+   這是必要的防護，那些機型有 Track Mute、觸控螢幕這些本機沒有的東西。
+
+**字幕**：嵌入時帶 `cc_load_policy=1` 與 `cc_lang_pref=zh-Hant`，播放器會自動開字幕並優先
+選繁體中文，包含 YouTube 自己的自動翻譯。本站**不轉寫也不翻譯影片內容**——那是永久紅線。
 
 播放器是**點擊才載入**：按下播放之前，頁面對 YouTube 零請求，一律走 `youtube-nocookie.com`。
 
-**全站 72 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
+**全站 74 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
+
+### 介面與 PWA
+
+- **全站頂列**：sticky，含返回鍵。底線是機器上的三個顏色（AKAI 紅 → FX 橘 → PLAY 綠）。
+- **返回鍵**：站內走過就用瀏覽歷史；從桌面捷徑直接開在課程頁時改跳「上一層」，
+  不會按了沒反應。
+- **行動裝置底列**：五個分頁（首頁／課程／曲風／查詢／素材），含安全區內距。
+- **可安裝**：`manifest.webmanifest`、standalone 顯示、三個捷徑、自製 PNG 圖示
+  （`npm run icons`，用 Node 內建 zlib 直接產 PNG，沒有裝任何影像套件）。
+- **離線**：Service Worker 頁面一律 network-first，只在斷線時退回快取，
+  完全沒開過的頁面顯示本站自己的 `/offline`，不是瀏覽器錯誤頁。
+- **音樂元素**：跳動電平表、錄音燈、旋轉黑膠、pad 矩陣、波形分隔線——
+  全部純 CSS，沒有任何動畫函式庫，且尊重 `prefers-reduced-motion`。
 
 ---
 
@@ -116,6 +145,7 @@ NEXT_PUBLIC_R2_BASE=https://你的網域
 /learn/[season]/[slug]         ★課程播放器，例：/learn/s3/resample-layering
 /genre                         曲風工廠總覽（L1–L4 分級）
 /genre/[slug]                  單一曲風配方卡
+/reference                     查詢區索引
 /reference/shortcuts           快捷鍵總表
 /reference/knobs               ★互動式旋鈕矩陣
 /reference/fx                  效果字典
@@ -124,6 +154,7 @@ NEXT_PUBLIC_R2_BASE=https://你的網域
 /reference/firmware            韌體對照與尚未驗證清單
 /samples                       素材庫
 /about                         關於
+/offline                       離線備援頁（Service Worker 用）
 ```
 
 課程網址採 SEO 英文 slug，驗證腳本會強制格式並**擋掉單獨的 `mpc`**（繁中「MPC 教學」搜尋結果前十筆幾乎全是 MPC-HC 播放器）。
@@ -167,6 +198,9 @@ npm run check
 | `build` | 建置。**會先跑內容驗證與面板比對，任一失敗就中止** |
 | `check` | 型別 + 內容驗證 + 驗證器自我測試 + 面板檢查，一次跑完 |
 | `stats` | 印出本檔 §2 的內容統計 |
+| `videos` | 影片覆蓋率報告：哪些課或曲風還沒有影片 |
+| `videos:verify` | 用 YouTube oEmbed 逐一確認影片還在、標題沒寫錯 |
+| `icons` | 重新產生 PWA 圖示 PNG |
 | `typecheck` | TypeScript strict 檢查 |
 | `validate` | 內容驗證 |
 | `validate:selftest` | 驗證驗證器本身有沒有效 |
@@ -227,7 +261,7 @@ npm run check
 | 匯出路徑 | Song 頁 B1 匯出 → B2 音訊混音 → ENCODER 命名 → B3 執行 |
 | 傳檔路徑 | Project → SD Card Access，microSD 掛載成外接磁碟。**手冊明寫 microSD 不含在盒裝內** |
 | 側鏈 | 本機沒有側鏈，用 Knob FX 的 **Pumper**（官方描述即為「類似側鏈壓縮」） |
-| MIDI | MIDI Port 為 **External 或 USB 二選一**；背板為 1/8" TRS **Type A**，轉接線盒裝有附 |
+| MIDI | MIDI Port 為 **External 或 USB 二選一**；背板為 1/8" TRS **Type A**；轉接線手冊寫 not included、FAQ 說有附，**依優先序以手冊為準** |
 | 序列切換 | 播放中按另一顆 pad 會**閃亮綠排隊**，等目前序列跑完才切換（已解決原待驗證項） |
 | 取樣啟動 | **敲 pad 即開始錄**；錄音中再敲其他 pad 可當場切片；停止方式決定停完在哪個模式 |
 | AUDIO IN | 手冊明寫是 **1/4" TRS 線路電平**輸入，唱盤必須先過唱頭放大器 |
@@ -260,7 +294,7 @@ Splice 到底怎麼搭配這台機器、**MIDI 轉接線是否含在盒裝內**�
 ├─ content/
 │  ├─ lessons/s1-01.ts … s5-06.ts  35 課
 │  ├─ genres/l1–l4.ts              24 張配方卡（依難度分檔）
-│  ├─ videos.ts                    官方 30 支教學影片對照表
+│  ├─ videos.ts                    影片對照表：官方 30 支 + 社群 63 支
 │  ├─ reference/                   查詢區資料
 │  └─ __fixtures__/                刻意寫錯與完全正確的測試資料
 ├─ scripts/                        驗證與檢查腳本

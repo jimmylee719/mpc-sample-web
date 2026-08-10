@@ -28,16 +28,13 @@ export default function GenreIndexPage() {
           if (items.length === 0) return null;
           return (
             <section key={level.id}>
-              <h2 className="label-mono font-bold text-akai">{level.label}</h2>
-              <p className="mt-1 text-sm text-[#8D9299]">{level.note}</p>
+              <h2 className="chan label-mono font-bold text-white">{level.label}</h2>
+              <p className="mt-1 pl-[13px] text-sm text-[#8D9299]">{level.note}</p>
 
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 split:grid-cols-3">
                 {items.map((g) => (
                   <li key={g.slug}>
-                    <Link
-                      href={genreHref(g)}
-                      className="block h-full rounded-xl border border-[#2C3036] bg-stage-2 p-4 transition-colors hover:border-akai"
-                    >
+                    <Link href={genreHref(g)} className="card h-full p-4">
                       <span className="label-mono text-muted">
                         {g.tempo.bpmMin}–{g.tempo.bpmMax} BPM
                         {g.resamples.length > 0 && ` · resample ×${g.resamples.length}`}

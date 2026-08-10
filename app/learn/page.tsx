@@ -26,10 +26,17 @@ export default function LearnPage() {
           const items = lessonsBySeason(season.n);
           return (
             <section key={season.n}>
-              <h2 className="label-mono font-bold text-akai">
-                SEASON {season.n} · {season.title}
-              </h2>
-              <p className="mt-1 text-sm text-[#8D9299]">學完手上有：{season.outcome}</p>
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-akai font-mono text-[15px] font-bold text-white">
+                  {season.n}
+                </span>
+                <div className="min-w-0">
+                  <h2 className="label-mono font-bold text-white">
+                    SEASON {season.n} · {season.title}
+                  </h2>
+                  <p className="mt-[3px] text-sm text-[#8D9299]">學完手上有：{season.outcome}</p>
+                </div>
+              </div>
 
               {items.length === 0 ? (
                 <p className="label-mono mt-3 text-muted">尚未開放</p>
@@ -37,12 +44,10 @@ export default function LearnPage() {
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                   {items.map((lesson) => (
                     <li key={lesson.id}>
-                      <Link
-                        href={lessonHref(lesson)}
-                        className="block h-full rounded-xl border border-[#2C3036] bg-stage-2 p-4 transition-colors hover:border-akai"
-                      >
+                      <Link href={lessonHref(lesson)} className="card h-full p-4">
                         <span className="label-mono text-muted">
-                          {lesson.season}-{lesson.index} · 約 {lesson.minutes} 分鐘
+                          {lesson.season}-{lesson.index} · 約 {lesson.minutes} 分鐘 ·{' '}
+                          {lesson.steps.length} 步
                         </span>
                         <span className="mt-1 block text-lg text-white">{lesson.title}</span>
                         <span className="mt-1 block text-sm leading-relaxed text-[#8D9299]">

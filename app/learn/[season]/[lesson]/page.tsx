@@ -35,6 +35,11 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
     .map((id) => getLesson(id))
     .filter((l) => l !== undefined);
 
+  // 課程註冊表本身就是排好的順序，直接拿前後兩課
+  const pos = lessons.findIndex((l) => l.id === lesson.id);
+  const prev = pos > 0 ? lessons[pos - 1] : undefined;
+  const next = pos >= 0 && pos < lessons.length - 1 ? lessons[pos + 1] : undefined;
+
   // HowTo 結構化資料（PROJECT-PLAN §13）
   const howTo = {
     '@context': 'https://schema.org',
@@ -149,11 +154,31 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
       {/* 官方系列影片在前，第三方補充在後 */}
       <VideoList videos={[...videosFor(lesson.id), ...(lesson.videos ?? [])]} />
 
-      <nav className="mt-8 border-t border-[#2C3036] pt-4">
-        <Link href="/learn" className="label-mono text-[#8D9299] hover:text-white">
-          ← 回課程地圖
-        </Link>
+      {/* 上下課直接跳，不用先退回課程地圖再點一次 */}
+      <nav className="mt-8 grid gap-3 border-t border-[#2C3036] pt-5 sm:grid-cols-2">
+        {prev ? (
+          <Link href={lessonHref(prev)} className="card p-4">
+            <span className="label-mono text-[#6B7178]">← 上一課</span>
+            <span className="mt-1 block text-[15px] font-semibold text-white">{prev.title}</span>
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next ? (
+          <Link href={lessonHref(next)} className="card p-4 sm:text-right">
+            <span className="label-mono text-akai">下一課 →</span>
+            <span className="mt-1 block text-[15px] font-semibold text-white">{next.title}</span>
+          </Link>
+        ) : (
+          <span />
+        )}
       </nav>
+
+      <p className="mt-5 text-center">
+        <Link href="/learn" className="label-mono text-[#8D9299] hover:text-white">
+          回課程地圖
+        </Link>
+      </p>
     </main>
   );
 }

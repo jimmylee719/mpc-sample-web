@@ -58,6 +58,14 @@
     font-family: var(--font-sans);
     color: var(--color-paper);
     -webkit-font-smoothing: antialiased;
+    /* 舞台燈：頂端一圈很淡的光暈，讓深色背景不是一片死板的純色 */
+    background-image: radial-gradient(
+      1100px 420px at 50% -160px,
+      #212630 0%,
+      transparent 72%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   /* 全站鍵盤可操作，focus 必須看得見 */
@@ -86,6 +94,269 @@
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+  }
+}
+
+/* ============================================================
+   全站外框：頂列、底列導覽
+   ============================================================ */
+@layer components {
+  .site-header {
+    background: color-mix(in srgb, var(--color-stage) 84%, transparent);
+    backdrop-filter: blur(14px) saturate(1.25);
+    -webkit-backdrop-filter: blur(14px) saturate(1.25);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* 機器上的三個顏色：AKAI 紅、FX 橘、PLAY 綠 */
+  .site-header-rule {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      var(--color-akai) 0%,
+      var(--color-dev-orange) 40%,
+      var(--color-live) 74%,
+      transparent 100%
+    );
+    opacity: 0.9;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: color-mix(in srgb, var(--color-stage) 92%, transparent);
+    backdrop-filter: blur(14px) saturate(1.25);
+    -webkit-backdrop-filter: blur(14px) saturate(1.25);
+    border-top: 1px solid #2c3036;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .bottom-nav-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 9px 0 8px;
+    color: #7d838a;
+    transition: color 0.15s;
+  }
+
+  .bottom-nav-item:active {
+    background: #23272d;
+  }
+
+  .bottom-nav-item.is-active {
+    color: #fff;
+  }
+
+  /* 目前所在位置：頂端一條紅線，跟頂列那條三色線同一個語言 */
+  .bottom-nav-item.is-active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 24%;
+    right: 24%;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: var(--color-akai);
+  }
+
+  .nav-icon-hot {
+    opacity: 0.45;
+  }
+
+  .is-active .nav-icon-hot {
+    fill: var(--color-akai);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   音樂與 DJ 元素 — 全部純 CSS，沒有任何動畫函式庫
+   ============================================================ */
+@layer components {
+  /* 錄音燈 */
+  .rec-dot {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-akai);
+    animation: rec-pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes rec-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgb(214 52 44 / 0.5);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 9px rgb(214 52 44 / 0);
+    }
+  }
+
+  /* 跳動的電平表 */
+  .eq-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 17px;
+  }
+
+  .eq-bars i {
+    display: block;
+    width: 2.5px;
+    height: 30%;
+    border-radius: 1.5px;
+    background: var(--color-dev-pad-edge);
+    animation: eq-jump 1.05s ease-in-out infinite;
+  }
+
+  .eq-bars i:nth-child(1) {
+    animation-duration: 0.86s;
+    background: var(--color-live);
+  }
+  .eq-bars i:nth-child(2) {
+    animation-duration: 1.24s;
+    animation-delay: -0.4s;
+  }
+  .eq-bars i:nth-child(3) {
+    animation-duration: 0.72s;
+    animation-delay: -0.2s;
+    background: var(--color-dev-orange);
+  }
+  .eq-bars i:nth-child(4) {
+    animation-duration: 1.4s;
+    animation-delay: -0.7s;
+  }
+  .eq-bars i:nth-child(5) {
+    animation-duration: 0.95s;
+    animation-delay: -0.5s;
+    background: var(--color-akai);
+  }
+
+  @keyframes eq-jump {
+    0%,
+    100% {
+      height: 28%;
+    }
+    50% {
+      height: 100%;
+    }
+  }
+
+  /* pad 矩陣 */
+  .pad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .pad-grid .pad {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: var(--color-dev-pad);
+    border-bottom: 2px solid rgb(0 0 0 / 0.4);
+  }
+
+  .pad-grid .pad.is-lit {
+    background: var(--color-akai);
+    border-bottom-color: #96241e;
+    box-shadow: 0 0 14px rgb(214 52 44 / 0.45);
+  }
+
+  /* 黑膠 */
+  .vinyl {
+    position: relative;
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      repeating-radial-gradient(
+        circle at 50% 50%,
+        #1b1e23 0 2px,
+        #0e1013 2px 4px
+      );
+    box-shadow:
+      inset 0 0 0 1px #2c3036,
+      0 12px 34px rgb(0 0 0 / 0.5);
+    animation: vinyl-spin 4.5s linear infinite;
+  }
+
+  .vinyl-label {
+    position: absolute;
+    inset: 33%;
+    border-radius: 50%;
+    background: var(--color-akai);
+    box-shadow: inset 0 0 0 3px #a82820;
+  }
+
+  .vinyl-label::after {
+    content: "";
+    position: absolute;
+    inset: 42%;
+    border-radius: 50%;
+    background: var(--color-stage);
+  }
+
+  @keyframes vinyl-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* 卡片：懸停時浮起來，頂端亮一條紅橘漸層 */
+  .card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #2c3036;
+    background: var(--color-stage-2);
+    transition:
+      border-color 0.18s,
+      transform 0.18s,
+      box-shadow 0.18s;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-akai), var(--color-dev-orange));
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+
+  .card:hover {
+    border-color: #3d444c;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.38);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  /* 混音台頻道標籤：標題左邊一條色塊 */
+  .chan {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .chan::before {
+    content: "";
+    flex: none;
+    width: 4px;
+    height: 15px;
+    border-radius: 2px;
+    background: var(--color-akai);
   }
 }
 

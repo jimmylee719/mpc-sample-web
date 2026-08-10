@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { genres, getGenre } from '@/content/genres';
 import { GenreCard } from '@/components/genre/GenreCard';
+import { VideoList } from '@/components/video/VideoList';
+import { videosFor } from '@/content/videos';
 
 export const dynamicParams = false;
 
@@ -27,6 +29,8 @@ export default async function GenrePage({ params }: { params: Promise<Params> })
   const genre = getGenre(slug);
   if (!genre) notFound();
 
+  const videos = videosFor(genre.slug);
+
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
       <header className="mb-6 border-b border-[#2C3036] pb-4">
@@ -40,6 +44,18 @@ export default async function GenrePage({ params }: { params: Promise<Params> })
       </header>
 
       <GenreCard genre={genre} />
+
+      {videos.length > 0 ? (
+        <VideoList videos={videos} />
+      ) : (
+        /* 找不到就說找不到。硬塞一支不相干的影片比沒有還糟。 */
+        <section className="mt-10 border-t border-[#2C3036] pt-6">
+          <h2 className="chan label-mono font-bold text-white">延伸觀看</h2>
+          <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-[#8D9299]">
+            這個曲風目前找不到用取樣機做的影片教學。找到了會補上，不會拿不相干的影片湊數。
+          </p>
+        </section>
+      )}
 
       <nav className="mt-8 border-t border-[#2C3036] pt-4">
         <Link href="/genre" className="label-mono text-[#8D9299] hover:text-white">

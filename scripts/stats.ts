@@ -6,7 +6,7 @@ import { troubles } from '../content/reference/troubleshoot';
 import { knobRows } from '../content/reference/knobs';
 import { fxEntries, padFx, knobFx } from '../content/reference/fx';
 import { openQuestions } from '../content/reference/firmware';
-import { officialVideos } from '../content/videos';
+import { officialVideos, communityVideos } from '../content/videos';
 
 const steps = lessons.reduce((a, l) => a + l.steps.length, 0);
 console.log(`課程 ${lessons.length} 課，共 ${steps} 步`);
@@ -27,12 +27,17 @@ console.log(`尚未驗證項目 ${openQuestions.length}`);
 // 延伸觀看：待人工確認的影片要看得見，否則會一直躺在那裡沒人處理
 const allVideos = [
   ...Object.entries(officialVideos).flatMap(([k, vs]) => vs.map((v) => ({ where: k, v }))),
+  ...Object.entries(communityVideos).flatMap(([k, vs]) => vs.map((v) => ({ where: k, v }))),
   ...lessons.flatMap((l) => (l.videos ?? []).map((v) => ({ where: l.id, v }))),
   ...genres.flatMap((g) => (g.videos ?? []).map((v) => ({ where: g.slug, v }))),
 ];
+const uniqueIds = new Set(allVideos.map((x) => x.v.youtubeId)).size;
 console.log(`官方系列影片 ${Object.values(officialVideos).flat().length} 支，對應到 ${Object.keys(officialVideos).length} 個頁面`);
+console.log(`社群影片 ${Object.values(communityVideos).flat().length} 則引用，對應到 ${Object.keys(communityVideos).length} 個頁面`);
 const unreviewed = allVideos.filter((x) => !x.v.reviewed);
-console.log(`延伸觀看影片 ${allVideos.length} 支，其中 ${unreviewed.length} 支尚未人工確認`);
+console.log(`延伸觀看共 ${allVideos.length} 則引用（不重複 ${uniqueIds} 支），其中 ${unreviewed.length} 則尚未人工確認`);
+const noVideo = genres.filter((g) => (officialVideos[g.slug]?.length ?? 0) + (communityVideos[g.slug]?.length ?? 0) === 0);
+console.log(`尚無影片的曲風 ${noVideo.length}：${noVideo.map((g) => g.slug).join(', ') || '無'}`);
 for (const { where, v } of unreviewed) {
   console.log(`  待確認  ${where.padEnd(10)} [${v.channel}] ${v.title}`);
 }
