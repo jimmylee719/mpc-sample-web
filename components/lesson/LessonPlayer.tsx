@@ -20,6 +20,18 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
   // 讀回上次進度。放在 effect 裡是為了讓伺服器產出的 HTML 永遠是第 1 步，
   // 避免 hydration 對不起來。
   useEffect(() => {
+    // 網址帶 ?step=12 的話優先用它。
+    // 這是給老師用的：可以把「第 12 步」直接丟給學生，而不是叫他自己按 11 次。
+    const fromUrl = Number.parseInt(
+      new URLSearchParams(window.location.search).get('step') ?? '',
+      10,
+    );
+    if (Number.isInteger(fromUrl) && fromUrl >= 1 && fromUrl <= total) {
+      setI(fromUrl - 1);
+      setRestored(true);
+      return;
+    }
+
     try {
       const saved = window.localStorage.getItem(STORAGE_PREFIX + lesson.id);
       const n = saved === null ? 0 : Number.parseInt(saved, 10);
@@ -30,6 +42,13 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
       setRestored(true);
     }
   }, [lesson.id, total]);
+
+  // 讓網址跟著目前步驟走，複製網址就等於複製到這一步
+  useEffect(() => {
+    if (!restored) return;
+    const url = i === 0 ? window.location.pathname : `${window.location.pathname}?step=${i + 1}`;
+    window.history.replaceState(null, '', url);
+  }, [restored, i]);
 
   useEffect(() => {
     if (!restored) return;
@@ -72,6 +91,23 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
     [lesson.chapters, lesson.steps, i],
   );
 
+  // 每一段的第一步在哪，點章節條就跳過去
+  const chapterStart = useMemo(() => {
+    const map = new Map<number, number>();
+    lesson.steps.forEach((s, idx) => {
+      if (!map.has(s.ch)) map.set(s.ch, idx);
+    });
+    return map;
+  }, [lesson.steps]);
+
+  const jumpToChapter = useCallback(
+    (ci: number) => {
+      const target = chapterStart.get(ci);
+      if (target !== undefined) setI(target);
+    },
+    [chapterStart],
+  );
+
   const isRear = needsRearView(step.targets);
 
   return (
@@ -95,7 +131,12 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
 
       {/* 淺色紙頁：教學文字 */}
       <div className="rounded-[14px] bg-paper px-[18px] py-5 text-ink split:px-[26px] split:pt-[26px] split:pb-[30px]">
-        <ChapterRail chapters={lesson.chapters} progress={progress} activeIndex={step.ch} />
+        <ChapterRail
+          chapters={lesson.chapters}
+          progress={progress}
+          activeIndex={step.ch}
+          onJump={jumpToChapter}
+        />
 
         <div aria-live="polite">
           <p className="label-mono font-bold text-akai">

@@ -182,6 +182,61 @@ export default function AboutPage() {
         </section>
       </div>
 
+      {/* ── 想做一個這樣的網站 ── */}
+      <section className="mt-8 overflow-hidden rounded-[14px] border border-[#2C3036] bg-stage-2">
+        <div className="h-[3px] w-full bg-gradient-to-r from-akai via-[#EFA043] to-live" aria-hidden />
+        <div className="p-[22px] split:p-8">
+          <p className="label-mono font-bold text-akai">給同樣在做東西的人</p>
+          <h2 className="mt-2 max-w-[24ch] text-[clamp(19px,3.4vw,26px)] font-bold leading-snug tracking-[-0.01em] text-white">
+            這個網站本身，就是我們的作品集
+          </h2>
+          <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
+            {lessons.length} 課、{totalSteps} 個步驟、一台機器的互動式向量面板、
+            建置期就擋掉錯誤資料的驗證流程、可以裝成 App 而且離線能用。
+            這些不是套版做得出來的東西。
+          </p>
+          <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
+            如果你也有一套只有你懂的東西 —— 教學、課程、預約、租賃、工作室排程 ——
+            想把它變成一個真的能用的網站或系統，
+            <b className="font-semibold text-white">{COMPANY.nameZh}</b>就是做這個的。
+          </p>
+
+          <ul className="mt-5 grid gap-2 sm:grid-cols-3">
+            {[
+              { t: '教學與課程網站', d: '像這個站：互動、可離線、內容有驗證' },
+              { t: '預約與租賃系統', d: '行事曆、合約簽名、自動通知信' },
+              { t: '雲端 ERP', d: '庫存、訂單、報表，住在 LINE 裡' },
+            ].map((x) => (
+              <li key={x.t} className="rounded-xl border border-[#2C3036] bg-stage px-4 py-3">
+                <p className="text-sm font-semibold text-white">{x.t}</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-[#8D9299]">{x.d}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex flex-wrap items-center gap-[10px]">
+            <a
+              href={COMPANY.site}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-akai bg-akai px-5 py-[12px] text-sm font-bold text-white transition-colors hover:border-white hover:bg-transparent"
+            >
+              前往{COMPANY.nameZh}官網 →
+            </a>
+            <a
+              href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('網站開發詢問（來自敲敲取樣）')}`}
+              className="border-2 border-[#4A5057] px-5 py-[12px] text-sm font-semibold text-paper transition-colors hover:border-white"
+            >
+              直接寄信聊聊
+            </a>
+          </div>
+
+          <p className="label-mono mt-4 text-[#6B7178]">
+            {COMPANY.nameEn} · 統編 {COMPANY.taxId} · {COMPANY.address}
+          </p>
+        </div>
+      </section>
+
       {/* ── 收尾 ── */}
       <section className="mt-8 flex flex-col items-center gap-5 rounded-[14px] border border-[#2C3036] bg-stage-2 px-5 py-8 text-center split:flex-row split:justify-center split:text-left">
         <div className="w-[104px] shrink-0">

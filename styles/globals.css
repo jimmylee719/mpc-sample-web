@@ -435,6 +435,59 @@
   }
 }
 
+/* ============================================================
+   列印：把課程頁印成一張可以擺在機器旁邊的步驟表
+   深色背景會吃掉整罐墨水，所以印出來一律白底黑字。
+   ============================================================ */
+@media print {
+  .site-header,
+  .bottom-nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    background-image: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* 淺色紙頁區塊本來就是白底，其餘深色卡片拉成白底 */
+  [class*="bg-stage"],
+  [class*="bg-paper"] {
+    background: #fff !important;
+    border-color: #ccc !important;
+  }
+
+  [class*="text-white"],
+  [class*="text-paper"] {
+    color: #000 !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  /* 步驟不要被切在兩頁中間 */
+  li,
+  h2,
+  h3 {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
 /* 尊重 prefers-reduced-motion：光暈不動，固定 45% 透明度 */
 @media (prefers-reduced-motion: reduce) {
   .ctl.hot .halo {

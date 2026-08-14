@@ -3,9 +3,16 @@ interface ChapterRailProps {
   /** 每一段的完成比例，0–1 */
   progress: number[];
   activeIndex: number;
+  /**
+   * 點某一段時跳到那一段的第一步。
+   *
+   * 沒有這個的話，1-1 有 27 步的課程要看第 20 步就得按 19 次下一步。
+   * 教練帶學生複習某一段、或自己回頭確認某個動作時，那個體驗是不能接受的。
+   */
+  onJump?: (chapterIndex: number) => void;
 }
 
-export function ChapterRail({ chapters, progress, activeIndex }: ChapterRailProps) {
+export function ChapterRail({ chapters, progress, activeIndex, onJump }: ChapterRailProps) {
   return (
     <div>
       <div className="mb-[9px] flex gap-[5px]">
@@ -18,17 +25,37 @@ export function ChapterRail({ chapters, progress, activeIndex }: ChapterRailProp
           </div>
         ))}
       </div>
+
       <ol className="mb-[22px] flex gap-[5px]">
-        {chapters.map((c, i) => (
-          <li
-            key={c}
-            className={`flex-1 font-mono text-[9px] uppercase tracking-[.08em] ${
-              i === activeIndex ? 'font-bold text-akai' : 'text-muted'
-            }`}
-          >
-            {i + 1}. {c}
-          </li>
-        ))}
+        {chapters.map((c, i) => {
+          const label = `${i + 1}. ${c}`;
+          const active = i === activeIndex;
+          return (
+            <li key={c} className="flex-1">
+              {onJump ? (
+                <button
+                  type="button"
+                  onClick={() => onJump(i)}
+                  aria-current={active ? 'step' : undefined}
+                  title={`跳到第 ${i + 1} 段：${c}`}
+                  className={`w-full rounded px-[3px] py-[2px] text-left font-mono text-[9px] uppercase leading-snug tracking-[.08em] transition-colors hover:bg-rule ${
+                    active ? 'font-bold text-akai' : 'text-muted hover:text-ink'
+                  }`}
+                >
+                  {label}
+                </button>
+              ) : (
+                <span
+                  className={`block px-[3px] font-mono text-[9px] uppercase leading-snug tracking-[.08em] ${
+                    active ? 'font-bold text-akai' : 'text-muted'
+                  }`}
+                >
+                  {label}
+                </span>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </div>
   );

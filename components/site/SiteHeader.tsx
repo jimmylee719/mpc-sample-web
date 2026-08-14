@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BackButton } from './BackButton';
+import { SearchButton } from './SearchButton';
 import { NAV, isActive } from './nav';
 
 /**
@@ -35,6 +36,12 @@ export function SiteHeader() {
         </Link>
 
         <nav className="ml-auto hidden items-center gap-1 split:flex">
+          <Link
+            href="/start"
+            className="label-mono rounded-lg px-[11px] py-[9px] text-[#8D9299] transition-colors hover:bg-[#23272D] hover:text-white"
+          >
+            開始之前
+          </Link>
           {NAV.filter((n) => n.href !== '/').map((item) => {
             const active = isActive(pathname, item.href);
             return (
@@ -52,13 +59,10 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* 行動裝置：右側放跳動的 EQ 當招牌，底列才是導覽 */}
-        <span className="eq-bars ml-auto split:hidden" aria-hidden>
-          <i />
-          <i />
-          <i />
-          <i />
-        </span>
+        {/* 搜尋在每一頁都要有。卡住的人不會自己想到要去查詢區。 */}
+        <div className="ml-auto flex items-center gap-1 split:ml-1">
+          <SearchButton />
+        </div>
       </div>
       <div className="site-header-rule" aria-hidden />
     </header>

@@ -29,7 +29,14 @@ function cleanUrl(url: string): string {
   return url.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
 }
 
-export function SiteSearch() {
+interface SiteSearchProps {
+  /** 同一頁可能同時有兩個搜尋框（頂列的與內文的），id 不能撞 */
+  id?: string;
+  autoFocus?: boolean;
+  className?: string;
+}
+
+export function SiteSearch({ id = 'site-search', autoFocus, className = 'mb-8' }: SiteSearchProps = {}) {
   const [q, setQ] = useState('');
   const [state, setState] = useState<State>('idle');
   const [hits, setHits] = useState<PagefindResultData[]>([]);
@@ -71,12 +78,13 @@ export function SiteSearch() {
   );
 
   return (
-    <div className="mb-8">
-      <label className="sr-only" htmlFor="site-search">
+    <div className={className}>
+      <label className="sr-only" htmlFor={id}>
         全站搜尋
       </label>
       <input
-        id="site-search"
+        id={id}
+        autoFocus={autoFocus}
         type="search"
         value={q}
         onFocus={() => void load()}

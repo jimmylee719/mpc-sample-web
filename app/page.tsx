@@ -78,12 +78,19 @@ export default function HomePage() {
               從第 1 課開始 →
             </Link>
             <Link
-              href="/learn"
+              href="/start"
               className="border-2 border-[#4A5057] px-5 py-[13px] text-sm font-semibold text-paper transition-colors hover:border-white"
             >
-              看完整課程地圖
+              機器剛到手？先看開箱
             </Link>
           </div>
+
+          <p className="mt-4 text-sm text-[#8D9299]">
+            <Link href="/learn" className="underline hover:text-white">
+              看完整課程地圖
+            </Link>
+            ．完全沒碰過音樂也可以，第一課從開機開始教。
+          </p>
 
           <p className="label-mono mt-5 text-[#6B7178]">
             事實基準 · AKAI 官方手冊 V1.3.0 REVA

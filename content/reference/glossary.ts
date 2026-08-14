@@ -50,3 +50,27 @@ export const glossary: GlossaryEntry[] = [
   { en: 'Recall', zh: '回溯錄音', what: '把剛剛已經過去、沒錄到的聲音撈回來', lesson: 's1-04' },
   { en: 'DAWless', zh: '不用電腦', what: '全程在機器上完成，不開電腦軟體' },
 ];
+
+/**
+ * 從一段文字裡找出用到的名詞。
+ *
+ * 用途：課程頁自動列出「這一課會用到的名詞」。
+ *
+ * 為什麼需要：機器上的字全是英文，新手看到 Threshold、Normalize 只能猜。
+ * 名詞對照表原本躺在查詢區，卡住的人不會自己想到要去翻。
+ *
+ * 比對規則刻意保守：英文用單字邊界比對，中文用完整字串比對。
+ * 寧可漏掉，也不要把「Loop」比到「Looper」上面去。
+ */
+export function termsUsedIn(text: string, limit = 10): GlossaryEntry[] {
+  const hay = text.toLowerCase();
+  const hits = glossary.filter((g) => {
+    if (g.zh && text.includes(g.zh)) return true;
+    const en = g.en.toLowerCase();
+    // 名詞裡本身含有 / 或空白（例如 LPF / HPF、Pad FX），直接用字串比對
+    if (/[^a-z0-9]/.test(en)) return hay.includes(en);
+    return new RegExp(`\b${en}\b`).test(hay);
+  });
+  // 長的名詞比較specific，排前面；同長度維持原本順序
+  return hits.sort((a, b) => b.en.length - a.en.length).slice(0, limit);
+}
