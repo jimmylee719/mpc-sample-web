@@ -19,7 +19,7 @@ const SECTIONS = [
     href: '/learn',
     tag: `${SEASONS.length} 個 SEASON · ${lessons.length} 課`,
     label: '課程地圖',
-    note: '一課等於一個完成的作品，不是一課一個功能。做完手上就多一樣東西。',
+    note: '一課等於一個完成的作品，不是一課一個功能。',
   },
   {
     href: '/genre',
@@ -37,7 +37,7 @@ const SECTIONS = [
     href: '/samples',
     tag: '自錄與 CC0',
     label: '素材庫',
-    note: '只放自己錄的跟 CC0 的。不提供他人音樂，這條線不會鬆。',
+    note: '只放自己錄的跟 CC0 的，不提供他人音樂。',
   },
 ];
 
@@ -140,7 +140,7 @@ export default function HomePage() {
             <b className="font-semibold text-white">整台機器的紅色第二功能字會一起亮起來</b>。
           </p>
           <p className="mt-3 max-w-[44ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
-            接背板的步驟會自動翻到背面。你不用一邊看螢幕一邊猜自己的手在哪裡。
+            接背板的步驟會自動翻到背面，不用自己對照。
           </p>
           <Link
             href="/learn/s1/panel-and-shift-functions"
@@ -176,7 +176,7 @@ export default function HomePage() {
 
       {/* ── 五個 Season ──────────────────────────── */}
       <section className="pt-10">
-        <h2 className="chan label-mono font-bold text-white">走完這五段，你就會了</h2>
+        <h2 className="chan label-mono font-bold text-white">五個 Season</h2>
         <ol className="mt-4 space-y-[6px]">
           {SEASONS.map((season) => (
             <li key={season.n}>
@@ -209,19 +209,19 @@ export default function HomePage() {
           <div>
             <dt className="text-base font-semibold">先做出東西</dt>
             <dd className="mt-1 text-sm leading-relaxed text-muted">
-              一課做完一個作品。不是先學十個功能，最後才發現不知道要幹嘛。
+              一課做完一個作品，不是一課教一個功能。
             </dd>
           </div>
           <div>
             <dt className="text-base font-semibold">教讀懂面板</dt>
             <dd className="mt-1 text-sm leading-relaxed text-muted">
-              不是背組合鍵。按住 SHIFT 時，整台機器的紅字會一起亮給你看。
+              按住 SHIFT 時，整台機器的紅字會一起亮起來。
             </dd>
           </div>
           <div>
             <dt className="text-base font-semibold">不確定就說不確定</dt>
             <dd className="mt-1 text-sm leading-relaxed text-muted">
-              沒實測過的一律標「尚未驗證」，全部公開列在查詢區，不寫成肯定語氣。
+              沒實測過的一律標「尚未驗證」，並公開列在查詢區。
             </dd>
           </div>
         </dl>

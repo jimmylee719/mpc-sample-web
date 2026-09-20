@@ -25,7 +25,7 @@ export default function Page() {
           韌體對照
         </h1>
         <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          這一頁說清楚本站的事實從哪來、哪些還沒驗證。看到「尚未驗證」就代表我們還沒實測，不要當成定論。
+          本站的事實從哪裡來、哪些還沒驗證。看到「尚未驗證」就代表還沒實測，不要當成定論。
         </p>
       </header>
       <section>
@@ -68,9 +68,9 @@ export default function Page() {
       <section className="mt-8">
         <h2 className="label-mono text-akai">已排除的疑問 · {resolvedQuestions.length} 項</h2>
         <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-[#8D9299]">
-          這些原本也在上面那份清單裡，後來查清楚了。過程留在這裡，是因為好幾項是
+          這些原本也在上面那份清單裡，後來查清楚了。好幾項是
           <b className="font-semibold text-white">官方自己前後不一致</b>，
-          你在別的地方看到不同數字時，可以直接對照我們是憑什麼下的結論。
+          在別的地方看到不同數字時可以對照這裡。
         </p>
         <ul className="mt-3 space-y-3">
           {resolvedQuestions.map((q) => (

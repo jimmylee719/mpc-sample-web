@@ -73,6 +73,29 @@
     outline: 3px solid var(--color-akai);
     outline-offset: 2px;
   }
+
+  /**
+   * 中文斷行。
+   *
+   * balance 讓標題的每一行長度接近，不會出現「前面一長排、最後只剩一個字」。
+   * pretty 用在內文，避免段落最後一行只剩一兩個字。
+   * 不支援的瀏覽器會直接忽略，排版退回原本的樣子，不會壞。
+   *
+   * 順帶提醒：Tailwind 的 max-w-[Nch] 是照拉丁數字寬度算的，
+   * 中文字寬大約是兩倍，所以 24ch 只裝得下十二個中文字。標題不要用 ch 限寬。
+   */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
 }
 
 @layer components {

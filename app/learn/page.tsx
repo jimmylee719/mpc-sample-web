@@ -40,7 +40,7 @@ export default function LearnPage() {
           課程地圖
         </h1>
         <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          一課等於一個完成的作品，不是一課一個功能。做完每一課，你手上都會多一樣東西。
+          一課等於一個完成的作品，不是一課一個功能。
         </p>
         <p className="mt-3 text-sm text-[#8D9299]">
           機器剛到手？先看{' '}

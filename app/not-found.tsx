@@ -54,9 +54,6 @@ export default function NotFound() {
         ))}
       </ul>
 
-      <p className="label-mono mt-8 text-center text-muted">
-        真的找不到？機器不用網路也能練，先去按幾下
-      </p>
     </main>
   );
 }

@@ -18,7 +18,7 @@ export default function Page() {
           效果字典
         </h1>
         <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          四個效果引擎分工不同。最常搞錯的一件事：Pad FX 套整段序列，能指定單一 pad 的是 Knob FX。
+          四個效果引擎分工不同。Pad FX 套整段序列，能指定單一 pad 的是 Knob FX。
         </p>
       </header>
       <SiteSearch />

@@ -83,7 +83,7 @@ export default function Page() {
         </h1>
         <p className="mt-2 max-w-[62ch] text-sm leading-[1.6] text-[#8D9299]">
           官方使用手冊 {MANUAL_REVISION} 的章節順序，每一項都連到本站對應的課。
-          想完全照官方的路線走，照這一頁的順序點下去就是了。
+          想照官方路線走，就照這一頁的順序點下去。
         </p>
       </header>
 
@@ -115,8 +115,7 @@ export default function Page() {
           ))}
         </ul>
         <p className="mt-3 max-w-[64ch] text-[13px] leading-relaxed text-[#6B7178]">
-          2026-09-20 起七步全部有對應課程。前三步原本是缺口——本站第 1 課直接叫人錄自己的聲音，
-          跳過了官方「先把機器裡的東西玩過一輪」那一段。現在補成新的第 1 課，
+          2026-09-20 起七步全部有對應課程。前三步原本是缺口，已補成新的第 1 課，
           原本的四課依序往後移，網址沒有變動。
         </p>
       </section>

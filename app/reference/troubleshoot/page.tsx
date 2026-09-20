@@ -17,7 +17,7 @@ export default function Page() {
           疑難排解
         </h1>
         <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          只收有依據的項目。純社群回報而沒有實測過的，我們不放，那會變成散播錯誤資訊。
+          只收有依據的項目。純社群回報、沒有實測過的不收。
         </p>
       </header>
       <SiteSearch />

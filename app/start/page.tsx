@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { lessons, lessonHref } from '@/content/lessons';
+import { lessons, lessonHref, getLesson } from '@/content/lessons';
 import { VERIFIED_FACTS } from '@/content/reference/firmware';
 import { PadGrid, WaveRule } from '@/components/site/Deco';
 import { withShare } from '@/content/site';
@@ -12,6 +12,8 @@ export const metadata: Metadata = withShare({
 });
 
 const first = lessons[0]!;
+// 課程重新編號過一次，所以這裡不寫死課號，直接從資料撈
+const panelLesson = getLesson('s1-03')!;
 
 /**
  * 開始之前。
@@ -51,8 +53,8 @@ export default function StartPage() {
             開始之前
           </h1>
           <p className="mt-3 max-w-[52ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
-            機器剛到手，先看這一頁。第一課是從按下電源開始的，
-            但在那之前你會遇到的問題其實更多。
+            機器剛到手先看這一頁。第一課從按下電源開始，
+            但在那之前還有幾件事要先弄清楚。
           </p>
         </div>
         <div className="mx-auto w-[112px] shrink-0">
@@ -64,8 +66,7 @@ export default function StartPage() {
       <section>
         <h2 className="chan label-mono font-bold text-white">一、盒子裡有什麼，沒有什麼</h2>
         <p className="mt-2 pl-[13px] text-sm leading-relaxed text-[#8D9299]">
-          很多人開箱第一個念頭是「是不是少寄了東西」。沒有，本來就沒附。
-          下面這份逐字對照官方手冊第 3 頁的 Box Contents。
+          下面這份逐字對照官方手冊第 3 頁的 Box Contents。標「沒附」的不是少寄，本來就沒附。
         </p>
 
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -99,8 +100,7 @@ export default function StartPage() {
 
         <p className="mt-4 rounded-lg bg-[#241E14] px-4 py-3 text-[13px] leading-relaxed text-[#E0B36B]">
           <b className="font-bold">先買一張 microSD 卡。</b>
-          沒有卡，你做完的歌拿不出來 —— 傳到電腦的時候，掛載的是記憶卡，
-          不是機器內建的 8 GB。這是最多人事後才發現的一件事。
+          沒有卡，你做完的歌拿不出來。傳到電腦時掛載的是記憶卡，不是機器內建的 8 GB。
         </p>
       </section>
 
@@ -197,7 +197,7 @@ export default function StartPage() {
           </p>
           <p className="mt-2 text-sm leading-relaxed text-[#8D9299]">
             安裝方式：iPhone 用 Safari 的分享按鈕選「加入主畫面」；Android 用 Chrome 右上角選單選「安裝應用程式」。
-            不裝也沒關係，網頁本來就能用。
+            不裝也能用。
           </p>
         </div>
       </section>
@@ -223,7 +223,7 @@ export default function StartPage() {
 
         <div className="mt-6 border-t border-rule pt-5">
           <p className="text-[15px] leading-relaxed">
-            接下來就是第一課。三十分鐘，做出一段自己錄、自己切、自己彈出來的循環。
+            接下來就是第一課。{first.minutes} 分鐘，做完你手上有{first.outcome}。
           </p>
           <Link
             href={lessonHref(first)}
@@ -236,8 +236,8 @@ export default function StartPage() {
 
       <p className="mt-6 text-center text-[13px] leading-relaxed text-[#6B7178]">
         機器上的按鍵全是英文，看不懂沒關係。
-        <Link href="/learn/s1/panel-and-shift-functions" className="underline hover:text-white">
-          第 2 課專門教你讀面板
+        <Link href={lessonHref(panelLesson)} className="underline hover:text-white">
+          第 {panelLesson.index} 課專門教你讀面板
         </Link>
         ，也可以先翻{' '}
         <Link href="/reference/glossary" className="underline hover:text-white">

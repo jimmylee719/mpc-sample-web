@@ -20,7 +20,7 @@ export default function GenreIndexPage() {
             曲風工廠
           </h1>
           <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-            這裡不是課程，是配方卡。做到一半忘記 BPM 或效果怎麼設，翻到這裡瞄一眼就回去繼續。
+            不是課程，是配方卡。做到一半忘記 BPM 或效果怎麼設就翻這裡。
             分級看的是機上做得多完整，不是好不好聽。
           </p>
         </div>

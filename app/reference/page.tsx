@@ -61,7 +61,7 @@ const PAGES = [
     href: '/reference/fx',
     tag: 'FX',
     title: '效果字典',
-    note: 'Pad FX 套整段序列，能指定單一 pad 的是 Knob FX。最常搞錯的一件事。',
+    note: 'Pad FX 套整段序列，能指定單一 pad 的是 Knob FX。',
     count: () => `Pad FX 16 種 · Knob FX ${KNOB_FX_TOTAL} 種`,
   },
   {

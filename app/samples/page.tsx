@@ -52,7 +52,7 @@ export default function SamplesPage() {
             素材庫
           </h1>
           <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-            這裡的每一個檔案都是自己錄的，或是 CC0 授權。你可以放心拿去用，包含商業發行。
+            每一個檔案都是自己錄的，或是 CC0 授權，可以商業使用。
           </p>
         </div>
         <RecordCrate className="mx-auto w-[190px] shrink-0 split:w-[210px]" />
@@ -62,7 +62,7 @@ export default function SamplesPage() {
         <p className="label-mono font-bold text-akai">本站的素材政策</p>
         <ul className="mt-2 space-y-1 text-sm leading-[1.75] text-[#D9D4CB]">
           <li>· 一律自錄或 CC0，原始檔全部保留佐證</li>
-          <li>· 不提供他人音樂素材下載，一個也沒有</li>
+          <li>· 不提供他人音樂素材下載</li>
           <li>· 不把串流平台指名為取樣來源</li>
           <li>
             · 素材能不能用的完整判斷標準，看{' '}
@@ -79,9 +79,7 @@ export default function SamplesPage() {
           <p className="mt-2 text-sm leading-relaxed text-[#B7BDC4]">素材檔案已上線，可直接下載。</p>
         ) : (
           <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-[#B7BDC4]">
-            檔案還沒上架。素材必須是實際錄下來的聲音，不能憑空生成，
-            所以這一區會等錄音完成、檔案上到儲存空間之後才開放。
-            下面先列出規劃中的分類，你也可以照著自己先錄。
+            檔案還沒上架，錄音完成後才會開放。下面是規劃中的分類，你可以照著自己先錄。
           </p>
         )}
       </section>
@@ -104,12 +102,11 @@ export default function SamplesPage() {
       </section>
 
       <section className="mt-10 border-t border-[#2C3036] pt-4">
-        <h2 className="label-mono text-muted">與其等，不如自己錄</h2>
+        <h2 className="label-mono text-muted">自己錄更快</h2>
         <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-[#8D9299]">
-          上面每一類都可以用機器的內建麥克風直接錄。自己錄的素材權利 100% 是你的，
-          而且沒有人會做出跟你一樣的聲音。做法看{' '}
+          上面每一類都可以用機器的內建麥克風直接錄，權利完全是你的。做法看{' '}
           <Link href="/learn/s1/make-your-first-beat" className="underline hover:text-white">
-            1-1 你的第一個 30 分鐘
+            1-2 你的第一個 30 分鐘
           </Link>
           。
         </p>

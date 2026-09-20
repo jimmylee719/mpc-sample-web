@@ -24,8 +24,7 @@ export default function AboutPage() {
           關於本站
         </h1>
         <p className="mt-3 max-w-[54ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
-          一個繁體中文的取樣機教學網站。目標很單純：讓一台手持取樣機在你手上真的變成樂器，
-          而不是一台你搞不懂的機器。
+          繁體中文的取樣機教學網站。目標是讓一台手持取樣機在你手上變成樂器。
         </p>
       </header>
 
@@ -57,8 +56,7 @@ export default function AboutPage() {
           <h2 className="text-lg font-bold">誰做的</h2>
           <p className="mt-2 max-w-[64ch] text-[15px] leading-[1.75]">
             本站由 <b>{COMPANY.nameZh}</b>（{COMPANY.nameEn}）營運。
-            我們平常做的是中小企業的營運系統，用自動化把重複的事情消化掉，
-            讓人把時間花在真正想做的事上。這個網站是同一件事的另一種形式。
+            我們平常做的是中小企業的營運系統，用自動化處理重複的作業。
           </p>
           <dl className="mt-4 space-y-1 text-[15px] leading-[1.8]">
             <div className="flex flex-wrap gap-2">
@@ -99,22 +97,19 @@ export default function AboutPage() {
             <div>
               <dt className="font-semibold">一課等於一個完成的作品</dt>
               <dd className="mt-1 max-w-[64ch] text-[15px] leading-[1.75] text-muted">
-                不是一課教一個功能。學完十個功能卻做不出東西，是最常見的失敗方式。
-                每一課做完，你手上都會多一樣真的可以播出來的東西。
+                不是一課教一個功能。每一課做完，你手上都會多一段可以播出來的東西。
               </dd>
             </div>
             <div>
               <dt className="font-semibold">教你讀懂面板，不是背組合鍵</dt>
               <dd className="mt-1 max-w-[64ch] text-[15px] leading-[1.75] text-muted">
-                機器上的紅字就是第二功能。按住 SHIFT 的時候，本站的面板圖會讓整台機器的紅字
-                一起亮起來 —— 你看懂一次，以後不用再查表。
+                機器上的紅字就是第二功能。按住 SHIFT 時，本站的面板圖會讓整台機器的紅字一起亮起來。
               </dd>
             </div>
             <div>
               <dt className="font-semibold">不確定就說不確定</dt>
               <dd className="mt-1 max-w-[64ch] text-[15px] leading-[1.75] text-muted">
-                官方文件也會自相矛盾。遇到查不清楚的，我們不猜、不寫成肯定語氣，
-                而是把它列在公開的清單上，連同「官方到底怎麼寫」一起給你看。
+                官方文件也會自相矛盾。查不清楚的一律不猜，列進公開清單，並寫明官方原本怎麼寫。
               </dd>
             </div>
           </dl>
@@ -132,7 +127,7 @@ export default function AboutPage() {
             每一課都標明依據的韌體版本與查核日期。
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            想知道我們目前還不確定什麼，以及已經查清楚的項目是憑什麼下的結論，看{' '}
+            還不確定的項目與已查清的依據，見{' '}
             <Link href="/reference/firmware" className="underline hover:text-akai">
               韌體與尚未驗證清單
             </Link>
@@ -170,15 +165,15 @@ export default function AboutPage() {
         <section className="mt-9">
           <h2 className="text-lg font-bold">著作權與素材</h2>
           <p className="mt-2 max-w-[64ch] text-[15px] leading-[1.75] text-muted">
-            本站的教學文字、面板圖與插畫都是自己做的。素材庫一律自錄或 CC0，
-            不提供他人音樂下載。我們不轉錄影片逐字稿，也不做整份翻譯字幕。
+            本站的教學文字、面板圖與插畫都是自己做的。素材庫一律自錄或 CC0，不提供他人音樂下載。
+            不做影片逐字稿，也不做整份翻譯字幕。
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             資料怎麼被處理，見{' '}
             <Link href="/privacy" className="underline hover:text-akai">
               隱私權政策
             </Link>
-            。簡短版：本站沒有帳號、沒有追蹤、沒有廣告。
+            。本站沒有帳號、沒有追蹤、沒有廣告。
           </p>
         </section>
       </div>
@@ -188,17 +183,15 @@ export default function AboutPage() {
         <div className="h-[3px] w-full bg-gradient-to-r from-akai via-[#EFA043] to-live" aria-hidden />
         <div className="p-[22px] split:p-8">
           <p className="label-mono font-bold text-akai">給同樣在做東西的人</p>
-          <h2 className="mt-2 max-w-[24ch] text-[clamp(19px,3.4vw,26px)] font-bold leading-snug tracking-[-0.01em] text-white">
+          <h2 className="mt-2 text-[clamp(19px,3.4vw,26px)] font-bold leading-snug tracking-[-0.01em] text-white">
             這個網站本身，就是我們的作品集
           </h2>
           <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
             {lessons.length} 課、{totalSteps} 個步驟、一台機器的互動式向量面板、
-            建置期就擋掉錯誤資料的驗證流程、可以裝成 App 而且離線能用。
-            這些不是套版做得出來的東西。
+            建置期就擋掉錯誤資料的驗證流程，可以裝成 App 而且離線能用。
           </p>
           <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
-            如果你也有一套只有你懂的東西 —— 教學、課程、預約、租賃、工作室排程 ——
-            想把它變成一個真的能用的網站或系統，
+            教學、課程、預約、租賃、工作室排程，想把這類流程變成能用的網站或系統，
             <b className="font-semibold text-white">{COMPANY.nameZh}</b>就是做這個的。
           </p>
 
@@ -244,9 +237,9 @@ export default function AboutPage() {
           <PadGrid lit={[1, 6, 11, 16]} />
         </div>
         <div>
-          <p className="text-lg font-semibold text-white">還沒開始的話，從第一課開始</p>
+          <p className="text-lg font-semibold text-white">從第一課開始</p>
           <p className="mt-1 max-w-[46ch] text-sm leading-relaxed text-[#8D9299]">
-            三十分鐘，做出一段自己錄、自己切、自己彈出來的循環。不需要電腦。
+            一課做完一個作品，全程不需要電腦。
           </p>
           <Link
             href="/learn"

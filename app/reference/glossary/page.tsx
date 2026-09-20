@@ -17,7 +17,7 @@ export default function Page() {
           名詞對照
         </h1>
         <p className="mt-2 max-w-[56ch] text-sm leading-[1.6] text-[#8D9299]">
-          每一個名詞都給你三件事：英文、中文、拿來做什麼。只給翻譯沒有用。
+          每一個名詞都給三件事：英文、中文、拿來做什麼。
         </p>
       </header>
       <SiteSearch />

@@ -34,8 +34,8 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-5 max-w-[62ch] text-[13px] leading-relaxed text-[#6B7178]">
-          事實依據為 Akai 官方使用手冊 v1.3.0 (RevA)。尚未實測的項目一律標示「尚未驗證」，
-          不寫成肯定語氣。本站不提供法律意見，也不提供他人音樂素材。
+          事實依據為 Akai 官方使用手冊 v1.3.0 (RevA)，尚未實測的項目一律標示「尚未驗證」。
+          本站不提供法律意見，也不提供他人音樂素材。
         </p>
 
         <p className="mt-4 max-w-[72ch] text-[12px] leading-relaxed text-[#5A6067]">

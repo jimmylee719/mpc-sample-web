@@ -130,13 +130,13 @@ export function VideoList({ videos }: { videos: VideoRef[] }) {
     <section className="mt-10 border-t border-[#2C3036] pt-6">
       <h2 className="chan label-mono font-bold text-white">延伸觀看 · {videos.length} 支</h2>
       <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-[#8D9299]">
-        以下是外部影片，不是本站內容。手感、律動、音色這些東西文字講不清楚，用看的比較快。
+        以下是外部影片，不是本站內容。手感、律動、音色這類東西用看的比較快。
         按下播放之前，本頁不會對 YouTube 發出任何請求。
       </p>
       <p className="mt-2 max-w-[62ch] text-[13px] leading-relaxed text-[#6B7178]">
         字幕已預設開啟並優先選繁體中文。影片本身沒有中文字幕時，可以在播放器右下角的
-        設定 → 字幕 → 自動翻譯 裡選中文（繁體）。標了「中文重點」的是我們看過之後
-        用自己的話寫的摘要；本站不做逐字稿也不做整份翻譯字幕，那是著作權問題。
+        設定 → 字幕 → 自動翻譯 裡選中文（繁體）。標了「中文重點」的是看過之後寫的摘要，
+        本站不做逐字稿，也不做整份翻譯字幕。
       </p>
 
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
