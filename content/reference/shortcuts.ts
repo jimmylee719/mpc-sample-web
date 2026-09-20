@@ -66,7 +66,7 @@ const BUTTON_SHORTCUTS: Shortcut[] = [
   { control: 'lev16', combo: 'SHIFT + 16 LEVELS', label: 'TYPE', group: 'mode', what: '選 16 Levels 要控制哪一種參數，例如音高或力度' },
   { control: 'ssel', combo: 'SHIFT + SAMPLE SEL', label: 'SAVE SAMPLE', group: 'edit', what: '單獨存下目前這一個樣本' },
   { control: 'tap', combo: 'SHIFT + TAP TEMPO', label: 'METRO', group: 'edit', what: '打開或關掉節拍器' },
-  { control: 'erase', combo: 'SHIFT + ERASE', label: 'COPY', group: 'edit', what: '複製目前選到的東西' },
+  { control: 'erase', combo: 'SHIFT + ERASE', label: 'COPY', group: 'edit', what: '複製樣本或序列。來源是目前選到的 pad，按住不放再點目的地 pad（會變紅），放開兩鍵才完成' },
   { control: 'nrep', combo: 'SHIFT + NOTE RPT', label: 'TRIPLET', group: 'edit', what: '把連打切換成三連音' },
   { control: 'minus', combo: 'SHIFT + −', label: 'UNDO', group: 'edit', what: '復原上一步（切片編輯不適用）' },
   { control: 'plus', combo: 'SHIFT + +', label: 'REDO', group: 'edit', what: '重做剛剛復原掉的那一步' },

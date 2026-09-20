@@ -15,12 +15,13 @@ export const s1_02: Lesson = {
   prerequisites: ['s1-01'],
   sources: [
     'Akai 官方使用手冊 v1.3.0 (RevA)：按鍵名稱與第二功能',
+    'Akai 官方使用手冊 v1.3.0 (RevA) p.60–61：Takeover 三種模式 Pickup／Scaled／Instant，設定位於 MIDI Configuration；Parameter 與 Knob FX Takeover 預設 Scaled，Fader Takeover 預設 Pickup',
     '操作流程為實機實測後自行撰寫',
   ],
   checkpoints: [
     '你能說出藍色、橘色、白色按鍵各管什麼',
     '你知道紅字要按住 SHIFT 才生效',
-    '你知道 K1 到 K3 是絕對位置，需要 Takeover',
+    '你知道 K1 到 K3 是絕對位置，而且預設是 Scaled 接手',
     '你能從螢幕上下兩排看出 B 鍵與 K 旋鈕現在管什麼',
     '你看得懂按鍵亮度：亮的正在用、微亮可以用、不亮用不了',
   ],
@@ -149,15 +150,34 @@ export const s1_02: Lesson = {
     },
     {
       ch: 2,
-      say: '所以會遇到 <b>Takeover</b>。旋鈕的實際位置和螢幕上的值對不上時，要先轉到對上才會動。',
+      say: '所以有 <b>Takeover</b>，決定位置對不上時怎麼處理。<b>旋鈕預設是 Scaled</b>。',
       targets: ['k1', 'k2', 'k3'],
-      screen: { t1: 'TAKEOVER' },
+      screen: { t1: 'TAKEOVER  SCALED' },
       hear: '—',
       note: {
         kind: 'tip',
-        title: '不是壞掉',
-        body: '轉了半天沒反應，通常是還沒對上。慢慢轉過去，值會突然接上。',
+        title: 'Scaled 是會動的',
+        body: '你一轉它就往同方向動，只是速率被縮放過，轉一陣子就會跟螢幕的值合在一起。不是沒反應。',
       },
+    },
+    {
+      ch: 2,
+      say: '三種模式可以自己挑。<b>Pickup</b> 要對上才動，<b>Instant</b> 一轉就跳過去。',
+      targets: ['k1', 'k2', 'k3'],
+      screen: { t1: 'PICKUP / SCALED / INSTANT' },
+      hear: '—',
+      note: {
+        kind: 'warn',
+        title: '設定藏在 MIDI Config 裡',
+        body: '按住 SHIFT 再按 PAD 8 打開 MIDI Config。往下捲就看得到三組 Takeover。位置不直覺，但官方就是放那裡。',
+      },
+    },
+    {
+      ch: 2,
+      say: '推桿是例外。<b>FADER</b> 預設是 Pickup，所以它真的會在對上之前完全不動。',
+      targets: ['fader'],
+      screen: { t1: 'FADER  PICKUP' },
+      hear: '—',
     },
     {
       ch: 2,

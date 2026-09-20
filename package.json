@@ -16,6 +16,7 @@
     "stats": "tsx scripts/stats.ts",
     "icons": "tsx scripts/make-icons.ts",
     "videos": "tsx scripts/video-coverage.ts",
+    "keys": "tsx scripts/key-match-audit.ts",
     "videos:verify": "tsx scripts/verify-videos.ts",
     "check": "npm run typecheck && npm run validate && npm run validate:selftest && npm run check:panel"
   },

@@ -336,7 +336,7 @@ interface MpcPanelProps {
 
 | 錯誤說法 | 正確事實 |
 |---|---|
-| K1–K3 是無限旋轉旋鈕 | **270° 絕對位置**，需 Takeover |
+| K1–K3 是無限旋轉旋鈕 | **270° 絕對位置**。Takeover 有三種模式，**K1–K3 預設 Scaled（會動）**，只有推桿預設 Pickup。設定在 MIDI Config |
 | Pad FX 可針對單一 pad 施加效果 | **相反**。Pad FX 套整段序列；能指定 pad 的是 Knob FX |
 | 有 Mother Ducker 側鏈 | **不支援 plugin/AIR**。用 Knob FX 的 Pumper |
 | Zoom 是 SHIFT + Encoder | **SHIFT + K1/K2/K3** |

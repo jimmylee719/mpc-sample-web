@@ -5,6 +5,10 @@
 
 **Repo**：`mpc-sample-web`（private）｜**基準韌體**：1.3.0｜**官方手冊**：v1.3.0 (RevA)
 
+> 韌體與手冊版本於 **2026-09-20** 重新查核：官方 CDN 上仍只有 v1.3.0 (RevA)，
+> v1.3.1／v1.4.0 皆為 404。1.3.0（2026-04-13）新增 Normalize 與三種 Knob Takeover，
+> 1.2.x 新增免拔卡的 SD 存取、Export Song to Sequence、Loop Lock per Pad。**基準無需調整。**
+
 ---
 
 ## 1. 現在做到哪裡
@@ -59,8 +63,8 @@
 | 快捷鍵總表 | 38 組（含 4 組面板沒印的隱藏功能） |
 | 旋鈕矩陣 | 13 個畫面，**全部查證完成** |
 | 效果字典 | 44 種 = Pad FX 16 + Knob FX 28 |
-| 名詞對照 | 37 組 |
-| 疑難排解 | 12 條（只收有官方依據的） |
+| 名詞對照 | 38 組 |
+| 疑難排解 | 14 條（只收有官方依據的） |
 | 韌體對照 | 版本紀錄 + 6 項尚未驗證 + 4 項已排除（含依據） |
 
 ### 延伸觀看影片：100 支（110 則引用）
@@ -95,7 +99,7 @@ afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁
 
 播放器是**點擊才載入**：按下播放之前，頁面對 YouTube 零請求，一律走 `youtube-nocookie.com`。
 
-**全站 78 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
+**全站 79 個靜態頁面**，Pagefind 建置期索引，搜尋不需要伺服器。
 
 ### 學習體驗
 
@@ -111,6 +115,19 @@ afrobeats、amapiano、rnb、pop）目前找不到用取樣機做的教學，頁
 | 搜尋只在查詢區六頁上，卡住的人找不到 | 搜尋移到頂列，全站都有，按 `/` 開啟 |
 | 機器上全是英文，新手卡在單字 | 每一課自動列出「這一課會用到的名詞」 |
 | 機器不在電腦旁邊，沒辦法照著做 | 步驟表可列印，列印時自動隱藏導覽與播放器 |
+
+### 課文裡的實體按鍵圖示
+
+課文說「按 CHOP」的時候，那顆 <b>CHOP</b> 會直接畫成面板上真正的樣子 ——
+同一個顏色、同一個圓角、同一個絲印字體。圖是從 `panel-layout.ts` 的同一份資料
+裁下來的，所以永遠不可能跟面板走鐘。
+
+- 全站 **279 段粗體**含可視覺化的按鍵，涵蓋 60 種控制項
+- 只換 `<b>` 裡面、且明確指向實體控制項的詞。Threshold、Regions 這種參數名稱不換
+- 比對規則前後都有界限判斷，`RESAMPLE` 不會被咬成 RE + SAMPLE
+- SVG 標 `aria-hidden` 與 `data-pagefind-ignore`，旁邊放一份螢幕閱讀器與搜尋看得到的文字，
+  把文字換成圖不會害搜尋失效
+- 稽核指令 `npm run keys`，會列出每一個被換掉的詞，以及沒加粗的按鍵名稱（目前 40 處）
 
 ### 介面與 PWA
 
@@ -173,6 +190,7 @@ NEXT_PUBLIC_R2_BASE=https://你的網域
 /genre/[slug]                  單一曲風配方卡
 /reference                     查詢區索引
 /reference/specs               ★官方規格總表
+/reference/official-order      ★官方順序對照（手冊章節 → 本站課程）
 /reference/techniques          ★延伸技巧（官方依據／社群做法分標）
 /reference/shortcuts           快捷鍵總表
 /reference/knobs               ★互動式旋鈕矩陣
@@ -228,6 +246,7 @@ npm run check
 | `check` | 型別 + 內容驗證 + 驗證器自我測試 + 面板檢查，一次跑完 |
 | `stats` | 印出本檔 §2 的內容統計 |
 | `videos` | 影片覆蓋率報告：哪些課或曲風還沒有影片 |
+| `keys` | 按鍵圖示比對稽核：哪些詞會被畫成按鍵、有沒有誤判 |
 | `videos:verify` | 用 YouTube oEmbed 逐一確認影片還在、標題沒寫錯 |
 | `icons` | 重新產生 PWA 圖示 PNG |
 | `typecheck` | TypeScript strict 檢查 |
@@ -294,6 +313,9 @@ npm run check
 | 序列切換 | 播放中按另一顆 pad 會**閃亮綠排隊**，等目前序列跑完才切換（已解決原待驗證項） |
 | 取樣啟動 | **敲 pad 即開始錄**；錄音中再敲其他 pad 可當場切片；停止方式決定停完在哪個模式 |
 | AUDIO IN | 2 個 **1/4" TRS，Mic/Line-Level**；唱盤必須先過唱頭放大器 |
+| Takeover | **三種模式**：Pickup、Scaled、Instant。**K1–K3 預設 Scaled**（會動，速率縮放），**只有推桿預設 Pickup**（對上才動）。設定在 **MIDI Config**，不在 Fader 選單。本站原寫「旋鈕要對上才會動」為錯誤，2026-09-20 更正 |
+| Loop Lock | Sample Mode 按住 SHIFT + B1 切換。開著時循環起點鎖在樣本起點，關掉才能各自獨立設定 |
+| 盒裝內容 | 手冊 p.3 逐字：MPC Sample、USB-C 線、快速入門指南、安全與保固手冊。**其餘一律另購**，連接圖直接標「Adapter not included」 |
 | Chop 幾種 | **三種**：Threshold／Regions（4、8、16）／Manual。本站原寫「四種」，2026-08-10 更正 |
 | Recall 秒數 | **音訊 25 秒**；序列 Recall 撈的是「上一個循環」不是秒數。規格表的 30 秒與內文不符 |
 | 沒有記憶卡 | **拿不出作品**。掛載到電腦的是 microSD，不是內建 8 GB |

@@ -102,7 +102,7 @@
 | 無 plugin / AIR 擴充 | MPC Store 多數商品不適用 | 1-1 明說 |
 | Chop 無一鍵轉 kit | 需逐一 Extract | 2-7 |
 | 切片編輯無法 Undo | 動手前先存檔 | 2-6 強制警示 |
-| 旋鈕為 270° 絕對位置 | 需 Takeover 機制 | 1-2 必教 |
+| 旋鈕為 270° 絕對位置 | 有 Takeover 機制。K1–K3 預設 Scaled（會動），推桿預設 Pickup（對上才動），設定在 MIDI Config | 1-2 必教 |
 | Knob FX 一次僅 1 個 | 影響混音策略 | 4-4 |
 | Song Mode 無分軌 | 只能整首混音或轉序列 | 3-9 |
 
@@ -146,7 +146,7 @@
 | 2-3 | 找到「只有鼓」的那四小節 | ★傳統取樣法：前奏、間奏、breakdown |
 | 2-4 | 低通濾波留下鼓與貝斯 | LPF Cutoff / Reso 實作 |
 | 2-5 | 高通濾波讓人聲浮出來 | HPF；誠實說明殘留＝lo-fi 味道來源 |
-| 2-6 | Chop 四種切法 | Threshold / Regions 4-8-16 / Manual |
+| 2-6 | Chop 三種切法 | Threshold / Regions 4·8·16 / Manual（2026-09-20 由「四種」更正）|
 | 2-7 | Extract 與 Mute Group | 獨立切片、避免低頻相位打架 |
 | 2-8 | 建立你自己的素材庫 | 命名規範、microSD 目錄、備份 |
 

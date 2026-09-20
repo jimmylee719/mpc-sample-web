@@ -126,6 +126,26 @@ export const techniqueGroups: TechniqueGroup[] = [
         lesson: 's2-06',
       },
       {
+        id: 'copy-to-pads',
+        title: 'COPY：把一個樣本一次複製到好幾顆 pad',
+        when: '同一個聲音想在不同 pad 上各調一種音高或濾波，又不想重錄。',
+        how: '先選好來源 pad，按住 SHIFT 再按 ERASE 進入複製。兩顆都不要放開，接著點你要的目的地 pad，選到的會變紅，再點一次可以取消。最後把 SHIFT 與 ERASE 一起放開才算完成。序列也是同一套做法。',
+        status: 'verified',
+        source:
+          '官方手冊 v1.3.0 (RevA)：「The currently selected pad determines the sample or sequence that is being copied. While still holding SHIFT and COPY, press a pad or pads to select the destination(s)… Selected pads turn red, and can be pressed again to deselect. Finally, release SHIFT and COPY to complete the copy process.」',
+        lesson: 's3-03',
+      },
+      {
+        id: 'loop-lock',
+        title: 'Loop Lock：讓循環起點跟樣本起點分家',
+        when: '你想讓聲音從頭播，但循環時只重複中間那一段。',
+        how: '在 Sample Mode 按住 SHIFT 再按 B1 切換 Loop Lock。開著的時候循環起點被鎖在樣本起點；關掉之後，Sample Start 與 Loop Start 就可以各自設在不同位置。',
+        status: 'verified',
+        source:
+          '官方手冊 v1.3.0 (RevA)：「SHIFT+B1 Loop Lock: Activate or deactivate loop lock. When activated, loop start is locked to the sample start.」以及「When disengaged, the Sample Start point and Loop Start point can be set independently.」',
+        lesson: 's1-01',
+      },
+      {
         id: 'chop-undo-warning',
         title: '動切片之前一定要先存檔',
         when: '每一次。沒有例外。',
@@ -168,6 +188,16 @@ export const techniqueGroups: TechniqueGroup[] = [
         status: 'verified',
         source: '官方手冊 v1.3.0 (RevA) 規格表：Effects Routes 為 Main Output、Input、Per-Pad，Per-Pad 屬於 Knob FX',
         lesson: 's4-04',
+      },
+      {
+        id: 'takeover-instant',
+        title: '把 Takeover 改成 Instant，現場就不會慢半拍',
+        when: '演出中要立刻把某個參數推到你要的位置，沒時間等它慢慢對上。',
+        how: '按住 SHIFT 再按 PAD 8 進 MIDI Config，往下捲找 Takeover。Parameter 與 Knob FX 預設是 Scaled，Fader 預設是 Pickup，三組都可以各自改成 Instant，一碰就跳到旋鈕的實際位置。',
+        status: 'verified',
+        source:
+          '官方手冊 v1.3.0 (RevA) p.61：「Instant: As soon as a hardware control is adjusted, the parameter jumps to match the knob position.」三組 Takeover 列於 MIDI Configuration 選單',
+        lesson: 's1-02',
       },
       {
         id: 'padfx-velocity',

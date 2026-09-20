@@ -23,10 +23,18 @@ const first = lessons[0]!;
  * 卡在這裡的人根本走不到第一課。
  */
 
+/**
+ * 盒裝內容逐字對照官方手冊 v1.3.0 (RevA) p.3 的 Box Contents：
+ * MPC Sample / USB-C Cable / Quickstart Guide / Safety & Warranty Manual。
+ * 手冊的連接圖另外註明「items not listed under the Box Contents are sold separately」，
+ * 並在電源那一格直接標「Adapter not included」。
+ */
 const IN_BOX = [
   { item: '機器本體', yes: true, note: '' },
   { item: 'USB-C 線', yes: true, note: '官方指定用這一條充電，效果最好' },
-  { item: '變壓器（充電頭）', yes: false, note: '要自己準備，至少 5V 2A' },
+  { item: '快速入門指南', yes: true, note: '紙本，很薄。完整版是官網那份使用手冊' },
+  { item: '安全與保固手冊', yes: true, note: '別丟，保固要用' },
+  { item: '變壓器（充電頭）', yes: false, note: '手冊連接圖直接寫明沒附。要自己準備，至少 5V 2A' },
   { item: 'microSD 記憶卡', yes: false, note: '沒有卡就沒辦法把作品傳到電腦' },
   { item: 'MIDI 轉接線', yes: false, note: '要接合成器才需要，認明 TRS Type A' },
   { item: '耳機', yes: false, note: '練習強烈建議用，理由見下面' },
@@ -56,6 +64,7 @@ export default function StartPage() {
         <h2 className="chan label-mono font-bold text-white">一、盒子裡有什麼，沒有什麼</h2>
         <p className="mt-2 pl-[13px] text-sm leading-relaxed text-[#8D9299]">
           很多人開箱第一個念頭是「是不是少寄了東西」。沒有，本來就沒附。
+          下面這份逐字對照官方手冊第 3 頁的 Box Contents。
         </p>
 
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">

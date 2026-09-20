@@ -62,7 +62,7 @@ export const officialVideos: Record<string, VideoRef[]> = {
     v('oyPESIIH4B0', 'Using Timestretch and Repitch', '對應本課第 4 段的 Warp 對速度。'),
   ],
   's2-06': [
-    v('-_KNPLI-JVc', 'Using Chop Mode', 'Chop 模式的官方示範。四種切法的實際手感用看的最快。'),
+    v('-_KNPLI-JVc', 'Using Chop Mode', 'Chop 模式的官方示範。三種切法的實際手感用看的最快。'),
   ],
   's2-08': [
     v('z4tGpU32qR4', 'Load and Save Samples', '對應本課的單獨存樣本。'),
@@ -170,6 +170,11 @@ const nc = (id: string, title: string, why: string): VideoRef =>
 export const communityVideos: Record<string, VideoRef[]> = {
   // ── Season 1 ────────────────────────────────────────
   's1-01': [
+    nc(
+      'IOyc0pxaGoA',
+      'EP-18 - Recording A Sequence',
+      '錄序列的專門一集，對應本課第 4 段。官方 Tutorial 也把錄序列排在錄樣本前面。',
+    ),
     c({
       id: 'SoEmA-JMa10',
       title: 'How MPC Sample Actually Works (Full Beat Tutorial)',
@@ -274,6 +279,7 @@ export const communityVideos: Record<string, VideoRef[]> = {
   's3-03': [
     nc('ZqNavqlHxlw', 'EP-07 - Load Samples', '把樣本放上 pad 的實際流程，對應本課的分配表怎麼落地。'),
     nc('sBeokGjC_qE', 'EP-12 - Sample Mix', 'pad 之間的音量與聲相配置。分配表寫完之後就是做這件事。'),
+    nc('oyw5TSw6uck', 'EP-09 - Copy & Paste Samples', '把一個樣本複製到別顆 pad 的實際操作，分配表要重排時很好用。'),
   ],
   's3-05': [
     nc('yBstZ34Bspk', 'EP-15 - Play/Pad Linking', '★ Pad Link 的專門一集，跟本課主題完全對上。'),
@@ -298,11 +304,21 @@ export const communityVideos: Record<string, VideoRef[]> = {
     nc('Gq9NBQ-MqOc', 'EP-21 - Note Repeat', 'Note Repeat 打出來的律動，文字寫不出手感，直接看。'),
     nc('OtdDq7PNxsA', 'EP-33 - The Fader', '推桿的專門一集，對應本課第 4 段的 Legacy Fader 選單。'),
   ],
+  's3-08': [
+    nc('UPbGW7fCRBE', 'EP-34 - Automation', '自動化的專門一集，跟官方那支可以互相驗證。'),
+  ],
   's3-09': [
     nc('CKi_Sc91IUA', 'EP-40 - Song Mode', 'Song Mode 串接的第三方示範，跟官方那支互相驗證。'),
   ],
 
   // ── Season 4 ────────────────────────────────────────
+  's3-10': [
+    nc(
+      '0Pj_sYzotgA',
+      'EP-47 - Track Out To DAW USB C',
+      '用 USB-C 把聲音送進電腦 DAW 的做法。注意手冊規格只寫立體聲主輸出，沒有寫可以分軌，實際做到哪裡請以影片與自己實測為準。',
+    ),
+  ],
   's4-02': [
     c({
       id: 'gr2d83eiwRw',

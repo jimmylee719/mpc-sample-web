@@ -343,6 +343,24 @@
     opacity: 1;
   }
 
+  /* 課文裡的實體按鍵圖示。圖從 panel-layout 裁下來，跟面板永遠一致 */
+  .keycap {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: -0.3em;
+    margin: 0 2px;
+  }
+
+  .keycap-svg {
+    height: 1.5em;
+    border-radius: 3px;
+    filter: drop-shadow(0 1px 1.5px rgb(0 0 0 / 0.28));
+  }
+
+  .keycap-svg.is-round {
+    border-radius: 50%;
+  }
+
   /* 混音台頻道標籤：標題左邊一條色塊 */
   .chan {
     display: flex;

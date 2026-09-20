@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { lessons, findLesson, lessonHref, getLesson } from '@/content/lessons';
 import { LessonPlayer } from '@/components/lesson/LessonPlayer';
 import { PrintButton } from '@/components/lesson/PrintButton';
+import { SayText } from '@/components/lesson/SayText';
 import { FirmwareBadge } from '@/components/badges/FirmwareBadge';
 import { NeedsComputerBadge } from '@/components/badges/NeedsComputerBadge';
 import { VideoList } from '@/components/video/VideoList';
@@ -148,10 +149,7 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
               {lesson.steps.map((s, i) => ({ s, i })).filter(({ s }) => s.ch === ci).map(({ s, i }) => (
                 <li key={i} className="border-b border-rule py-3">
                   <span className="label-mono text-muted">STEP {String(i + 1).padStart(2, '0')}</span>
-                  <p
-                    className="mt-1 text-[15px] leading-[1.7] [&_b]:font-bold"
-                    dangerouslySetInnerHTML={{ __html: s.say }}
-                  />
+                  <SayText html={s.say} className="mt-1 block text-[15px] leading-[1.7] [&_b]:font-bold" />
                   <p className="mt-1 text-[13px] leading-relaxed text-muted">
                     螢幕：{s.screen.t1 || '—'}　｜　你會聽到：{s.hear}
                   </p>

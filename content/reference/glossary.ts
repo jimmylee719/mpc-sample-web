@@ -34,7 +34,7 @@ export const glossary: GlossaryEntry[] = [
   { en: 'BPM', zh: '每分鐘拍數', what: '速度。數字越大越快' },
   { en: 'Velocity', zh: '力度', what: '你敲多用力，決定這一下多大聲' },
   { en: 'Poly Aftertouch', zh: '複音觸後', what: '按住 pad 之後再加壓，可以繼續改變聲音' },
-  { en: 'Takeover', zh: '接手', what: '旋鈕實際位置和螢幕數值對上之後才會生效', lesson: 's1-02' },
+  { en: 'Takeover', zh: '接手', what: '旋鈕或推桿實際位置和螢幕數值對不上時怎麼處理，分 Pickup、Scaled、Instant 三種', lesson: 's1-02' },
   { en: 'Mute Group', zh: '互斥組', what: '同一組裡的聲音一次只能響一個，避免打架' },
   { en: 'Pad Link', zh: '打擊墊連動', what: '一顆 pad 同時觸發另一顆，不用 resample 就疊層' },
   { en: 'Pad FX', zh: '打擊墊效果', what: '用 pad 觸發，套在整段序列上，同時最多四個', lesson: 's1-02' },
@@ -48,6 +48,7 @@ export const glossary: GlossaryEntry[] = [
   { en: 'Audio Mixdown', zh: '音訊混音', what: '把整首歌匯出成一個音檔', lesson: 's1-04' },
   { en: 'SD Card Access', zh: '記憶卡存取', what: '讓電腦把 microSD 當成外接磁碟讀取', lesson: 's1-04' },
   { en: 'Recall', zh: '回溯錄音', what: '把剛剛已經過去、沒錄到的聲音撈回來', lesson: 's1-04' },
+  { en: 'Loop Lock', zh: '循環鎖', what: '開著的時候循環起點被鎖在樣本起點，關掉才能各自獨立設定' },
   { en: 'DAWless', zh: '不用電腦', what: '全程在機器上完成，不開電腦軟體' },
 ];
 

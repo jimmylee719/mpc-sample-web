@@ -25,11 +25,28 @@ export const troubles: TroubleEntry[] = [
     source: '官方手冊 v1.3.0 (RevA)：喇叭在接上耳機或 1/4" 輸出時會自動停用',
   },
   {
-    id: 'knob-no-response',
-    symptom: '轉旋鈕沒反應，轉了半天數值都不動',
-    cause: 'K1–K3 是 270 度絕對位置旋鈕，需要 Takeover。旋鈕實際位置和螢幕上的值還沒對上。',
-    fix: '慢慢往兩邊轉，轉到和螢幕數值對上時就會突然接上。',
-    source: '官方手冊 v1.3.0 (RevA)：3 個 270° 旋鈕',
+    id: 'fader-no-response',
+    symptom: '推推桿完全沒反應，數值動都不動',
+    cause: '推桿的 Fader Takeover 預設是 Pickup。位置沒對上之前，它真的不會動。',
+    fix: '把推桿慢慢推到跟螢幕上的值同一個位置，對上就接手了。不想每次都這樣，可以到 MIDI Config 把 Fader Takeover 改成 Instant。',
+    source:
+      '官方手冊 v1.3.0 (RevA) p.61：「Pickup: Parameters are not editable until the hardware control position matches the parameter position. This is the default behavior for Fader Takeover.」',
+  },
+  {
+    id: 'knob-scaled-feel',
+    symptom: '轉旋鈕有反應，但數值變化跟手感對不上',
+    cause:
+      '這是正常的。K1–K3 預設是 Scaled：值會往你轉的方向走，但速率經過縮放，目的是讓兩邊最後合在一起。',
+    fix: '繼續轉，值會逐漸追上旋鈕的實際位置。想要一轉就跳到底，到 MIDI Config 把 Parameter Takeover 改成 Instant。',
+    source:
+      '官方手冊 v1.3.0 (RevA) p.61：「Scaled: … This is the default behavior for Parameter Takeover and Knob FX Takeover.」',
+  },
+  {
+    id: 'takeover-where',
+    symptom: '想改 Takeover 行為，但找不到設定在哪',
+    cause: '它不在 Fader 選單裡，而是在 MIDI Config。位置不直覺。',
+    fix: '按住 SHIFT 再按 PAD 8 打開 MIDI Config，用 ENCODER 往下捲，會看到 Parameter、Knob FX、Fader 三組 Takeover。',
+    source: '官方手冊 v1.3.0 (RevA) p.60–61：Takeover 設定列於 MIDI Configuration 選單',
   },
   {
     id: 'cant-undo-chop',

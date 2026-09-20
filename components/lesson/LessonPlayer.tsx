@@ -7,6 +7,7 @@ import { needsRearView } from '@/components/mpc/panel-layout';
 import { ChapterRail } from './ChapterRail';
 import { NoteBox } from './NoteBox';
 import { AudioClip } from './AudioClip';
+import { SayText } from './SayText';
 
 const STORAGE_PREFIX = 'mpc-sample:progress:';
 
@@ -147,7 +148,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
           </p>
 
           {/* say 是我們自己寫的 typed data，唯一允許的標記是 <b> */}
-          <p className="say my-[14px] mb-5" dangerouslySetInnerHTML={{ __html: step.say }} />
+          <SayText html={step.say} className="say my-[14px] mb-5 block" />
 
           <dl className="border-t border-rule">
             <div className="grid grid-cols-[78px_1fr] items-baseline gap-3 border-b border-rule py-[10px]">

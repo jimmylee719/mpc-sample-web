@@ -7,6 +7,7 @@ import { glossary } from '@/content/reference/glossary';
 import { troubles } from '@/content/reference/troubleshoot';
 import { openQuestions, specGroups } from '@/content/reference/firmware';
 import { allTechniques, verifiedTechniqueCount } from '@/content/reference/techniques';
+import { officialTutorial, officialChapters } from '@/content/reference/official-order';
 import { KNOB_FX_TOTAL } from '@/content/reference/fx';
 
 export const metadata: Metadata = {
@@ -22,6 +23,17 @@ const PAGES = [
     title: '規格總表',
     note: '複音數、可匯入格式、位元與取樣率、每個專案放得下多少東西。逐行對照官方手冊。',
     count: () => `${specGroups.reduce((n, g) => n + g.rows.length, 0)} 項規格`,
+  },
+  {
+    href: '/reference/official-order',
+    tag: 'OFFICIAL ORDER',
+    title: '官方順序對照',
+    note: '官方手冊的章節順序，每一項連到本站對應的課。想照官方路線走就看這頁。',
+    count: () =>
+      `${
+        officialTutorial.entries.length +
+        officialChapters.reduce((n, s) => n + s.entries.length, 0)
+      } 個官方章節`,
   },
   {
     href: '/reference/techniques',
@@ -78,7 +90,7 @@ export default function ReferenceIndexPage() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
       <header className="mb-8 border-b border-[#2C3036] pb-4">
-        <p className="label-mono font-bold text-akai">REFERENCE · 八張速查表</p>
+        <p className="label-mono font-bold text-akai">REFERENCE · 九張速查表</p>
         <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">
           查詢區
         </h1>
