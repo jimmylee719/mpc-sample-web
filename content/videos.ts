@@ -32,18 +32,18 @@ const v = (youtubeId: string, title: string, why: string): VideoRef => ({
 /** key 是 lesson id 或 genre slug */
 export const officialVideos: Record<string, VideoRef[]> = {
   // ── Season 1 ────────────────────────────────────────
-  's1-02': [
-    v('Q3DzJ2t6p68', 'Navigation and Sounds', '官方版的面板導覽。本課教你讀懂面板，這支讓你看到實際操作的樣子。'),
-  ],
   's1-01': [
+    v('Q3DzJ2t6p68', 'Navigation and Sounds', '官方版的操作導覽。瀏覽音色、換掉一顆 pad 的實際樣子看這支。'),
+  ],
+  's1-02': [
     v('iOEawVwkI8Y', 'Recording with the Built-in Microphone', '本課第 2 段用內建麥克風錄音，這支是官方示範。'),
     v('SojM-PAZ8iY', 'Editing Samples', '對應本課第 3 段的修剪與 Normalize。'),
     v('1vMGz735pe8', 'Using the Sequencer', '對應本課第 4 段的序列錄音。'),
   ],
-  's1-03': [
+  's1-04': [
     v('L8g18bvb7Sw', 'How to Update MPC Sample', '官方版的韌體更新示範。本課刻意不轉寫官方步驟，直接看這支最準。'),
   ],
-  's1-04': [
+  's1-05': [
     v('CwHIOyGUOYU', 'Load and Save Projects', '對應本課的專案存檔與載入。'),
     v('CYXo4-L4Cgk', 'Never Miss a Beat with Sample Recall', '本課提到 Recall 的秒數官方自相矛盾，這支是官方自己的示範。'),
   ],
@@ -169,7 +169,7 @@ const nc = (id: string, title: string, why: string): VideoRef =>
 
 export const communityVideos: Record<string, VideoRef[]> = {
   // ── Season 1 ────────────────────────────────────────
-  's1-01': [
+  's1-02': [
     nc(
       'IOyc0pxaGoA',
       'EP-18 - Recording A Sequence',
@@ -188,7 +188,7 @@ export const communityVideos: Record<string, VideoRef[]> = {
       why: '同樣是第一顆節奏，另一個人的做法。兩邊對照就知道哪些步驟是必要的。',
     }),
   ],
-  's1-02': [
+  's1-03': [
     nc('NPyfCGaPN6w', 'EP-05 - Layout Overview', '逐一走過面板每一個控制項，跟本課的面板地圖直接對照。'),
     c({
       id: '_s3X2KtTHgc',
@@ -197,7 +197,7 @@ export const communityVideos: Record<string, VideoRef[]> = {
       why: 'Akai 創意總監親自示範。想知道設計者原本預期你怎麼用這台，看這支。',
     }),
   ],
-  's1-04': [
+  's1-05': [
     nc('eutkUTlRBj0', 'EP-06 - Load & Save Projects', '存檔與載入的第三方示範，可以跟官方那支交叉比對。'),
     nc('rIaTl9tInPs', 'EP-36 - Recall Functions', 'Recall 的秒數官方自己前後不一致，多看一支別人的實測比較保險。'),
   ],

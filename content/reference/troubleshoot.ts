@@ -53,7 +53,7 @@ export const troubles: TroubleEntry[] = [
     symptom: '切片切壞了，按 UNDO 救不回來',
     cause: '切片編輯不支援復原。',
     fix: '動手切之前先存一次專案。這是唯一的保險。',
-    source: '本站 1-1 課程警示',
+    source: '本站 1-2 課程警示',
   },
   {
     id: 'pad-fx-single-pad',
@@ -119,6 +119,6 @@ export const troubles: TroubleEntry[] = [
     symptom: '有聲音卡住不停，關不掉',
     cause: '可能有 pad 停在持續發聲狀態。',
     fix: '快速連按兩下 STOP，所有聲音會立刻消失。',
-    source: '本站 1-1 課程',
+    source: '本站 1-2 課程',
   },
 ];

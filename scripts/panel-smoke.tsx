@@ -1,7 +1,9 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MpcPanel } from '../components/mpc/MpcPanel';
 import { FRONT_PANEL, REAR_PANEL } from '../components/mpc/panel-layout';
-import { s1_01 } from '../content/lessons/s1-01';
+// 原型那一課（make-your-first-beat）。2026-09-20 Season 1 重新編號後它變成 1-2，
+// 但它仍然是唯一出自 reference/prototype-v2.html 的課，所以面板檢查認的是它。
+import { s1_02 } from '../content/lessons/s1-02';
 import { CONTROL_IDS } from '../types/lesson';
 
 let failed = false;
@@ -54,13 +56,13 @@ check('螢幕下排預設 Start/End/Loop', def.includes('Start') && def.includes
 // 7. 課程每一步的 targets 都真的畫得出來
 const known = new Set([...FRONT_PANEL.controls, ...REAR_PANEL.controls].map((x) => x.id));
 let missing = 0;
-s1_01.steps.forEach((s) => {
+s1_02.steps.forEach((s) => {
   s.targets.forEach((t) => {
     if (t !== 'pads' && !known.has(t)) missing++;
   });
 });
-check('1-1 全部 targets 都在面板上存在', missing === 0, `缺 ${missing} 個`);
-check('1-1 共 27 步', s1_01.steps.length === 27, `實際 ${s1_01.steps.length}`);
+check('1-2 原型課全部 targets 都在面板上存在', missing === 0, `缺 ${missing} 個`);
+check('1-2 原型課共 27 步', s1_02.steps.length === 27, `實際 ${s1_02.steps.length}`);
 
 console.log(failed ? '\n面板檢查失敗' : '\n面板檢查全數通過');
 process.exit(failed ? 1 : 0);

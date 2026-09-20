@@ -12,7 +12,7 @@ export const s3_01: Lesson = {
   needsComputer: false,
   firmwareVerified: '1.3.0',
   verifiedDate: '2026-08-08',
-  prerequisites: ['s1-01', 's1-04'],
+  prerequisites: ['s1-02', 's1-05'],
   sources: [
     'Akai 官方使用手冊 v1.3.0 (RevA)：Resample、Pad Link、Load Kit、Song Mode',
     '策略取捨為本站整理',

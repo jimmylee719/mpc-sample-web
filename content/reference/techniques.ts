@@ -143,7 +143,7 @@ export const techniqueGroups: TechniqueGroup[] = [
         status: 'verified',
         source:
           '官方手冊 v1.3.0 (RevA)：「SHIFT+B1 Loop Lock: Activate or deactivate loop lock. When activated, loop start is locked to the sample start.」以及「When disengaged, the Sample Start point and Loop Start point can be set independently.」',
-        lesson: 's1-01',
+        lesson: 's1-02',
       },
       {
         id: 'chop-undo-warning',
@@ -197,7 +197,7 @@ export const techniqueGroups: TechniqueGroup[] = [
         status: 'verified',
         source:
           '官方手冊 v1.3.0 (RevA) p.61：「Instant: As soon as a hardware control is adjusted, the parameter jumps to match the knob position.」三組 Takeover 列於 MIDI Configuration 選單',
-        lesson: 's1-02',
+        lesson: 's1-03',
       },
       {
         id: 'padfx-velocity',

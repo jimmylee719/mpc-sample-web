@@ -3,6 +3,7 @@ import { s1_01 } from './s1-01';
 import { s1_02 } from './s1-02';
 import { s1_03 } from './s1-03';
 import { s1_04 } from './s1-04';
+import { s1_05 } from './s1-05';
 import { s2_01 } from './s2-01';
 import { s2_02 } from './s2-02';
 import { s2_03 } from './s2-03';
@@ -40,7 +41,7 @@ import { s5_06 } from './s5-06';
  * `npm run build` 會自動驗證，有錯就中止建置。
  */
 export const lessons: Lesson[] = [
-  s1_01, s1_02, s1_03, s1_04,
+  s1_01, s1_02, s1_03, s1_04, s1_05,
   s2_01, s2_02, s2_03, s2_04, s2_05, s2_06, s2_07, s2_08,
   s3_01, s3_02, s3_03, s3_04, s3_05, s3_06, s3_07, s3_08, s3_09, s3_10,
   s4_01, s4_02, s4_03, s4_04, s4_05, s4_06, s4_07,

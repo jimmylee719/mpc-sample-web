@@ -12,7 +12,7 @@ export const s2_01: Lesson = {
   needsComputer: false,
   firmwareVerified: '1.3.0',
   verifiedDate: '2026-08-09',
-  prerequisites: ['s1-01', 's1-02'],
+  prerequisites: ['s1-02', 's1-03'],
   sources: [
     'Akai 官方使用手冊 v1.3.0 (RevA)：Input Configuration 的 Source 八個選項、Rec Length 的 FREE 與 SEQ、Rec Input Effects、Threshold；Sample Record 頁 K1 選來源、K3 調 Threshold、B1 切換 Monitor 三段；錄音以敲 pad 開始、錄音中可再敲 pad 切片、三種停止方式的差別；SHIFT + SAMPLE RECORD 撈回最後 25 秒',
     'Akai 官方使用手冊 v1.3.0 (RevA)：AUDIO IN 為 1/4" TRS 線路電平輸入，適用麥克風、樂器、混音器、合成器、鼓機；USB-C 可與電腦或行動裝置互傳音訊與 MIDI；接上耳機時內建喇叭停用',

@@ -12,7 +12,7 @@ export const s4_01: Lesson = {
   needsComputer: false,
   firmwareVerified: '1.3.0',
   verifiedDate: '2026-08-08',
-  prerequisites: ['s1-02'],
+  prerequisites: ['s1-03'],
   sources: [
     'Akai 官方使用手冊 v1.3.0 (RevA)：四個效果引擎與 Effects Routes 為 Main Output、Input、Per-Pad',
     '操作流程為實機實測後自行撰寫',
