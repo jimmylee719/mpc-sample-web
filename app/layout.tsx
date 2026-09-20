@@ -5,7 +5,9 @@ import { SiteHeader } from '@/components/site/SiteHeader';
 import { BottomNav } from '@/components/site/BottomNav';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { RegisterSW } from '@/components/site/RegisterSW';
-import { SITE } from '@/content/site';
+import { SITE, COMPANY } from '@/content/site';
+import { KEYWORDS, webSite } from '@/content/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 const SITE_NAME = SITE.name;
 const DESCRIPTION =
@@ -21,6 +23,18 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   // './' 代表「這一頁自己」，每頁都會得到指向自己的 canonical
   alternates: { canonical: './' },
+  // 中英文一起放。英文不是為了給人讀，是讓英語系的搜尋也對得上這台機器
+  keywords: KEYWORDS,
+  authors: [{ name: COMPANY.nameZh, url: COMPANY.site }],
+  creator: COMPANY.nameZh,
+  publisher: COMPANY.nameZh,
+  category: '音樂製作教學',
+  robots: {
+    index: true,
+    follow: true,
+    // 讓 Google 的摘要與圖片預覽不要被自動裁短，內容本來就是要給人看的
+    googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large' },
+  },
   /**
    * 分享卡片。這個站是要貼到社群去的，沒有這一段，
    * 貼出去只會是一條白底連結，沒人會點。
@@ -77,6 +91,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-Hant">
       <body className="bg-stage text-paper font-sans">
+        {/* 全站只需要一份：這是什麼網站、誰做的 */}
+        <JsonLd data={webSite()} />
         <SiteHeader />
 
         {/* 行動裝置底部有導覽列，內容要讓出高度，不然最後一行會被蓋住 */}

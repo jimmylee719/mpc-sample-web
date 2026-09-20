@@ -1,0 +1,173 @@
+# 敲敲取樣 · 一台就夠
+
+> 繁體中文的 Akai MPC Sample 取樣機教學網站。36 課、456 個步驟，每一步都寫清楚按哪一個鍵、螢幕會變成什麼、耳朵會聽到什麼。全程不需要電腦。
+
+> Traditional Chinese tutorial site for the Akai MPC Sample standalone sampler. 36 lessons, 456 steps. Every step states which control to press, what the screen shows and what you should hear. No computer required.
+
+## 這個網站可以被信任到什麼程度 / How facts are sourced
+
+- 唯一權威是 Akai 官方使用手冊 v1.3.0 (RevA)，全站事實基準韌體 1.3.0
+- 來源優先序：官方手冊規格 > 官方支援知識庫 > 官方 FAQ > 媒體評測（僅限使用感受）> 社群與影片
+- 影片與官方衝突時以官方為準。只有社群支持、官方沒寫的，一律標「尚未驗證」，不寫成肯定語氣
+- 每一課都標明查核所依據的韌體版本與查核日期
+- 目前公開列出 5 項尚未驗證、7 項已查清的疑問
+- The single authority is the official Akai user guide; community sources are used only for cross-checking
+
+## 最容易被寫錯的事實 / Commonly mis-stated facts
+
+外部中文資料經常抄錯這幾項，以下為依官方手冊查核後的正確說法：
+
+- K1–K3 是 270 度絕對位置旋鈕，不是無限旋轉。Takeover 有 Pickup、Scaled、Instant 三種模式，K1–K3 預設 Scaled，只有推桿預設 Pickup，設定在 MIDI Configuration
+- Pad FX 套用於整段序列；能指定單一 pad 的是 Knob FX。方向常被寫反
+- 本機不支援 plugin 與 AIR 效果，沒有 Mother Ducker；側鏈效果用 Knob FX 的 Pumper
+- Zoom 是 SHIFT + K1/K2/K3，不是 SHIFT + Encoder
+- Chop 有三種切法：Threshold、Regions（4/8/16）、Manual。沒有叫 Transient 的模式
+- 官方功能列表的 lazy-chopping 就是 Chop Type 的 Manual 模式
+- 官方功能列表的 fixed-length sampling 就是 Input Config 的 Rec Length 設成 SEQ
+- 全機只有五個選單：Input Config、Fader、Time Correct、MIDI Config、Project。沒有 Preferences
+- 電池為手冊所寫的「約 5 小時連續播放」；官方 FAQ 的 6 小時與手冊不一致
+- 音訊 Recall 是最後 25 秒；序列 Recall 撈的是「上一個循環」，不是固定秒數
+- 要把作品傳到電腦必須有 microSD 卡。SD Card Access 掛載的是記憶卡，不是內建的 8 GB
+- 盒裝不含變壓器、microSD 卡與 MIDI 轉接線
+- 沒有 Wi-Fi，因此沒有其他 MPC 那種機上 Splice 音色庫整合
+
+## 課程 / Lessons
+
+### Season 1：起步（5 課）
+
+學完手上有：一段自己錄、切、彈的循環
+
+- [1-1 先把機器裡的東西玩過一遍](https://mpc-sample-web.vercel.app/learn/s1/play-the-factory-project)：20 分鐘、20 步。做完手上有一段你換過音色、也自己排過順序的原廠循環。不需要電腦。
+- [1-2 你的第一個 30 分鐘](https://mpc-sample-web.vercel.app/learn/s1/make-your-first-beat)：30 分鐘、27 步。做完手上有一段自己錄、自己切、自己彈出來的兩小節循環。不需要電腦。
+- [1-3 讀懂面板：紅字的世界](https://mpc-sample-web.vercel.app/learn/s1/panel-and-shift-functions)：20 分鐘、21 步。做完手上有一張你自己看得懂的面板地圖。不需要電腦。
+- [1-4 開機第一件事：韌體更新](https://mpc-sample-web.vercel.app/learn/s1/firmware-update)：25 分鐘、12 步。做完手上有一台跑在官方最新韌體上的機器。需要電腦。
+- [1-5 專案、樣本、記憶卡](https://mpc-sample-web.vercel.app/learn/s1/projects-samples-microsd)：20 分鐘、13 步。做完手上有一份你自己命名、自己存過的專案備份。不需要電腦。
+
+### Season 2：取樣工藝（8 課）
+
+學完手上有：一組乾淨可用的素材庫
+
+- [2-1 把外面的聲音抓進來](https://mpc-sample-web.vercel.app/learn/s2/record-external-audio)：30 分鐘、27 步。做完手上有一段從外部音源錄進 pad 的乾淨素材。不需要電腦。
+- [2-2 這段素材可以用嗎](https://mpc-sample-web.vercel.app/learn/s2/sampling-copyright-basics)：15 分鐘、17 步。做完手上有一套你自己判斷得出來的素材可用標準。不需要電腦。
+- [2-3 找到「只有鼓」的那四小節](https://mpc-sample-web.vercel.app/learn/s2/find-the-drum-break)：25 分鐘、12 步。做完手上有一段沒有其他樂器蓋住的乾淨鼓循環。不需要電腦。
+- [2-4 低通濾波留下鼓與貝斯](https://mpc-sample-web.vercel.app/learn/s2/lowpass-filter-drums-and-bass)：20 分鐘、10 步。做完手上有一段只剩低頻的節奏底層。不需要電腦。
+- [2-5 高通濾波讓人聲浮出來](https://mpc-sample-web.vercel.app/learn/s2/highpass-filter-for-vocals)：20 分鐘、10 步。做完手上有一段只剩中高頻的旋律素材。不需要電腦。
+- [2-6 Chop 三種切法](https://mpc-sample-web.vercel.app/learn/s2/three-ways-to-chop)：30 分鐘、12 步。做完手上有同一段素材用三種切法切出來的結果。不需要電腦。
+- [2-7 Extract 與 Mute Group](https://mpc-sample-web.vercel.app/learn/s2/extract-and-mute-groups)：25 分鐘、11 步。做完手上有一組互不打架的獨立切片。不需要電腦。
+- [2-8 建立你自己的素材庫](https://mpc-sample-web.vercel.app/learn/s2/build-your-sample-library)：20 分鐘、12 步。做完手上有一套三個月後你還找得到的素材命名與備份。不需要電腦。
+
+### Season 3：編曲（10 課）
+
+學完手上有：一首完整的歌，匯出成音檔
+
+- [3-1 單 kit 的天花板](https://mpc-sample-web.vercel.app/learn/s3/single-kit-ceiling)：15 分鐘、9 步。做完手上有一份你自己的破解策略清單。不需要電腦。
+- [3-2 Resample 疊層法](https://mpc-sample-web.vercel.app/learn/s3/resample-layering)：40 分鐘、16 步。做完手上有一段三層厚、但只佔一顆 pad 的循環。不需要電腦。
+- [3-3 Pad 預算規劃](https://mpc-sample-web.vercel.app/learn/s3/pad-budget-planning)：15 分鐘、9 步。做完手上有一張動手前就寫好的 pad 分配表。不需要電腦。
+- [3-4 用 16 Levels 彈貝斯與旋律](https://mpc-sample-web.vercel.app/learn/s3/play-bass-with-16-levels)：25 分鐘、11 步。做完手上有一段用單一樣本彈出來的貝斯線。不需要電腦。
+- [3-5 Pad Link：免 resample 疊層](https://mpc-sample-web.vercel.app/learn/s3/pad-link-layering)：15 分鐘、9 步。做完手上有一顆 pad 同時觸發兩個聲音的設定。不需要電腦。
+- [3-6 段落結構：Half 與 Double](https://mpc-sample-web.vercel.app/learn/s3/half-and-double-sequences)：20 分鐘、11 步。做完手上有同一段素材做出來的四種長度變化。不需要電腦。
+- [3-7 Step Edit 與 Swing](https://mpc-sample-web.vercel.app/learn/s3/step-edit-and-swing)：30 分鐘、14 步。做完手上有一段聽起來像人彈的循環。不需要電腦。
+- [3-8 錄製自動化](https://mpc-sample-web.vercel.app/learn/s3/recording-automation)：25 分鐘、15 步。做完手上有一段旋鈕自己會動的循環。不需要電腦。
+- [3-9 Song Mode 串接](https://mpc-sample-web.vercel.app/learn/s3/song-mode-arrangement)：25 分鐘、12 步。做完手上有一首從頭到尾播得完的歌。不需要電腦。
+- [3-10 匯出、備份、換音色](https://mpc-sample-web.vercel.app/learn/s3/export-backup-load-kit)：25 分鐘、12 步。做完手上有一個存在你自己電腦裡的作品音檔。不需要電腦。
+
+### Season 4：聲音設計（7 課）
+
+學完手上有：同一段素材的五種面貌
+
+- [4-1 四套效果系統的分工](https://mpc-sample-web.vercel.app/learn/s4/four-effect-engines)：15 分鐘、10 步。做完手上有一張你分得清楚的效果選擇表。不需要電腦。
+- [4-2 Pad FX 16 種實戰](https://mpc-sample-web.vercel.app/learn/s4/pad-fx-in-practice)：25 分鐘、10 步。做完手上有一段用手指即時做出效果變化的循環。不需要電腦。
+- [4-3 Flex Beat 節奏切割](https://mpc-sample-web.vercel.app/learn/s4/flex-beat)：20 分鐘、9 步。做完手上有一段用 Flex Beat 做出來的即興變奏。不需要電腦。
+- [4-4 Knob FX 28 種導覽](https://mpc-sample-web.vercel.app/learn/s4/knob-fx-tour)：25 分鐘、11 步。做完手上有一份你自己的常用效果短名單。不需要電腦。
+- [4-5 動態四件組](https://mpc-sample-web.vercel.app/learn/s4/dynamics-toolkit)：25 分鐘、10 步。做完手上有一段音量平均、有推力的循環。不需要電腦。
+- [4-6 復古模擬](https://mpc-sample-web.vercel.app/learn/s4/vintage-emulation)：20 分鐘、10 步。做完手上有同一段素材的五種年代感。不需要電腦。
+- [4-7 機上母帶能做到哪裡](https://mpc-sample-web.vercel.app/learn/s4/onboard-mastering-limits)：20 分鐘、10 步。做完手上有一首音量夠、但你知道極限在哪的成品。不需要電腦。
+
+### Season 5：現場演出（6 課）
+
+學完手上有：一段 10 分鐘的 live set
+
+- [5-1 表演思維](https://mpc-sample-web.vercel.app/learn/s5/performance-mindset)：15 分鐘、9 步。做完手上有一份你自己的演出素材準備清單。不需要電腦。
+- [5-2 Sequence Mode 當骨架](https://mpc-sample-web.vercel.app/learn/s5/sequence-mode-live)：20 分鐘、10 步。做完手上有一套你閉著眼睛也切得到的序列配置。不需要電腦。
+- [5-3 Mute 即興編排](https://mpc-sample-web.vercel.app/learn/s5/live-muting)：20 分鐘、9 步。做完手上有同一段循環現場變出來的四種編排。不需要電腦。
+- [5-4 Finger Drumming 基本功](https://mpc-sample-web.vercel.app/learn/s5/finger-drumming-basics)：20 分鐘、11 步。做完手上有一套練得起來的四週練習表。不需要電腦。
+- [5-5 轉場技巧](https://mpc-sample-web.vercel.app/learn/s5/live-transitions)：20 分鐘、10 步。做完手上有三種不會失手的段落交接方式。不需要電腦。
+- [5-6 同步外部設備與上台檢查表](https://mpc-sample-web.vercel.app/learn/s5/sync-and-stage-checklist)：25 分鐘、15 步。做完手上有一份帶上台就照著跑的檢查清單。不需要電腦。
+
+## 曲風配方卡 / Genre recipes
+
+每個曲風一張卡：BPM、pad 配置、鼓組拆解、素材建議、resample 次數、效果配方與完成檢查點。
+
+- [Boom Bap 經典嘻哈](https://mpc-sample-web.vercel.app/genre/boom-bap)：85–95 BPM，一段切片，加上很重的大鼓與小鼓。這是取樣音樂的原點。
+- [Lo-fi Hip Hop 讀書電台](https://mpc-sample-web.vercel.app/genre/lofi-hip-hop)：70–85 BPM，故意讓聲音變舊、變糊、變不準。缺陷就是這個曲風的重點。
+- [Trap 陷阱節奏](https://mpc-sample-web.vercel.app/genre/trap)：130–150 BPM，808 低音撐全場，Hi-hat 用連打做出速度感。
+- [Phonk](https://mpc-sample-web.vercel.app/genre/phonk)：130–150 BPM，牛鈴當旋律，低音刻意推爆。髒是這個曲風的目標。
+- [Reggaeton](https://mpc-sample-web.vercel.app/genre/reggaeton)：90–100 BPM，一個固定的鼓組節奏撐全場，其他都是配菜。
+- [House 浩室](https://mpc-sample-web.vercel.app/genre/house)：120–128 BPM，每一拍都有大鼓，重點在大鼓之間塞什麼。
+- [Tech House](https://mpc-sample-web.vercel.app/genre/tech-house)：122–128 BPM，House 的骨架，Techno 的冷。重點全在打擊樂器的縫隙。
+- [Techno 鐵克諾](https://mpc-sample-web.vercel.app/genre/techno)：130–145 BPM，重複、推進、不解釋。變化靠音色，不靠音符。
+- [Jersey Club](https://mpc-sample-web.vercel.app/genre/jersey-club)：130–140 BPM，三連的大鼓組合加上人聲碎片，密集又跳。
+- [Footwork](https://mpc-sample-web.vercel.app/genre/footwork)：155–165 BPM，快、空、三連。音符很少，但每一個都在跑。
+- [Afrobeats](https://mpc-sample-web.vercel.app/genre/afrobeats)：100–115 BPM，打擊樂器層層交錯，速度不快但一直在動。
+- [UK Garage](https://mpc-sample-web.vercel.app/genre/uk-garage)：130–138 BPM，大鼓刻意不落在每一拍，加上被切碎的人聲。
+- [Dancehall](https://mpc-sample-web.vercel.app/genre/dancehall)：90–105 BPM，鼓組像在對話，一問一答。速度不快但很跳。
+- [Dub](https://mpc-sample-web.vercel.app/genre/dub)：60–90 BPM，效果就是樂器。同一段素材，靠回聲與殘響變出整首。
+- [EDM 電子舞曲](https://mpc-sample-web.vercel.app/genre/edm)：126–130 BPM，層數多、動態大。這台機器做得出來，但你要很會分配 pad。
+- [Drum & Bass](https://mpc-sample-web.vercel.app/genre/drum-and-bass)：170–176 BPM，極快的鼓，極慢的低音。兩件事同時發生。
+- [Amapiano](https://mpc-sample-web.vercel.app/genre/amapiano)：110–115 BPM，Log drum 的滑音低音線，加上大量沙鈴與寬鬆的空間。
+- [Jungle](https://mpc-sample-web.vercel.app/genre/jungle)：160–175 BPM，一段鼓被切成碎片再重排，快到極限，底下壓著很慢的低音。
+- [Dubstep](https://mpc-sample-web.vercel.app/genre/dubstep)：138–142 BPM，低音是主角，而且它會動。空間留很大，衝擊才有效。
+- [Hardstyle](https://mpc-sample-web.vercel.app/genre/hardstyle)：150–160 BPM，大鼓本身就是低音。做好那一顆，整首就成立。
+- [R&B](https://mpc-sample-web.vercel.app/genre/rnb)：60–90 BPM，和聲層次多、人聲是主角。機上只能做到伴奏骨架。（這台機器做這個曲風有限制，卡片上有寫明）
+- [Neo Soul](https://mpc-sample-web.vercel.app/genre/neo-soul)：70–90 BPM，複雜和聲加上鬆散的鼓。機上能做骨架，和聲的細節會受限。（這台機器做這個曲風有限制，卡片上有寫明）
+- [Pop 流行](https://mpc-sample-web.vercel.app/genre/pop)：100–120 BPM，層數多、段落多、人聲是核心。機上做 demo 很好，做成品會卡。（這台機器做這個曲風有限制，卡片上有寫明）
+- [City Pop](https://mpc-sample-web.vercel.app/genre/city-pop)：95–120 BPM，和弦厚、樂器多、編曲滿。機上能做骨架，滿編做不出來。（這台機器做這個曲風有限制，卡片上有寫明）
+
+## 查詢區 / Reference
+
+- [規格總表：逐行對照官方手冊附錄的硬體與軟體規格](https://mpc-sample-web.vercel.app/reference/specs)
+- [快捷鍵總表：面板紅字的第二功能，含面板沒印出來的組合](https://mpc-sample-web.vercel.app/reference/shortcuts)
+- [旋鈕矩陣：同樣三顆旋鈕在每個畫面分別是什麼功能](https://mpc-sample-web.vercel.app/reference/knobs)
+- [效果字典：四套效果引擎，Pad FX 套整段序列，Knob FX 能指定單一 pad](https://mpc-sample-web.vercel.app/reference/fx)
+- [名詞對照：英文面板名詞的中文解釋與用途](https://mpc-sample-web.vercel.app/reference/glossary)
+- [疑難排解：現象、原因、解法，每一條標明官方依據](https://mpc-sample-web.vercel.app/reference/troubleshoot)
+- [延伸技巧：官方依據與社群做法分開標示](https://mpc-sample-web.vercel.app/reference/techniques)
+- [官方順序對照：手冊章節與本站課程的對應表](https://mpc-sample-web.vercel.app/reference/official-order)
+- [韌體對照與尚未驗證清單](https://mpc-sample-web.vercel.app/reference/firmware)
+
+## 目前還不確定的事 / Open questions
+
+以下問題官方文件沒有寫，或官方自己前後不一致。引用本站時請一併說明這些仍未有定論：
+
+- microSD 容量上限是多少？要格式化成哪一種格式？ — 2026-09-20 重新查過官方手冊、MPC Sample 的 FAQ 與 Akai 通用的「Reformatting Storage Devices」支援文件，三份都沒有寫上限，那份格式文件也沒有點名 MPC Sample。在官方給答案之前，本站的建議是：先用 32 GB 以內的卡，格式化成 FAT32，這是各家裝置都吃得下的組合。要用更大的卡就照 Akai 通用建議格式化成 exFAT，並且先傳一兩個檔案測試再放正式素材。
+- 內建喇叭是單聲道嗎？ — 官方從頭到尾沒有寫過 mono 這個字。手冊規格寫「3-watt speaker」，內文也一律用單數，數量欄位只有一個；MusicRadar 的評測直接寫「3-watt mono built-in speaker」。單聲道的可能性很高，但官方沒明講，所以不寫死。可以確定的是行為：接上 PHONES 或 AUDIO OUT 時喇叭自動停用，選內建麥克風當錄音來源時也會自動停用以防回授。
+- 內建 8 GB 儲存是不是 eMMC？ — 官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式，手冊全文沒有出現 eMMC。網路上找得到「8 GB eMMC」的說法，本站 2026-09-20 回頭追來源，找不到官方文件也找不到任何拆機報告支持，所以不採用。這一項不影響任何操作，列出來只是為了誠實。
+- 韌體更新會不會影響既有專案？ — 官方的 MPC Sample 韌體更新說明整篇沒有提到既有資料，也沒有叫人先備份；1.2.0、1.2.1、1.3.0 三次更新的公開說明同樣沒有提到資料遺失。沒有寫不等於不會發生，所以本站的建議不變：更新前自己先按 SHIFT + PAD 16 存一次，重要專案先用 SD Card Access 複製一份到電腦。
+- auto-snapping 到底是哪一個功能？ — 官方功能列表的三個詞裡，lazy-chopping 與 fixed-length sampling 已經查出對應的功能（見下方已排除的疑問）。剩下 auto-snapping 仍然只出現在 Advanced Sample Editing 那一行，手冊內文從頭到尾沒有任何一段說明。合理的猜測是切點或循環點會自動對齊，但官方沒有寫，本站不寫成肯定語氣。
+
+## 已經查清楚的疑問 / Resolved questions
+
+- Recall 到底能撈回幾秒？ — 音訊 Recall 是 25 秒。序列 Recall 根本不是用秒算的，它撈的是「上一個循環」裡彈過的東西。
+- 沒插 microSD 卡，能不能把作品拿出來？ — 不行。沒有記憶卡就沒辦法把檔案傳到電腦。
+- MIDI 轉接線到底有沒有含在盒裝內？ — 沒有附。要接五針 MIDI 設備，轉接線要自己買，認明 TRS Type A。
+- 電池到底幾小時？ — 約 5 小時。
+- Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？ — 沒有機上整合。要先在電腦或手機下載，再傳進 microSD 卡。
+- 官方功能列表寫的 lazy-chopping 是哪一個功能？ — 就是 Chop Type 的 Manual 模式。本站 2-6 第 4 段教的就是它。
+- 官方功能列表寫的 fixed-length sampling 是哪一個功能？ — 就是 Input Config 選單裡的 Rec Length 設成 SEQ。
+
+## 不做什麼 / What this site does not do
+
+- 不提供他人音樂素材下載。素材庫一律自錄或 CC0
+- 不做影片逐字稿，也不做整份翻譯字幕
+- 不提供法律意見
+- 沒有帳號、沒有追蹤、沒有廣告
+
+## 誰做的 / Who made this
+
+凡圖有限公司（Vanture Co., Ltd.），台灣的軟體公司，做教學網站、課程平台、預約與租賃系統、雲端 ERP。這個網站就是凡圖自己做的。
+
+Vanture Co., Ltd. is a Taiwanese software studio building tutorial sites, course platforms, booking and rental systems, and cloud ERP. This site is our own work.
+
+- 想做類似的教學網站，聯絡信箱：getvanture@gmail.com
+- 公司網站：https://getvanture.com
+- 關於本站：https://mpc-sample-web.vercel.app/about

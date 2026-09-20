@@ -2,11 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SEASONS, lessonsBySeason, lessonHref, lessons } from '@/content/lessons';
 import { LessonMap, type SeasonSummary } from '@/components/lesson/LessonMap';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumb, courseList } from '@/content/seo';
 import { withShare } from '@/content/site';
 
 export const metadata: Metadata = withShare({
   title: '課程地圖 — Akai 取樣機教學',
-  description: '五個 Season、36 課。從開機到上台，一課做完一個作品，全程不需要電腦。',
+  description:
+    '五個 Season、36 課的 MPC Sample 中文教學。從開機、取樣、切片、Resample 到 Song Mode 與上台演出，一課做完一個作品，每一步都寫清楚按哪個鍵。全程不需要電腦。',
 });
 
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
@@ -32,6 +35,24 @@ const seasons: SeasonSummary[] = SEASONS.map((season) => ({
 export default function LearnPage() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
+      {/* 整份課程對搜尋引擎來說是一組免費線上課，逐課標出來 */}
+      <JsonLd
+        data={courseList(
+          lessons.map((l) => ({
+            name: `${l.season}-${l.index} ${l.title}`,
+            description: `做完手上會有：${l.outcome}`,
+            path: lessonHref(l),
+            minutes: l.minutes,
+          })),
+        )}
+      />
+      <JsonLd
+        data={breadcrumb([
+          { name: '首頁', path: '/' },
+          { name: '課程地圖', path: '/learn' },
+        ])}
+      />
+
       <header className="mb-6 border-b border-[#2C3036] pb-4">
         <p className="label-mono font-bold text-akai">
           LEARN · {SEASONS.length} 個 SEASON · {lessons.length} 課 · {totalSteps} 步

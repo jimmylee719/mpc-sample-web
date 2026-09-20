@@ -2,15 +2,28 @@ import type { Metadata } from 'next';
 import { glossary } from '@/content/reference/glossary';
 import { SiteSearch } from '@/components/reference/SiteSearch';
 import { withShare } from '@/content/site';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumb, definedTermSet } from '@/content/seo';
 
 export const metadata: Metadata = withShare({
   title: '名詞對照 — Akai 取樣機',
-  description: '英文面板名詞的中文對照，每一個都寫清楚拿來做什麼用，不只是翻譯。',
+  description:
+    'MPC Sample 面板英文名詞的中文對照：Sample、Sequence、Chop、Resample、Overdub、Threshold 等，每一個都寫清楚拿來做什麼用，以及在哪一課會遇到。',
 });
 
 export default function Page() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
+      {/* 「Resample 是什麼」這類查詢很多，標成名詞集才對得到這一頁 */}
+      <JsonLd data={definedTermSet(glossary)} />
+      <JsonLd
+        data={breadcrumb([
+          { name: '首頁', path: '/' },
+          { name: '查詢區', path: '/reference' },
+          { name: '名詞對照', path: '/reference/glossary' },
+        ])}
+      />
+
       <header className="mb-8 border-b border-[#2C3036] pb-4">
         <p className="label-mono font-bold text-akai">REFERENCE · GLOSSARY</p>
         <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">

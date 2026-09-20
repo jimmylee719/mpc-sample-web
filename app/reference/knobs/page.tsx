@@ -5,7 +5,8 @@ import { withShare } from '@/content/site';
 
 export const metadata: Metadata = withShare({
   title: '旋鈕矩陣 — Akai 取樣機',
-  description: 'K1、K2、K3 在各個畫面下分別管什麼。選畫面，面板與小螢幕同步顯示。',
+  description:
+    'MPC Sample 的 K1、K2、K3 在 Sample、Chop、Sequence、Pad FX、Knob FX 等各個畫面下分別管什麼。選一個畫面，面板圖與小螢幕會同步顯示那個狀態。',
 });
 
 export default function Page() {

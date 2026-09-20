@@ -5,7 +5,9 @@ import { genres, getGenre } from '@/content/genres';
 import { GenreCard } from '@/components/genre/GenreCard';
 import { VideoList } from '@/components/video/VideoList';
 import { videosFor } from '@/content/videos';
-import { withShare } from '@/content/site';
+import { withShare, SITE } from '@/content/site';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumb } from '@/content/seo';
 
 export const dynamicParams = false;
 
@@ -32,8 +34,38 @@ export default async function GenrePage({ params }: { params: Promise<Params> })
 
   const videos = videosFor(genre.slug);
 
+  /**
+   * 配方卡是一份「在這台機器上做這個曲風」的操作指引，所以標 HowTo 而不是文章。
+   * 步驟就是 resample 的次數規劃，那是這張卡真正的骨架。
+   */
+  const howTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `在 MPC Sample 上做 ${genre.titleEn}`,
+    description: genre.tagline,
+    inLanguage: 'zh-Hant',
+    isAccessibleForFree: true,
+    author: { '@id': `${SITE.url}/#organization` },
+    supply: [{ '@type': 'HowToSupply', name: 'Akai MPC Sample' }],
+    step: genre.resamples.map((r, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: `第 ${r.pass} 次 resample`,
+      text: `${r.what}，${r.frees}`,
+    })),
+  };
+
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
+      {genre.resamples.length > 0 && <JsonLd data={howTo} />}
+      <JsonLd
+        data={breadcrumb([
+          { name: '首頁', path: '/' },
+          { name: '曲風工廠', path: '/genre' },
+          { name: genre.title, path: `/genre/${genre.slug}` },
+        ])}
+      />
+
       <header className="mb-6 border-b border-[#2C3036] pb-4">
         <p className="label-mono font-bold text-akai">
           {genre.level} · {genre.titleEn}

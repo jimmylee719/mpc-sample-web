@@ -38,7 +38,28 @@ export function SiteFooter() {
           本站不提供法律意見，也不提供他人音樂素材。
         </p>
 
-        <p className="mt-4 max-w-[72ch] text-[12px] leading-relaxed text-[#5A6067]">
+        {/* 作者與招呼。放頁尾是因為喜歡這個站的人，通常是看完某一頁才想問「這誰做的」 */}
+        <div className="mt-6 rounded-xl border border-[#2C3036] bg-stage-2 px-4 py-[14px]">
+          <p className="text-[13px] leading-relaxed text-[#B7BDC4]">
+            本站由 <b className="font-semibold text-white">{COMPANY.nameZh}</b> 製作。
+            喜歡這個網站，或想做一個自己的教學網站，歡迎來信{' '}
+            <a
+              href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('網站製作詢問（來自敲敲取樣）')}`}
+              className="font-semibold text-akai underline hover:text-white"
+            >
+              {COMPANY.email}
+            </a>
+            。
+          </p>
+          <Link
+            href="/about"
+            className="label-mono mt-2 inline-block text-[#8D9299] underline transition-colors hover:text-white"
+          >
+            我們做過什麼 →
+          </Link>
+        </div>
+
+        <p className="mt-6 max-w-[72ch] text-[12px] leading-relaxed text-[#5A6067]">
           {TRADEMARK_NOTICE}
         </p>
 

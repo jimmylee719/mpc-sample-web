@@ -5,7 +5,7 @@
   "description": "敲敲取樣 · 一台就夠 — MPC Sample 中文教學",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run validate && npm run check:panel",
+    "prebuild": "npm run validate && npm run check:panel && npm run llms",
     "build": "next build",
     "postbuild": "pagefind --site out",
     "start": "npx serve out",
@@ -15,6 +15,7 @@
     "check:panel": "tsx scripts/panel-smoke.tsx && tsx scripts/panel-parity.ts",
     "stats": "tsx scripts/stats.ts",
     "icons": "tsx scripts/make-icons.ts",
+    "llms": "tsx scripts/make-llms-txt.ts",
     "videos": "tsx scripts/video-coverage.ts",
     "keys": "tsx scripts/key-match-audit.ts",
     "videos:verify": "tsx scripts/verify-videos.ts",

@@ -10,7 +10,9 @@ import { NeedsComputerBadge } from '@/components/badges/NeedsComputerBadge';
 import { VideoList } from '@/components/video/VideoList';
 import { videosFor } from '@/content/videos';
 import { termsUsedIn } from '@/content/reference/glossary';
-import { withShare } from '@/content/site';
+import { withShare, SITE } from '@/content/site';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumb, faqPage } from '@/content/seo';
 
 export const dynamicParams = false;
 
@@ -24,9 +26,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { season, lesson: slug } = await params;
   const lesson = findLesson(season, slug);
   if (!lesson) return {};
+  /**
+   * 描述要寫得夠長。原本只放 outcome，短的只有二十來字，
+   * 搜尋結果會被 Google 自己另外抓一段來補，那段通常不是我們想給的。
+   */
   return withShare({
     title: `${lesson.title} — MPC Sample 取樣機教學`,
-    description: lesson.outcome,
+    description:
+      `做完手上有：${lesson.outcome}。${lesson.minutes} 分鐘、${lesson.steps.length} 步，` +
+      `每一步都寫清楚按哪個鍵、螢幕變成什麼、會聽到什麼。` +
+      `${lesson.needsComputer ? '這一課需要電腦。' : '不需要電腦。'}`,
   });
 }
 
@@ -51,27 +60,52 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
   const prev = pos > 0 ? lessons[pos - 1] : undefined;
   const next = pos >= 0 && pos < lessons.length - 1 ? lessons[pos + 1] : undefined;
 
-  // HowTo 結構化資料（PROJECT-PLAN §13）
+  /**
+   * HowTo：讓搜尋結果直接顯示步驟，也讓答案引擎知道這是可以照做的教學，
+   * 而不是一篇心得。supply 標成這台機器，Google 才對得上實體。
+   */
   const howTo = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: lesson.title,
-    description: lesson.outcome,
+    name: `MPC Sample：${lesson.title}`,
+    description: `做完手上會有：${lesson.outcome}`,
     totalTime: `PT${lesson.minutes}M`,
     inLanguage: 'zh-Hant',
+    isAccessibleForFree: true,
+    author: { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    supply: [{ '@type': 'HowToSupply', name: 'Akai MPC Sample' }],
+    ...(lesson.needsComputer ? { tool: [{ '@type': 'HowToTool', name: '電腦' }] } : {}),
     step: lesson.steps.map((s, i) => ({
       '@type': 'HowToStep',
       position: i + 1,
+      name: `第 ${i + 1} 步`,
       text: s.say.replace(/<[^>]*>/g, ''),
+      url: `${SITE.url}${lessonHref(lesson)}?step=${i + 1}`,
     })),
   };
 
+  const crumbs = breadcrumb([
+    { name: '首頁', path: '/' },
+    { name: '課程地圖', path: '/learn' },
+    { name: `Season ${lesson.season}`, path: '/learn' },
+    { name: lesson.title, path: lessonHref(lesson) },
+  ]);
+
+  // 檢查點就是「怎麼知道自己做對了」，那是很常見的提問。
+  // 一課只出一題，檢查點合成一個答案——同一頁塞多題一樣的問題會被判定為重複。
+  const faq = faqPage([
+    {
+      question: `MPC Sample 的「${lesson.title}」怎麼知道做對了？`,
+      answer: lesson.checkpoints.join('；') + '。',
+    },
+  ]);
+
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }}
-      />
+      <JsonLd data={howTo} />
+      <JsonLd data={crumbs} />
+      <JsonLd data={faq} />
 
       <header className="mb-6 border-b border-[#2C3036] pb-4">
         <p className="label-mono font-bold text-akai">

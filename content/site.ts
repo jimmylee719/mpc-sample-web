@@ -8,7 +8,7 @@ export const COMPANY = {
   nameEn: 'Vanture Co., Ltd.',
   taxId: '62073421',
   address: '桃園市中壢區青峰路一段 49 號 5 樓',
-  email: 'skadoosh.ai.lab@gmail.com',
+  email: 'getvanture@gmail.com',
   site: 'https://getvanture.com',
 } as const;
 

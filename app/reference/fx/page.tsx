@@ -6,7 +6,8 @@ import { withShare } from '@/content/site';
 
 export const metadata: Metadata = withShare({
   title: '效果字典 — Akai 取樣機',
-  description: 'Pad FX 16 種、Knob FX、Flex Beat 與壓縮器。每一種都寫清楚做什麼用、什麼時候用。',
+  description:
+    'MPC Sample 的四套效果引擎：Pad FX 16 種、Knob FX、Flex Beat 與內建壓縮器。每一種都寫清楚做什麼用、什麼時候用。Pad FX 套整段序列，能指定單一 pad 的是 Knob FX。',
 });
 
 export default function Page() {

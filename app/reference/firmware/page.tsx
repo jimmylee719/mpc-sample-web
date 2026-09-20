@@ -10,15 +10,43 @@ import {
 import { lessons, lessonHref } from '@/content/lessons';
 import { FirmwareBadge } from '@/components/badges/FirmwareBadge';
 import { withShare } from '@/content/site';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumb, faqPage } from '@/content/seo';
 
 export const metadata: Metadata = withShare({
   title: '韌體對照 — Akai 取樣機',
-  description: '全站事實查核所依據的韌體與手冊版本，以及尚未驗證的項目清單。',
+  description:
+    'MPC Sample 的事實查核基準：依據的韌體與官方手冊版本、每一課的查核日期，以及本站公開列出的尚未驗證項目與已查清疑問的依據。',
 });
 
 export default function Page() {
   return (
     <main className="mx-auto max-w-[1240px] px-[14px] pb-[60px] pt-[18px]">
+      {/*
+        這一頁本來就是一整頁問答。已排除的疑問寫進 FAQPage，連同依據一起給出去；
+        尚未驗證的也放，而且答案直接寫「還沒有定論」——
+        與其讓答案引擎去別處抓一個沒人查證過的說法，不如讓它引用我們這句誠實的。
+      */}
+      <JsonLd
+        data={faqPage([
+          ...resolvedQuestions.map((q) => ({
+            question: `MPC Sample：${q.question}`,
+            answer: `${q.answer}（依據：${q.evidence}）`,
+          })),
+          ...openQuestions.map((q) => ({
+            question: `MPC Sample：${q.question}`,
+            answer: `目前沒有定論。${q.status}`,
+          })),
+        ])}
+      />
+      <JsonLd
+        data={breadcrumb([
+          { name: '首頁', path: '/' },
+          { name: '查詢區', path: '/reference' },
+          { name: '韌體對照', path: '/reference/firmware' },
+        ])}
+      />
+
       <header className="mb-8 border-b border-[#2C3036] pb-4">
         <p className="label-mono font-bold text-akai">REFERENCE · FIRMWARE</p>
         <h1 className="mt-[7px] text-[clamp(23px,4vw,34px)] leading-tight tracking-[-0.02em] text-white">

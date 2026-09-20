@@ -191,8 +191,18 @@ export default function AboutPage() {
             建置期就擋掉錯誤資料的驗證流程，可以裝成 App 而且離線能用。
           </p>
           <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.75] text-[#A7ADB4]">
-            教學、課程、預約、租賃、工作室排程，想把這類流程變成能用的網站或系統，
+            <b className="font-semibold text-white">喜歡這個網站，或想做一個自己的教學網站，</b>
+            都可以直接來信談。教學、課程、預約、租賃、工作室排程，想把這類流程變成能用的網站或系統，
             <b className="font-semibold text-white">{COMPANY.nameZh}</b>就是做這個的。
+          </p>
+          <p className="mt-2 text-[15px] leading-[1.75] text-[#A7ADB4]">
+            聯絡信箱{' '}
+            <a
+              href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('網站製作詢問（來自敲敲取樣）')}`}
+              className="font-semibold text-akai underline hover:text-white"
+            >
+              {COMPANY.email}
+            </a>
           </p>
 
           <ul className="mt-5 grid gap-2 sm:grid-cols-3">
@@ -218,7 +228,7 @@ export default function AboutPage() {
               前往{COMPANY.nameZh}官網 →
             </a>
             <a
-              href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('網站開發詢問（來自敲敲取樣）')}`}
+              href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('網站製作詢問（來自敲敲取樣）')}`}
               className="border-2 border-[#4A5057] px-5 py-[12px] text-sm font-semibold text-paper transition-colors hover:border-white"
             >
               直接寄信聊聊
