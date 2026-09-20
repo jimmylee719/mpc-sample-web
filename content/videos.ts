@@ -608,6 +608,138 @@ export const communityVideos: Record<string, VideoRef[]> = {
       device: '其他 MPC 機型',
     }),
   ],
+  phonk: [
+    c({
+      id: '7s0EJeHssCY',
+      title: 'MAKING A MEMPHIS PHONK BEAT FROM A SAMPLE | MPC 1000',
+      channel: 'SAMPLE TEMPLE',
+      why: '從一段取樣做出 Memphis phonk 的全程。髒跟糊是刻意保留的，看它留到哪裡停手。',
+      device: 'MPC 1000',
+    }),
+    c({
+      id: 'pJchKtGUmp0',
+      title: 'How To Make PHONK (Beat making Overexplained)',
+      channel: 'Navie D',
+      why: '把 phonk 的每一個決定都講開。牛鈴旋律與失真低音為什麼要這樣做，聽這支最清楚。',
+      device: '電腦軟體，不是 MPC',
+    }),
+  ],
+  'jersey-club': [
+    c({
+      id: 'XLTaxNlHV3c',
+      title: 'Jersey Club Cookup with @JayMelloTv | #mpc',
+      channel: 'Hugh Steph',
+      why: '在 MPC 上做 Jersey Club 的實作全程。大鼓組合的手感，看畫面比看文字快。',
+      device: '其他 MPC 機型',
+    }),
+    c({
+      id: 'i3JJNeBdmRM',
+      title: 'How To Make Sampled Jersey Club Beats',
+      channel: 'Jay Cactus TV',
+      why: '人聲切片怎麼被重複到變成打擊樂器。這張配方卡的核心就是這件事。',
+      device: '電腦軟體，不是 MPC',
+    }),
+  ],
+  footwork: [
+    c({
+      id: '3QBwn6a3cvM',
+      title: 'Chicago Juke/Footwork Played by AKAI MPC Fingerdrumming',
+      channel: 'Doramaru 沼津 魚鳥木',
+      why: '直接用 pad 把 footwork 打出來。三連音的手感文字教不了，這支用看的。',
+      device: '其他 MPC 機型',
+      lang: 'ja',
+    }),
+    c({
+      id: 'aHKKL0PhV2w',
+      title: 'How To Make Footwork Drums Like DJ Rashad & DJ Spinn [+Samples]',
+      channel: 'Julien Earle',
+      why: '拆解 footwork 兩位代表人物的鼓組排法。留白為什麼這麼多，這支有解釋。',
+      device: '電腦軟體，不是 MPC',
+    }),
+    c({
+      id: 'Mc4KPcz28ck',
+      title: 'The Basics Of Footwork (Drum Programming)',
+      channel: 'Doctor J Teaches Music',
+      why: '只講節奏本身，不談機器。想先搞懂這個曲風在算什麼拍，從這支開始。',
+      device: '電腦軟體，不是 MPC',
+    }),
+  ],
+  afrobeats: [
+    c({
+      id: 'eYiGIEPPUoQ',
+      title: 'Da Drank Kang - Making an AFRO BEAT [Akai MPC X beat making]',
+      channel: 'Da Drank Kang',
+      why: '在 MPC 上從零疊出 afrobeats 的打擊層。層與層怎麼錯開，看這支。',
+      device: 'MPC X',
+    }),
+    c({
+      id: 'MspmOXWyZ0M',
+      title: 'Making an AFROBEAT with Poseidon Soundz (MPC Tutorial)',
+      channel: 'Poseidon Soundz',
+      why: '另一個人的 afrobeats 做法。兩支對照就知道哪些層是非有不可的。',
+      device: '其他 MPC 機型',
+    }),
+    c({
+      id: 'O81Efa5gpwY',
+      title: '5 Ultimate Afrobeat Drum Patterns You Must Know (All You Need To Know About Afrobeat Drums)',
+      channel: 'ePianoh',
+      why: '五組節奏型的比較。這張配方卡的鼓組拆解可以拿它逐條對照。',
+      device: '電腦軟體，不是 MPC',
+    }),
+  ],
+  amapiano: [
+    c({
+      id: 'MzFZJqj0Xy8',
+      title: 'Amapiano Beats Tutorial on MPC Live 2 with Log Drums',
+      channel: 'Mr. DeeKay TV',
+      why: '★ 在 MPC 上做 log drum 的示範。本課最難的一步就是這個，看過再動手。',
+      device: 'MPC Live 2',
+    }),
+    c({
+      id: 'AtZmFq8P0UI',
+      title: 'How To Make The Perfect AmaPiano Log Drum Every Time (THE ONLY TUTORIAL YOU NEED)',
+      channel: 'ePianoh',
+      why: 'log drum 的滑音是怎麼調出來的。原理聽懂了，在這台機器上用調音也做得到。',
+      device: '電腦軟體，不是 MPC',
+    }),
+  ],
+  rnb: [
+    c({
+      id: 'Uy35zS9QzZs',
+      title: 'Making an R&B beat on MPC One',
+      channel: 'Bora Tezel',
+      why: '純伴奏的 R&B 做法，沒有人聲。正好對應這張配方卡說的「機上做伴奏」。',
+      device: 'MPC One',
+    }),
+    c({
+      id: 'SSGC6-tMDFY',
+      title: 'How to Make a Late Night R&B Beat on MPC Live 3 Bryson Tiller x PND',
+      channel: 'Doswell Beats',
+      why: '慢速 R&B 的空間感怎麼留。小鼓往後推那件事，用聽的最清楚。',
+      device: 'MPC Live 3',
+    }),
+    c({
+      id: 'vFCTXSOMXsA',
+      title: 'MPC One / Live Beatmaking | How To Make Kehlani Type Beats',
+      channel: 'Lab & Legacy by @iamsight',
+      why: '和弦與貝斯怎麼配。這張配方卡的和弦 pad 規劃可以拿它對照。',
+      device: 'MPC One / MPC Live',
+    }),
+  ],
+  pop: [
+    c({
+      id: 'UfWvMYQuQvk',
+      title: "You don't need music theory to make something great | Andy Mac MPC Sample Masterclass",
+      channel: 'Akai Professional',
+      why: '★ 就是這台機器。不懂樂理怎麼寫出旋律與和弦，Akai 創意總監親自示範。',
+    }),
+    c({
+      id: 'W4ByNAkSM0s',
+      title: 'How I used the MPC SAMPLE to make my new Single',
+      channel: 'SPVIDZ',
+      why: '★ 用這台機器做出一首真的發行的歌。demo 到成品之間的落差，這支講得很實在。',
+    }),
+  ],
 };
 
 /** 取得某一課或某一個曲風的延伸觀看影片。官方在前，社群在後。 */
