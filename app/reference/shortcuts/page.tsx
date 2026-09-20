@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { ShortcutTable } from '@/components/reference/ShortcutTable';
 import { SiteSearch } from '@/components/reference/SiteSearch';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '快捷鍵總表 — Akai 取樣機',
   description: 'SHIFT 加打擊墊、SHIFT 加按鍵的完整組合，含面板上沒有印出來的隱藏功能。可搜尋、可篩選。',
-};
+});
 
 export default function Page() {
   return (

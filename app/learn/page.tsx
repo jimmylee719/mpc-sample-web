@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SEASONS, lessonsBySeason, lessonHref, lessons } from '@/content/lessons';
 import { LessonMap, type SeasonSummary } from '@/components/lesson/LessonMap';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '課程地圖 — Akai 取樣機教學',
   description: '五個 Season、36 課。從開機到上台，一課做完一個作品，全程不需要電腦。',
-};
+});
 
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
 

@@ -103,6 +103,11 @@ export const s2_06: Lesson = {
       targets: ['k3'],
       screen: { t1: 'CHOP TYPE   MANUAL', bots: ['Start', 'End', 'Manual'], wave: 52 },
       hear: '—',
+      note: {
+        kind: 'tip',
+        title: '這就是官方講的 lazy chop',
+        body: '官方規格表寫的 lazy-chopping 指的就是這個模式。手冊內文只叫它 Manual。',
+      },
     },
     {
       ch: 3,

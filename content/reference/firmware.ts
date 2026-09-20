@@ -61,35 +61,31 @@ export const openQuestions: OpenQuestion[] = [
     id: 'microsd-limit',
     question: 'microSD 容量上限是多少？要格式化成哪一種格式？',
     status:
-      '官方手冊與 MPC Sample 的 FAQ 都沒有寫上限。Akai 通用的「Reformatting Storage Devices」支援文件說明：多數現行機種建議用 exFAT，較舊機種才需要 FAT32，但那份文件沒有點名 MPC Sample，也沒有給容量上限。買大容量卡之前建議先問官方。',
+      '2026-09-20 重新查過官方手冊、MPC Sample 的 FAQ 與 Akai 通用的「Reformatting Storage Devices」支援文件，三份都沒有寫上限，那份格式文件也沒有點名 MPC Sample。在官方給答案之前，本站的建議是：先用 32 GB 以內的卡，格式化成 FAT32，這是各家裝置都吃得下的組合。要用更大的卡就照 Akai 通用建議格式化成 exFAT，並且先傳一兩個檔案測試再放正式素材。',
   },
   {
     id: 'speaker-mono',
     question: '內建喇叭是單聲道嗎？',
     status:
-      '官方從頭到尾沒有寫過 mono 這個字。手冊規格只寫「3-watt speaker」，用的是單數，內文也一律用單數；MusicRadar 的評測直接寫「3-watt mono built-in speaker」。單聲道的可能性很高，但官方沒明講，所以不寫死。',
+      '官方從頭到尾沒有寫過 mono 這個字。手冊規格寫「3-watt speaker」，內文也一律用單數，數量欄位只有一個；MusicRadar 的評測直接寫「3-watt mono built-in speaker」。單聲道的可能性很高，但官方沒明講，所以不寫死。可以確定的是行為：接上 PHONES 或 AUDIO OUT 時喇叭自動停用，選內建麥克風當錄音來源時也會自動停用以防回授。',
   },
   {
     id: 'internal-storage-type',
     question: '內建 8 GB 儲存是不是 eMMC？',
-    status: '官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式。手冊全文沒有出現 eMMC。',
-  },
-  {
-    id: 'splice-workflow',
-    question: 'Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？',
     status:
-      '官方有一支「Using Splice with MPC Sample」的影片，但官方手冊 v1.3.0 全文沒有出現 Splice 這個字，也沒有列出任何無線連線功能；手冊另外明寫「Project import and export is not currently supported」。本站因此不假設有機上整合，先以「電腦或手機下載再傳進記憶卡」的路徑撰寫。',
+      '官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式，手冊全文沒有出現 eMMC。網路上找得到「8 GB eMMC」的說法，本站 2026-09-20 回頭追來源，找不到官方文件也找不到任何拆機報告支持，所以不採用。這一項不影響任何操作，列出來只是為了誠實。',
   },
   {
     id: 'update-project-safety',
     question: '韌體更新會不會影響既有專案？',
-    status: '官方更新說明只強調「更新中不要拔線」，沒有提到專案。更新前請務必自己先存一次。',
+    status:
+      '官方的 MPC Sample 韌體更新說明整篇沒有提到既有資料，也沒有叫人先備份；1.2.0、1.2.1、1.3.0 三次更新的公開說明同樣沒有提到資料遺失。沒有寫不等於不會發生，所以本站的建議不變：更新前自己先按 SHIFT + PAD 16 存一次，重要專案先用 SD Card Access 複製一份到電腦。',
   },
   {
-    id: 'undocumented-features',
-    question: 'lazy-chopping、auto-snapping、fixed-length sampling 到底怎麼操作？',
+    id: 'auto-snapping',
+    question: 'auto-snapping 到底是哪一個功能？',
     status:
-      '這三個詞只出現在官方手冊的功能列表裡（Advanced Sample Editing 與 Key Software Features 兩行），手冊內文從頭到尾沒有任何一段說明怎麼用。fixed-length sampling 我們合理推測就是 Rec Length 設成 SEQ，但官方沒有把兩者連起來寫。另外兩個目前完全查不到操作方式。',
+      '官方功能列表的三個詞裡，lazy-chopping 與 fixed-length sampling 已經查出對應的功能（見下方已排除的疑問）。剩下 auto-snapping 仍然只出現在 Advanced Sample Editing 那一行，手冊內文從頭到尾沒有任何一段說明。合理的猜測是切點或循環點會自動對齊，但官方沒有寫，本站不寫成肯定語氣。',
   },
 ];
 
@@ -145,6 +141,30 @@ export const resolvedQuestions: ResolvedQuestion[] = [
       '手冊寫「Approximately 5 hours of continuous playback」，官方 FAQ 寫「Up to 6 hours」。MusicRadar 實際使用後寫「around 5 hours of operation」。依來源優先序手冊優先，獨立評測也站在同一邊，FAQ 的 6 小時視為行銷用語。',
     resolvedDate: '2026-08-10',
   },
+  {
+    id: 'splice-workflow',
+    question: 'Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？',
+    answer: '沒有機上整合。要先在電腦或手機下載，再傳進 microSD 卡。',
+    evidence:
+      '其他 MPC 的 Splice 整合是靠 Wi-Fi：機器產生一組代碼，到 Splice 網站綁定帳號，之後直接在機器上瀏覽自己的音色庫。這台沒有 Wi-Fi——官方手冊 v1.3.0 全文沒有出現 Wi-Fi、wireless、Bluetooth 任何一個字，也沒有出現 Splice。Splice 官方的 Akai 合作頁只列 Force 與 MPC 標準款，沒有 MPC Sample。官方那支「Using Splice with MPC Sample」影片本站還沒有人看過；看過之後若與這裡的結論不符，以影片為準，我們會回來更正。',
+    resolvedDate: '2026-09-20',
+  },
+  {
+    id: 'lazy-chopping',
+    question: '官方功能列表寫的 lazy-chopping 是哪一個功能？',
+    answer: '就是 Chop Type 的 Manual 模式。本站 2-6 第 4 段教的就是它。',
+    evidence:
+      '手冊的 Manual 模式寫得很清楚：敲 PAD 1 開始播放並放下第一個起點，樣本一邊播，你一邊敲 pad 加切點，一個樣本最多 16 個切片。這正是 MPC 圈子講的 lazy chop——邊聽邊點，不是先算好位置再下刀。功能列表用行銷詞，內文用功能名，兩邊指的是同一件事。',
+    resolvedDate: '2026-09-20',
+  },
+  {
+    id: 'fixed-length-sampling',
+    question: '官方功能列表寫的 fixed-length sampling 是哪一個功能？',
+    answer: '就是 Input Config 選單裡的 Rec Length 設成 SEQ。',
+    evidence:
+      '手冊功能列表那一行把兩件事並列：「Threshold-controlled sampling」與「Fixed-length sampling to ensure accurate loops」。Input Configuration 選單裡剛好也是相鄰的兩個設定：Threshold 與 Rec Length。Rec Length 設 FREE 是不限長度，設 SEQ 則「錄音長度鎖定為序列長度」，而且播放中會等這一輪跑完才開始錄，正是為了讓循環準。手冊內文沒有出現「fixed-length sampling」這個詞，這個對應是本站依兩處文字推出來的。',
+    resolvedDate: '2026-09-20',
+  },
 ];
 
 /** 已經查證確認的事實，寫在這裡供各頁引用，避免各處各寫一套 */
@@ -167,6 +187,9 @@ export const VERIFIED_FACTS = {
   recallSequence: '序列 Recall 撈回「上一個循環」彈過的內容，不是固定秒數',
   midiAdapter: '接五針 MIDI 需要 1/8" TRS Type A 轉接線，盒裝不含，要自己買',
   chopTypes: 'Chop Type 三種：Threshold、Regions（4／8／16）、Manual',
+  lazyChop: '官方功能列表的 lazy-chopping 就是 Chop Type 的 Manual 模式',
+  fixedLengthSampling: '官方功能列表的 fixed-length sampling 就是 Rec Length 設成 SEQ',
+  spliceRoute: '沒有機上 Splice 整合（本機無 Wi-Fi），要在電腦或手機下載再傳進 microSD',
   polyphony: '32 個立體聲複音，磁碟串流同樣上限 32 個聲音',
   perProject: '每個專案 16 個樣本 × 8 個 bank、16 個序列 × 8 個 bank；專案數量本身沒有上限',
   importFormats: '可匯入 .wav、.mp3、.aif／.aiff、.snd、.s1s、.s3s、.flac、.ogg',

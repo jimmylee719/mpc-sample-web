@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { lessons, lessonHref } from '@/content/lessons';
 import { VERIFIED_FACTS } from '@/content/reference/firmware';
 import { PadGrid, WaveRule } from '@/components/site/Deco';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '開始之前 — 開箱、接線、第一次充電',
   description:
     '盒子裡有什麼、缺什麼要自己買、第一次要不要充電、聲音從哪裡出來、音量開多大不會傷耳朵。第一課之前先看這一頁，五分鐘。',
-};
+});
 
 const first = lessons[0]!;
 
@@ -186,6 +187,18 @@ export default function StartPage() {
               麥克風收的是整個房間。電風扇、冷氣、電視都會一起錄進去。
             </p>
           </div>
+        </div>
+
+        <div className="mt-3 rounded-xl border border-[#2C3036] bg-stage-2 p-4">
+          <p className="text-[16px] font-semibold text-white">沒有網路的地方也能上課</p>
+          <p className="mt-1 text-sm leading-relaxed text-[#8D9299]">
+            這個網站可以裝成 App。裝完之後，<b className="font-semibold text-white">有網路時先把要上的課點開一次</b>
+            ，那一課就會留在你的手機裡，之後在沒訊號的地方照樣讀得到。
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-[#8D9299]">
+            安裝方式：iPhone 用 Safari 的分享按鈕選「加入主畫面」；Android 用 Chrome 右上角選單選「安裝應用程式」。
+            不裝也沒關係，網頁本來就能用。
+          </p>
         </div>
       </section>
 

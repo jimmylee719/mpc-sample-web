@@ -5,12 +5,13 @@ import { MANUAL_REVISION, FIRMWARE_BASELINE, openQuestions } from '@/content/ref
 import { lessons } from '@/content/lessons';
 import { genres } from '@/content/genres';
 import { PadGrid, WaveRule } from '@/components/site/Deco';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '關於本站',
   description:
     '敲敲取樣由凡圖有限公司營運。這一頁說清楚我們是誰、事實從哪裡來、哪些還沒驗證，以及本站與 Akai 沒有任何隸屬關係。',
-};
+});
 
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
 

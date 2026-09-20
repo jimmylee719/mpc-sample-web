@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { troubles } from '@/content/reference/troubleshoot';
 import { SiteSearch } from '@/components/reference/SiteSearch';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '疑難排解 — Akai 取樣機',
   description: '現象、原因、解法三欄對照。只收有官方依據或本站已寫明的項目。',
-};
+});
 
 export default function Page() {
   return (

@@ -5,16 +5,45 @@ import { SiteHeader } from '@/components/site/SiteHeader';
 import { BottomNav } from '@/components/site/BottomNav';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { RegisterSW } from '@/components/site/RegisterSW';
+import { SITE } from '@/content/site';
 
-const SITE_NAME = '敲敲取樣 · 一台就夠';
+const SITE_NAME = SITE.name;
+const DESCRIPTION =
+  '繁體中文的 Akai 取樣機完整教學。把一台手持取樣機變成能上台表演、也能獨立完成整首歌的樂器，全程不需要電腦。';
 
 export const metadata: Metadata = {
+  // 有了這個，各頁的 canonical 與 og:image 才能用相對路徑寫，輸出時會補成絕對網址
+  metadataBase: new URL(SITE.url),
   title: {
     default: `${SITE_NAME} — MPC Sample 中文教學`,
     template: `%s ｜ ${SITE_NAME}`,
   },
-  description:
-    '繁體中文的 Akai 取樣機完整教學。把一台手持取樣機變成能上台表演、也能獨立完成整首歌的樂器，全程不需要電腦。',
+  description: DESCRIPTION,
+  // './' 代表「這一頁自己」，每頁都會得到指向自己的 canonical
+  alternates: { canonical: './' },
+  /**
+   * 分享卡片。這個站是要貼到社群去的，沒有這一段，
+   * 貼出去只會是一條白底連結，沒人會點。
+   */
+  openGraph: {
+    type: 'website',
+    locale: 'zh_TW',
+    siteName: SITE_NAME,
+    // 跟 title 一樣用樣板，各頁才會分享出自己的標題，而不是全站同一句
+    title: {
+      default: `${SITE_NAME} — MPC Sample 中文教學`,
+      template: `%s ｜ ${SITE_NAME}`,
+    },
+    description: DESCRIPTION,
+    url: './',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: '取樣機面板：螢幕、波形、三顆旋鈕與 16 顆打擊墊' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_NAME} — MPC Sample 中文教學`,
+    description: DESCRIPTION,
+    images: ['/og.png'],
+  },
   applicationName: SITE_NAME,
   formatDetection: { telephone: false },
   manifest: '/manifest.webmanifest',

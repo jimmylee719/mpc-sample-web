@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import { FxDictionary } from '@/components/reference/FxDictionary';
 import { SiteSearch } from '@/components/reference/SiteSearch';
 import { KNOB_FX_TOTAL, KNOB_FX_DOCUMENTED } from '@/content/reference/fx';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '效果字典 — Akai 取樣機',
   description: 'Pad FX 16 種、Knob FX、Flex Beat 與壓縮器。每一種都寫清楚做什麼用、什麼時候用。',
-};
+});
 
 export default function Page() {
   return (

@@ -7,12 +7,13 @@ import {
 } from '@/content/reference/techniques';
 import { getLesson, lessonHref } from '@/content/lessons';
 import { SiteSearch } from '@/components/reference/SiteSearch';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '延伸技巧 — Akai 取樣機進階操作',
   description:
     '已經會操作之後，讓你快很多的組合技：鎖長度錄循環、Threshold 自動起錄、切片的 Extract／Split／Merge、只有 Knob FX 能指定單一 pad。官方依據與社群做法分開標示。',
-};
+});
 
 export default function Page() {
   return (

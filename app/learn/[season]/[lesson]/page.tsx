@@ -10,6 +10,7 @@ import { NeedsComputerBadge } from '@/components/badges/NeedsComputerBadge';
 import { VideoList } from '@/components/video/VideoList';
 import { videosFor } from '@/content/videos';
 import { termsUsedIn } from '@/content/reference/glossary';
+import { withShare } from '@/content/site';
 
 export const dynamicParams = false;
 
@@ -23,10 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { season, lesson: slug } = await params;
   const lesson = findLesson(season, slug);
   if (!lesson) return {};
-  return {
+  return withShare({
     title: `${lesson.title} — MPC Sample 取樣機教學`,
     description: lesson.outcome,
-  };
+  });
 }
 
 export default async function LessonPage({ params }: { params: Promise<Params> }) {

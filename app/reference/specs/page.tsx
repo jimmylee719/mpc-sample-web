@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { specGroups, MANUAL_REVISION } from '@/content/reference/firmware';
 import { SiteSearch } from '@/components/reference/SiteSearch';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '規格總表 — Akai 取樣機',
   description:
     '複音數、可匯入格式、取樣位元與取樣率、序列器解析度、每個專案能放多少樣本與序列。全部對照官方使用手冊 v1.3.0 (RevA) 附錄。',
-};
+});
 
 export default function Page() {
   return (

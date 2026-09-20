@@ -9,12 +9,13 @@ import { openQuestions, specGroups } from '@/content/reference/firmware';
 import { allTechniques, verifiedTechniqueCount } from '@/content/reference/techniques';
 import { officialTutorial, officialChapters } from '@/content/reference/official-order';
 import { KNOB_FX_TOTAL } from '@/content/reference/fx';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '查詢區 — Akai 取樣機速查',
   description:
     '規格總表、延伸技巧、快捷鍵、旋鈕矩陣、效果字典、名詞對照、疑難排解、韌體與尚未驗證清單。做到一半卡住就翻這裡。',
-};
+});
 
 const PAGES = [
   {

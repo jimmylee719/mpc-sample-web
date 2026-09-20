@@ -9,11 +9,12 @@ import {
 } from '@/content/reference/firmware';
 import { lessons, lessonHref } from '@/content/lessons';
 import { FirmwareBadge } from '@/components/badges/FirmwareBadge';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '韌體對照 — Akai 取樣機',
   description: '全站事實查核所依據的韌體與手冊版本，以及尚未驗證的項目清單。',
-};
+});
 
 export default function Page() {
   return (

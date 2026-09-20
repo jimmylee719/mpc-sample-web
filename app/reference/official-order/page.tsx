@@ -7,12 +7,13 @@ import {
 } from '@/content/reference/official-order';
 import { getLesson, lessonHref } from '@/content/lessons';
 import { MANUAL_REVISION } from '@/content/reference/firmware';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '官方順序對照 — 手冊章節與本站課程',
   description:
     '官方使用手冊的 Tutorial 六步與完整章節順序，每一項都連到本站對應的課。想照官方順序學的人看這一頁。',
-};
+});
 
 function LessonLinks({ entry }: { entry: OfficialEntry }) {
   const lessons = entry.lessons.map((id) => getLesson(id)).filter((l) => l !== undefined);

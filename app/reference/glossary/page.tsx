@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { glossary } from '@/content/reference/glossary';
 import { SiteSearch } from '@/components/reference/SiteSearch';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '名詞對照 — Akai 取樣機',
   description: '英文面板名詞的中文對照，每一個都寫清楚拿來做什麼用，不只是翻譯。',
-};
+});
 
 export default function Page() {
   return (

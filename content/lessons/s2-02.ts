@@ -171,9 +171,9 @@ export const s2_02: Lesson = {
       screen: { t1: 'SPLICE' },
       hear: '—',
       note: {
-        kind: 'warn',
-        title: '尚未驗證',
-        body: '官方手冊完全沒提 Splice，本機規格也沒有無線連線。實際流程請以官方影片為準。',
+        kind: 'tip',
+        title: 'Splice 沒有機上整合',
+        body: '本機沒有 Wi-Fi，沒有其他 MPC 那種機上音色庫。Splice 官方的合作機種頁也沒有列這台。',
       },
     },
     {

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { KnobMatrix } from '@/components/reference/KnobMatrix';
 import { verifiedCount } from '@/content/reference/knobs';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '旋鈕矩陣 — Akai 取樣機',
   description: 'K1、K2、K3 在各個畫面下分別管什麼。選畫面，面板與小螢幕同步顯示。',
-};
+});
 
 export default function Page() {
   return (

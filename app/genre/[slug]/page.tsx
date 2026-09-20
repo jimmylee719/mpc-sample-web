@@ -5,6 +5,7 @@ import { genres, getGenre } from '@/content/genres';
 import { GenreCard } from '@/components/genre/GenreCard';
 import { VideoList } from '@/components/video/VideoList';
 import { videosFor } from '@/content/videos';
+import { withShare } from '@/content/site';
 
 export const dynamicParams = false;
 
@@ -18,10 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const genre = getGenre(slug);
   if (!genre) return {};
-  return {
+  return withShare({
     title: `${genre.titleEn} 怎麼做 — 取樣機配方卡`,
     description: `${genre.tagline} BPM ${genre.tempo.bpmMin}–${genre.tempo.bpmMax}，含 pad 配置、鼓組拆解、resample 規劃與效果配方。`,
-  };
+  });
 }
 
 export default async function GenrePage({ params }: { params: Promise<Params> }) {

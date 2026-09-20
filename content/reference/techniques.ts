@@ -45,7 +45,7 @@ export const techniqueGroups: TechniqueGroup[] = [
         id: 'rec-length-seq',
         title: '把 Rec Length 設成 SEQ，錄出來的循環永遠對齊',
         when: '你要錄一段拿來當底的循環，而且受不了每次都要手動修頭尾。',
-        how: '在 Sample Record 頁把 Rec Length 從 FREE 改成 SEQ，錄音長度就會鎖成目前序列的長度。如果按下錄音時序列正在播，錄音會等到這一輪跑完才開始。',
+        how: '在 Sample Record 頁把 Rec Length 從 FREE 改成 SEQ，錄音長度就會鎖成目前序列的長度。如果按下錄音時序列正在播，錄音會等到這一輪跑完才開始。官方規格表寫的 fixed-length sampling 指的就是這個設定。',
         status: 'verified',
         source:
           '官方手冊 v1.3.0 (RevA)：「When set to SEQ, the recording length is locked to the Sequence length. If SEQ is selected and playback is active, recording begins at the end of the current loop.」',

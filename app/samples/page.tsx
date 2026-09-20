@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { RecordCrate } from '@/components/site/Deco';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '素材庫 — 自錄與 CC0',
   description:
     '本站提供的免費取樣素材，一律自錄或 CC0，並保留原始檔佐證。不提供他人音樂素材下載。',
-};
+});
 
 const CATEGORIES = [
   {

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { COMPANY, SITE } from '@/content/site';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '隱私權政策',
   description:
     '本站沒有帳號系統、沒有廣告追蹤、不使用分析工具。學習進度只存在你自己的裝置上。這一頁說清楚每一項資料去了哪裡。',
-};
+});
 
 /**
  * 隱私權政策。

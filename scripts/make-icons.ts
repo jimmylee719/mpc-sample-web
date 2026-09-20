@@ -74,13 +74,23 @@ function hex(h: string): Rgb {
 
 class Canvas {
   readonly px: Buffer;
+  readonly w: number;
+  readonly h: number;
 
-  constructor(readonly size: number) {
-    this.px = Buffer.alloc(size * size * 4);
+  /** 只給一個數字就是正方形 */
+  constructor(w: number, h: number = w) {
+    this.w = w;
+    this.h = h;
+    this.px = Buffer.alloc(w * h * 4);
+  }
+
+  /** 舊呼叫端習慣用 size，正方形時等於寬 */
+  get size(): number {
+    return this.w;
   }
 
   fill(color: Rgb): void {
-    for (let i = 0; i < this.size * this.size; i++) {
+    for (let i = 0; i < this.w * this.h; i++) {
       this.px[i * 4] = color[0];
       this.px[i * 4 + 1] = color[1];
       this.px[i * 4 + 2] = color[2];
@@ -92,8 +102,8 @@ class Canvas {
   roundRect(x: number, y: number, w: number, h: number, r: number, color: Rgb): void {
     const x0 = Math.max(0, Math.floor(x));
     const y0 = Math.max(0, Math.floor(y));
-    const x1 = Math.min(this.size, Math.ceil(x + w));
-    const y1 = Math.min(this.size, Math.ceil(y + h));
+    const x1 = Math.min(this.w, Math.ceil(x + w));
+    const y1 = Math.min(this.h, Math.ceil(y + h));
     const S = 4;
 
     for (let py = y0; py < y1; py++) {
@@ -114,7 +124,7 @@ class Canvas {
         }
         if (hits === 0) continue;
         const a = hits / (S * S);
-        const i = (py * this.size + px) * 4;
+        const i = (py * this.w + px) * 4;
         this.px[i] = Math.round(this.px[i]! * (1 - a) + color[0] * a);
         this.px[i + 1] = Math.round(this.px[i + 1]! * (1 - a) + color[1] * a);
         this.px[i + 2] = Math.round(this.px[i + 2]! * (1 - a) + color[2] * a);
@@ -161,6 +171,89 @@ function draw(size: number, inset: number): Buffer {
   return encodePng(size, size, c.px);
 }
 
+/**
+ * 分享縮圖（Open Graph）。1200×630 是 Facebook、LINE、Threads、Discord 共通的尺寸。
+ *
+ * 這張圖上沒有文字。理由是誠實的技術限制：這支腳本不依賴任何字型或繪圖套件，
+ * 畫不出中文字。分享卡片本來就會把標題與描述印在圖旁邊，所以圖只負責一件事——
+ * 一眼認出這是那台機器。畫的是面板本身：螢幕、波形、三顆旋鈕、4×4 打擊墊。
+ */
+const DEV_BODY = hex('#E7E5E0');
+const DEV_BODY_EDGE = hex('#C9C6BF');
+const DEV_SCREEN = hex('#0C130F');
+const DEV_WAVE = hex('#E8C93A');
+const DEV_DARK = hex('#1B1D20');
+
+function drawOg(w: number, h: number): Buffer {
+  const c = new Canvas(w, h);
+  c.fill(BG);
+
+  // 機身：置中偏上，留下方空間給紅色色帶
+  const bodyW = w * 0.62;
+  const bodyH = h * 0.78;
+  const bx = (w - bodyW) / 2;
+  const by = h * 0.08;
+  c.roundRect(bx - 4, by - 4, bodyW + 8, bodyH + 8, 26, DEV_BODY_EDGE);
+  c.roundRect(bx, by, bodyW, bodyH, 24, DEV_BODY);
+
+  // 螢幕
+  const scrW = bodyW * 0.42;
+  const scrH = bodyH * 0.3;
+  const sx = bx + bodyW * 0.06;
+  const sy = by + bodyH * 0.07;
+  c.roundRect(sx, sy, scrW, scrH, 8, DEV_SCREEN);
+
+  // 波形：跟全站同一組確定性亂數（s = (s*9301+49297) % 233280），每次輸出都一樣
+  let seed = 7;
+  const bars = 34;
+  const barW = (scrW * 0.86) / bars;
+  for (let i = 0; i < bars; i++) {
+    seed = (seed * 9301 + 49297) % 233280;
+    const amp = 0.18 + (seed / 233280) * 0.78;
+    const bh = scrH * 0.62 * amp;
+    const x = sx + scrW * 0.07 + i * barW;
+    c.roundRect(x, sy + scrH / 2 - bh / 2, barW * 0.55, bh, barW * 0.27, DEV_WAVE);
+  }
+
+  // 三顆旋鈕，在螢幕右邊
+  const knobR = bodyH * 0.075;
+  for (let i = 0; i < 3; i++) {
+    const kx = sx + scrW + bodyW * 0.09 + i * knobR * 2.9;
+    const ky = sy + scrH / 2 - knobR;
+    c.roundRect(kx, ky, knobR * 2, knobR * 2, knobR, DEV_DARK);
+    // 指針朝上
+    c.roundRect(kx + knobR * 0.86, ky + knobR * 0.22, knobR * 0.28, knobR * 0.7, knobR * 0.14, DEV_BODY);
+  }
+
+  // 4×4 打擊墊：PAD 1 在左下角亮紅，右上角亮綠，跟圖示同一套語彙
+  const gridW = bodyW * 0.86;
+  const gx = bx + (bodyW - gridW) / 2;
+  // 給格線一個明確的上下界，四排一定塞得進機身，不會掉出去
+  const gridTop = by + bodyH * 0.42;
+  const gridBottom = by + bodyH * 0.92;
+  const gapX = gridW * 0.028;
+  const gapY = bodyH * 0.03;
+  const cellW = (gridW - gapX * 3) / 4;
+  const cellH = (gridBottom - gridTop - gapY * 3) / 4;
+  const r = Math.min(cellW, cellH) * 0.26;
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 4; col++) {
+      const x = gx + col * (cellW + gapX);
+      const y = gridTop + row * (cellH + gapY);
+      const isPad1 = row === 3 && col === 0;
+      const isLive = row === 0 && col === 3;
+      const color = isPad1 ? AKAI : isLive ? LIVE : PAD;
+      c.roundRect(x, y, cellW, cellH, r, isPad1 || isLive ? color : PAD_EDGE);
+      c.roundRect(x, y, cellW, cellH * 0.88, r, color);
+    }
+  }
+
+  // 底部紅色色帶，讓縮圖在淺色動態牆上也切得出邊界
+  c.roundRect(0, h - 14, w, 14, 0, AKAI);
+
+  return encodePng(w, h, c.px);
+}
+
 const outDir = resolve(import.meta.dirname, '..', 'public');
 
 const jobs: Array<[string, number, number]> = [
@@ -176,5 +269,8 @@ for (const [name, size, inset] of jobs) {
   writeFileSync(resolve(outDir, name), draw(size, inset));
   console.log(`  ✓ public/${name}  ${size}×${size}`);
 }
+
+writeFileSync(resolve(outDir, 'og.png'), drawOg(1200, 630));
+console.log('  ✓ public/og.png  1200×630');
 
 console.log('圖示產生完成');

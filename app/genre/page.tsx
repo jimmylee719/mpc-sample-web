@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { GENRE_LEVELS, genresByLevel, genreHref, genres } from '@/content/genres';
 import { Turntable } from '@/components/site/Deco';
+import { withShare } from '@/content/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withShare({
   title: '曲風工廠 — 取樣機配方卡',
   description:
     '每個曲風一張八段式配方卡：BPM、pad 配置、鼓組拆解、素材建議、resample 次數、效果配方與完成檢查點。依機上實現難度分成 L1 到 L4。',
-};
+});
 
 export default function GenreIndexPage() {
   return (

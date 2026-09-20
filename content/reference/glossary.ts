@@ -26,6 +26,12 @@ export const glossary: GlossaryEntry[] = [
   { en: 'Threshold', zh: '門檻', what: '音量超過這個值才開始動作，Chop 的一種切法', lesson: 's1-02' },
   { en: 'Regions', zh: '等分', what: '不管內容，把聲音平均切成 4、8 或 16 塊', lesson: 's1-02' },
   { en: 'Extract', zh: '抽出', what: '把某一塊切片變成獨立樣本，跑到新的 pad', lesson: 's1-02' },
+  {
+    en: 'Lazy Chop',
+    zh: '邊聽邊切',
+    what: '官方功能列表的說法，指的就是 Chop 的 Manual 模式：邊播邊敲 pad 下切點',
+    lesson: 's2-06',
+  },
   { en: 'Resample', zh: '重新取樣', what: '把整段循環收成一個新聲音，空出其他 pad', lesson: 's1-02' },
   { en: 'Overdub', zh: '疊錄', what: '循環跑第二輪時繼續往上加東西', lesson: 's1-02' },
   { en: 'Quantize', zh: '量化', what: '把敲歪的音自動貼到節奏格子上', lesson: 's1-02' },
