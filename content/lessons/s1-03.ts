@@ -96,7 +96,7 @@ export const s1_03: Lesson = {
     },
     {
       ch: 1,
-      say: '按住 SHIFT 時燈也會變。<b>有第二功能的鍵會轉成紅色</b>。微亮代表還沒啟用，明亮代表正在用。',
+      say: '按住 <b>SHIFT</b> 時燈也會變。<b>有第二功能的鍵會轉成紅色</b>。微亮代表還沒啟用，明亮代表正在用。',
       targets: ['shift', 'sample', 'seq', 'padfx', 'knobfx'],
       shift: true,
       screen: { t1: 'SHIFT' },
@@ -112,7 +112,7 @@ export const s1_03: Lesson = {
     },
     {
       ch: 1,
-      say: '紅字不只在按鍵下面。<b>每一顆 pad 上方也有一行</b>。那是 SHIFT 加這顆 pad 的功能。',
+      say: '紅字不只在按鍵下面。<b>每一顆 pad 上方也有一行</b>。那是 <b>SHIFT</b> 加這顆 pad 的功能。',
       targets: ['pads'],
       shift: true,
       screen: { t1: 'SHIFT + PAD' },
@@ -120,7 +120,7 @@ export const s1_03: Lesson = {
     },
     {
       ch: 1,
-      say: 'PAD 11 上面寫 RESAMPLE。<b>按住 SHIFT 再按 PAD 11</b> 就是重新取樣。這是這台機器最重要的一招。',
+      say: '<b>PAD 11</b> 上面寫 RESAMPLE。<b>按住 SHIFT 再按 PAD 11</b> 就是重新取樣。這是這台機器最重要的一招。',
       targets: ['p11'],
       shift: true,
       screen: { t1: 'RESAMPLE' },
@@ -128,7 +128,7 @@ export const s1_03: Lesson = {
     },
     {
       ch: 1,
-      say: 'PAD 16 上面寫 PROJECT。<b>按住 SHIFT 再按 PAD 16</b> 打開專案選單。存檔、載入都在這裡。',
+      say: '<b>PAD 16</b> 上面寫 PROJECT。<b>按住 SHIFT 再按 PAD 16</b> 打開專案選單。存檔、載入都在這裡。',
       targets: ['p16'],
       shift: true,
       screen: { t1: 'PROJECT' },

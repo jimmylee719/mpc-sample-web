@@ -45,7 +45,7 @@ export const s2_04: Lesson = {
     },
     {
       ch: 1,
-      say: '在 SAMPLE 頁按 <b>B3</b> 到 Filter。轉 <b>K3</b> 先把 Type 選成 <b>LPF2</b>。',
+      say: '在 <b>SAMPLE</b> 頁按 <b>B3</b> 到 Filter。轉 <b>K3</b> 先把 Type 選成 <b>LPF2</b>。',
       targets: ['b3', 'k3'],
       screen: { t1: 'TYPE   LPF2', tabs: ['Trim', 'Tune', 'Filter'], bots: ['Cutoff', 'Reso', 'Type'], wave: 31 },
       hear: '—',

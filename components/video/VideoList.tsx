@@ -91,15 +91,24 @@ function VideoItem({ video }: { video: VideoRef }) {
       )}
 
       {playing ? (
-        <div className="mt-3 aspect-video w-full overflow-hidden rounded-lg bg-black">
-          <iframe
-            src={embedSrc(video.youtubeId)}
-            title={video.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="h-full w-full border-0"
-          />
-        </div>
+        <>
+          <div className="mt-3 aspect-video w-full overflow-hidden rounded-lg bg-black">
+            {/*
+              referrerPolicy：YouTube 從 2025 年起，嵌入時收不到來源網站就會拒播（錯誤 153）。
+              瀏覽器預設會送，但 PWA 與某些手機瀏覽器不一定，這裡明講。
+            */}
+            <iframe
+              src={embedSrc(video.youtubeId)}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full border-0"
+            />
+          </div>
+          {/* iPhone 不允許有聲音的影片自動播放，播放器出現後要再按一次 */}
+          <p className="label-mono mt-2 text-[#6B7178]">沒有自動開始的話，再按一次影片中間的播放鍵</p>
+        </>
       ) : (
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <button

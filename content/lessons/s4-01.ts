@@ -47,7 +47,7 @@ export const s4_01: Lesson = {
     },
     {
       ch: 0,
-      say: '第三套 <b>Knob FX</b>。用 K1 到 K3 控制，一次一個效果。',
+      say: '第三套 <b>Knob FX</b>。用 <b>K1</b> 到 <b>K3</b> 控制，一次一個效果。',
       targets: ['knobfx'],
       screen: { t1: 'KNOB FX' },
       hear: '—',

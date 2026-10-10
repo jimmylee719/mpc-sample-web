@@ -73,7 +73,7 @@ export const s5_05: Lesson = {
     },
     {
       ch: 1,
-      say: '最後兩拍<b>敲一顆效果 pad</b>，放完會自己回到 PAD 1。乾淨俐落。',
+      say: '最後兩拍<b>敲一顆效果 pad</b>，放完會自己回到 <b>PAD 1</b>。乾淨俐落。',
       targets: ['p5'],
       screen: { t1: 'FLEX BEAT  →  EMPTY' },
       hear: '兩拍的切碎效果，然後恢復',

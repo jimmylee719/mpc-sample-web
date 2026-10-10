@@ -8,6 +8,8 @@
  * 3. 一律 aria-hidden。這些東西是氣氛，不是資訊，讀螢幕的人不需要聽到。
  */
 
+import { n2 } from '@/components/svg-num';
+
 /** 跟 MpcScreen 同一套線性同餘產生器，波形長相才會是同一家人 */
 function seeded(seed: number): () => number {
   let s = (seed || 1) * 7919;
@@ -46,12 +48,12 @@ export function WaveRule({
         <rect
           key={i}
           x={i * 3}
-          y={20 - (h * 36) / 2}
+          y={n2(20 - (h * 36) / 2)}
           width="1.6"
-          height={h * 36}
+          height={n2(h * 36)}
           rx="0.8"
           fill="currentColor"
-          opacity={0.25 + h * 0.5}
+          opacity={n2(0.25 + h * 0.5)}
         />
       ))}
     </svg>

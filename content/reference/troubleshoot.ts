@@ -95,9 +95,9 @@ export const troubles: TroubleEntry[] = [
     id: 'no-card-no-transfer',
     symptom: '想把做好的音檔傳到電腦，但沒有記憶卡',
     cause: '傳檔掛載到電腦上的是 microSD 卡，不是內建的 8 GB 儲存。沒有卡就沒有東西可以掛。',
-    fix: '買一張 microSD 卡。已經存在內建儲存的樣本，要先在存檔時把目的地改成記憶卡，再走 SD Card Access。',
+    fix: '長遠的解法是買一張 microSD 卡，存專案時目的地選記憶卡，再走 SD Card Access。今天就要拿到整首歌：用 USB-C 接電腦，在電腦上錄機器播出來的聲音，做法在 3-10 第 3 段。',
     source:
-      'Akai 官方使用手冊 v1.3.0 (RevA)：SD Card Access 存取「插在卡槽裡的 microSD（不含在盒裝內）」，且「The microSD card will mount as an external drive on your computer」',
+      'Akai 官方使用手冊 v1.3.0 (RevA)：SD Card Access 存取「插在卡槽裡的 microSD（不含在盒裝內）」，且「The microSD card will mount as an external drive on your computer」；背板 USB-C 可接電腦「to send and receive audio and MIDI」',
   },
   {
     id: 'midi-adapter-missing',

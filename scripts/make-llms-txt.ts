@@ -28,6 +28,8 @@ import {
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
 
 const REFERENCE: Array<[string, string]> = [
+  ['/reference/connections', '接線總表：手機、電腦、唱盤、合成器怎麼接進來取樣，怎麼接出去錄整首歌'],
+  ['/reference/principles', '原理：每個操作背後的道理，例如 Resample 為什麼能空出聲音、Warp 與 Repitch 差在哪'],
   ['/reference/specs', '規格總表：逐行對照官方手冊附錄的硬體與軟體規格'],
   ['/reference/shortcuts', '快捷鍵總表：面板紅字的第二功能，含面板沒印出來的組合'],
   ['/reference/knobs', '旋鈕矩陣：同樣三顆旋鈕在每個畫面分別是什麼功能'],
@@ -80,7 +82,9 @@ P('- 官方功能列表的 fixed-length sampling 就是 Input Config 的 Rec Len
 P('- 全機只有五個選單：Input Config、Fader、Time Correct、MIDI Config、Project。沒有 Preferences');
 P('- 電池為手冊所寫的「約 5 小時連續播放」；官方 FAQ 的 6 小時與手冊不一致');
 P('- 音訊 Recall 是最後 25 秒；序列 Recall 撈的是「上一個循環」，不是固定秒數');
-P('- 要把作品傳到電腦必須有 microSD 卡。SD Card Access 掛載的是記憶卡，不是內建的 8 GB');
+P('- 傳「檔案」到電腦必須有 microSD 卡：SD Card Access 掛載的是記憶卡，不是內建的 8 GB。沒有卡時仍可用 USB-C 把機器的聲音送進電腦錄下整首歌');
+P('- 匯出的整首歌音檔存在內建還是記憶卡、什麼格式，官方手冊沒有寫，目前仍未驗證');
+P('- MPC 3.8（2026-04-30）起，其他 MPC 與 MPC 桌面軟體可以載入 MPC Sample 專案；本機讀不了其他 MPC 的專案');
 P('- 盒裝不含變壓器、microSD 卡與 MIDI 轉接線');
 P('- 沒有 Wi-Fi，因此沒有其他 MPC 那種機上 Splice 音色庫整合');
 P();

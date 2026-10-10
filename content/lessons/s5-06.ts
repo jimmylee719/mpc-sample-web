@@ -117,7 +117,7 @@ export const s5_06: Lesson = {
     },
     {
       ch: 3,
-      say: '上台前一：<b>專案存過了嗎</b>。按住 SHIFT 再按 PAD 16 存一次。',
+      say: '上台前一：<b>專案存過了嗎</b>。按住 <b>SHIFT</b> 再按 <b>PAD 16</b> 存一次。',
       targets: ['p16'],
       shift: true,
       screen: { t1: 'SAVE PROJECT' },
@@ -125,7 +125,7 @@ export const s5_06: Lesson = {
     },
     {
       ch: 3,
-      say: '之二：<b>所有 pad 都解除靜音了嗎</b>。按住 SHIFT 再按 MUTE 全部打開。',
+      say: '之二：<b>所有 pad 都解除靜音了嗎</b>。按住 <b>SHIFT</b> 再按 <b>MUTE</b> 全部打開。',
       targets: ['mute'],
       shift: true,
       screen: { t1: 'UNMUTE ALL' },
@@ -133,7 +133,7 @@ export const s5_06: Lesson = {
     },
     {
       ch: 3,
-      say: '之三：<b>音量歸位</b>。MAIN VOLUME 先轉到一半，接上場地音響再慢慢加。',
+      say: '之三：<b>音量歸位</b>。<b>MAIN VOLUME</b> 先轉到一半，接上場地音響再慢慢加。',
       targets: ['vol'],
       screen: { t1: 'VOLUME  50%' },
       hear: '—',

@@ -27,7 +27,7 @@ async function readCache(candidates: CandidatePage[]): Promise<CandidatePage[]> 
   const available = new Set<string>();
 
   for (const name of names) {
-    if (!name.startsWith('pages-')) continue;
+    if (!name.startsWith('pages')) continue;
     const cache = await caches.open(name);
     for (const req of await cache.keys()) {
       // 快取的 key 是完整網址，這裡只比對路徑，而且忽略結尾斜線的差別

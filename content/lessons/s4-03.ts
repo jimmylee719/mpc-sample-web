@@ -77,7 +77,7 @@ export const s4_03: Lesson = {
     },
     {
       ch: 1,
-      say: '轉到 <b>Loop</b> 就會一直重複，直到你換一個效果或按回 PAD 1。',
+      say: '轉到 <b>Loop</b> 就會一直重複，直到你換一個效果或按回 <b>PAD 1</b>。',
       targets: ['k1'],
       screen: { t1: 'MODE   LOOP', bots: ['Loop', '', 'Mix'] },
       hear: '效果持續重複',
@@ -108,7 +108,7 @@ export const s4_03: Lesson = {
     },
     {
       ch: 2,
-      say: '實戰用法：<b>八小節的最後兩拍丟一次 One Shot</b>，然後回到 PAD 1。',
+      say: '實戰用法：<b>八小節的最後兩拍丟一次 One Shot</b>，然後回到 <b>PAD 1</b>。',
       targets: ['p5', 'p1'],
       screen: { t1: 'FLEX BEAT  →  EMPTY' },
       hear: '過門之後乾淨回到原本的循環',

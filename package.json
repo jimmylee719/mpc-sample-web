@@ -7,7 +7,7 @@
     "dev": "next dev",
     "prebuild": "npm run validate && npm run check:panel && npm run llms",
     "build": "next build",
-    "postbuild": "pagefind --site out",
+    "postbuild": "pagefind --site out && tsx scripts/make-offline-manifest.ts",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
     "validate": "tsx scripts/validate-content.ts",
@@ -19,6 +19,7 @@
     "videos": "tsx scripts/video-coverage.ts",
     "keys": "tsx scripts/key-match-audit.ts",
     "videos:verify": "tsx scripts/verify-videos.ts",
+    "videos:embed": "tsx scripts/verify-embeds.ts",
     "check": "npm run typecheck && npm run validate && npm run validate:selftest && npm run check:panel"
   },
   "dependencies": {

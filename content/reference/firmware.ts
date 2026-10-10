@@ -82,6 +82,12 @@ export const openQuestions: OpenQuestion[] = [
       '官方的 MPC Sample 韌體更新說明整篇沒有提到既有資料，也沒有叫人先備份；1.2.0、1.2.1、1.3.0 三次更新的公開說明同樣沒有提到資料遺失。沒有寫不等於不會發生，所以本站的建議不變：更新前自己先按 SHIFT + PAD 16 存一次，重要專案先用 SD Card Access 複製一份到電腦。',
   },
   {
+    id: 'mixdown-location',
+    question: '匯出的整首歌音檔，存在內建儲存還是記憶卡？',
+    status:
+      '手冊只寫按 B2 匯出成音檔「which you can then transfer to a computer」，沒寫存到哪一個磁碟，也沒寫檔案格式。電腦只看得到記憶卡，所以如果它存在內建儲存，就要另外想辦法搬出來。在實機確認之前，本站在 3-10 同時教一條一定行得通的路：用 USB-C 接電腦，在電腦上直接錄機器播出來的聲音。',
+  },
+  {
     id: 'auto-snapping',
     question: 'auto-snapping 到底是哪一個功能？',
     status:
@@ -120,10 +126,20 @@ export const resolvedQuestions: ResolvedQuestion[] = [
   {
     id: 'export-without-sd',
     question: '沒插 microSD 卡，能不能把作品拿出來？',
-    answer: '不行。沒有記憶卡就沒辦法把檔案傳到電腦。',
+    answer:
+      '檔案拿不出來，聲音可以。電腦只看得到記憶卡，看不到內建的 8 GB；但機器可以透過 USB-C 把聲音直接送進電腦，邊播邊錄就能存下整首歌。',
     evidence:
-      '手冊 SD Card Access 章節寫得很明確：這個功能是存取「插在卡槽裡的 microSD（不含在盒裝內）」，而且「The microSD card will mount as an external drive on your computer」——掛載到電腦上的是記憶卡，不是內建的 8 GB。背板說明也寫 microSD 卡槽在機身左側，是「external file storage」。之前的疑問來自概述段落一句寫得比較鬆的話，詳細章節沒有模稜兩可。',
-    resolvedDate: '2026-08-10',
+      '手冊 SD Card Access 章節寫「The microSD card will mount as an external drive on your computer」——掛載到電腦上的是記憶卡，不是內建的 8 GB。同一份手冊在背板 USB-C 的說明寫它可以接電腦或行動裝置「to send and receive audio and MIDI」，所以聲音本身可以走 USB 傳出去。2026-10-10 更正：原本只寫「不行」，漏了 USB 音訊這條路。',
+    resolvedDate: '2026-10-10',
+  },
+  {
+    id: 'mpc3-interop',
+    question: '其他 MPC 開得了 MPC Sample 的專案嗎？',
+    answer:
+      '可以，從 MPC 3.8 開始。反方向只有鼓軌：其他 MPC 可以把一條 Drum Track 存成 MPC Sample 檔案帶回來，整個專案帶不回來。',
+    evidence:
+      'Akai 官方《MPC 3.8 Release Notes》（2026-04-30）寫「MPC desktop and standalone can now load MPC Sample projects」，並寫可以把 drum track 匯出成「MPC Sample File」：桌面軟體走 File > Export > As MPC Sample File，硬體在 Drum Track 的 Mode Menu 選 Save > Save Drum Track As MPC Sample File。適用 MPC XL、Live III、Key 37、One+、X SE、Key 61、One、Live II、X、Live 與 Force（僅限單機模式），桌面軟體仍是 beta。MPC Sample 自己的手冊 v1.3.0 寫的「Project import and export is not currently supported」是指這台機器本身不能讀其他 MPC 的專案，兩份文件沒有衝突。',
+    resolvedDate: '2026-10-10',
   },
   {
     id: 'midi-adapter-included',
@@ -198,7 +214,9 @@ export const VERIFIED_FACTS = {
   fxTotal: '四套引擎合計 60 種以上效果，路由為 Main Output、Input、Per-Pad',
   display: '2.4 吋全彩 LCD',
   padsSpec: '16 顆 RGB 背光、感應力度的 MPC pad，支援 aftertouch',
-  mpc3Support: '目前不支援與 MPC3 互轉專案；官方說未來韌體會讓 MPC 3.8 以上開得起 MPC Sample 專案',
+  mpc3Support:
+    '本機讀不了其他 MPC 的專案；但 MPC 3.8 起，其他 MPC 與桌面軟體可以開 MPC Sample 專案，並能把一條鼓軌存成 MPC Sample 檔案帶回來',
+  usbAudio: 'USB-C 接電腦或手機時可以雙向傳音訊與 MIDI：既能把手機的聲音錄進來，也能把機器的聲音送進電腦錄',
 } as const;
 
 /**
@@ -289,8 +307,8 @@ export const specGroups: SpecGroup[] = [
     rows: [
       {
         label: '專案互轉',
-        value: '目前不支援',
-        note: '官方說未來韌體會讓 MPC 3.8 以上的硬體與桌面軟體開得起 MPC Sample 專案。',
+        value: '單向：其他 MPC 開得了本機專案',
+        note: 'MPC 3.8（2026-04-30）起，其他 MPC 與桌面軟體可以載入 MPC Sample 專案，也能把一條鼓軌存成 MPC Sample 檔案。本機讀不了其他 MPC 的完整專案。',
       },
       {
         label: '本機沒有的東西',

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SEASONS, lessonsBySeason, lessonHref, lessons } from '@/content/lessons';
 import { LessonMap, type SeasonSummary } from '@/components/lesson/LessonMap';
+import { OfflineDownload } from '@/components/site/OfflineDownload';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumb, courseList } from '@/content/seo';
 import { withShare } from '@/content/site';
@@ -71,6 +72,10 @@ export default function LearnPage() {
           ，五分鐘搞定開箱、接線與音量。
         </p>
       </header>
+
+      <div className="mb-8">
+        <OfflineDownload compact />
+      </div>
 
       <LessonMap seasons={seasons} />
     </main>

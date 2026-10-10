@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { lessons, lessonHref, SEASONS } from '@/content/lessons';
 import { genres } from '@/content/genres';
 import { allVideos } from '@/content/videos';
-import { PadGrid, Vinyl, WaveRule, LevelMeter } from '@/components/site/Deco';
+import { Vinyl, WaveRule, LevelMeter } from '@/components/site/Deco';
+import { PlayablePads } from '@/components/site/PlayablePads';
 import { MpcPanel } from '@/components/mpc/MpcPanel';
 
 const totalSteps = lessons.reduce((n, l) => n + l.steps.length, 0);
@@ -100,15 +101,10 @@ export default function HomePage() {
         {/* 機器的兩個象徵：轉盤與 pad。純 CSS，沒有圖檔要下載。 */}
         <div className="relative mx-auto flex w-full max-w-[400px] items-center justify-center gap-5 split:max-w-none">
           <Vinyl className="w-[38%] shrink-0" />
-          <div className="w-[52%] rounded-[18px] border border-[#2C3036] bg-stage-2 p-4 shadow-[0_18px_40px_rgb(0_0_0/0.45)]">
-            <div className="flex items-center justify-between">
-              <span className="label-mono text-[#6B7178]">PADS</span>
-              <span className="rec-dot" />
-            </div>
-            <PadGrid className="mt-3" lit={[1, 3, 6, 9, 12, 16]} />
-            <div className="mt-3 h-[3px] rounded-full bg-[#2C3036]">
-              <div className="h-full w-[62%] rounded-full bg-live" />
-            </div>
+          {/* 這組 pad 真的敲得出聲音。原本是一張長得像播放器、按了卻沒反應的靜態圖 */}
+          <div className="w-[56%] rounded-[18px] border border-[#2C3036] bg-stage-2 p-4 shadow-[0_18px_40px_rgb(0_0_0/0.45)]">
+            <span className="label-mono text-[#6B7178]">PADS · 敲敲看</span>
+            <PlayablePads className="mt-3" />
           </div>
         </div>
       </section>

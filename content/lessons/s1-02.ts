@@ -45,7 +45,7 @@ export const s1_02: Lesson = {
     // ── 第 1 段 · 認識機器 ──────────────────────────────
     {
       ch: 0,
-      say: '電源鍵在<b>機器背面最右邊</b>。旁邊那個 USB-C 孔負責充電、傳音訊、也傳 MIDI。之後很多事都靠它。現在按下 <b>POWER</b> 開機。',
+      say: '電源鍵在<b>機器背面最右邊</b>。旁邊那個 <b>USB-C</b> 孔負責充電、傳音訊、也傳 MIDI。之後很多事都靠它。現在按下 <b>POWER</b> 開機。',
       targets: ['r_power', 'r_usb'],
       screen: { t1: 'BOOTING…', tabs: ['', '', ''], bots: ['', '', ''] },
       hear: '—',
@@ -66,7 +66,7 @@ export const s1_02: Lesson = {
     },
     {
       ch: 0,
-      say: '按 <b>STOP</b> 停下來，在 PLAY 左邊。記一個急救招式：<b>快速連按兩下 STOP</b>，所有聲音立刻消失。',
+      say: '按 <b>STOP</b> 停下來，在 <b>PLAY</b> 左邊。記一個急救招式：<b>快速連按兩下 STOP</b>，所有聲音立刻消失。',
       targets: ['stop'],
       screen: { t1: 'SEQ 01  ■  90 BPM' },
       hear: '安靜',
@@ -87,7 +87,7 @@ export const s1_02: Lesson = {
     },
     {
       ch: 0,
-      say: '整台機器的邏輯只有一句話。<b>上方三顆 B 鍵換頁</b>，<b>中間三顆 K 旋鈕調參數</b>。螢幕上排的 Trim、Tune、Filter 就是 B1、B2、B3。下排的 Start、End、Loop 就是 K1、K2、K3。',
+      say: '整台機器的邏輯只有一句話。<b>上方三顆 B 鍵換頁</b>，<b>中間三顆 K 旋鈕調參數</b>。螢幕上排的 Trim、Tune、Filter 就是 <b>B1</b>、<b>B2</b>、<b>B3</b>。下排的 Start、End、Loop 就是 <b>K1</b>、<b>K2</b>、<b>K3</b>。',
       targets: ['b1', 'b2', 'b3', 'k1', 'k2', 'k3'],
       screen: { t1: 'A01 Kick 02' },
       hear: '—',
@@ -101,7 +101,7 @@ export const s1_02: Lesson = {
     // ── 第 2 段 · 錄進來 ────────────────────────────────
     {
       ch: 1,
-      say: '按住左下角的 <b>SHIFT</b> 不放，再按 <b>SAMPLE</b>。看到 SAMPLE 下面那行紅字 INPUT CONFIG 亮起來了嗎？整個面板的紅字現在都亮了。那就是 SHIFT 的世界。',
+      say: '按住左下角的 <b>SHIFT</b> 不放，再按 <b>SAMPLE</b>。看到 <b>SAMPLE</b> 下面那行紅字 INPUT CONFIG 亮起來了嗎？整個面板的紅字現在都亮了。那就是 <b>SHIFT</b> 的世界。',
       targets: ['sample'],
       shift: true,
       screen: { t1: 'INPUT CONFIG', tabs: ['Source', 'Monitor', 'Thresh'], bots: ['', '', ''] },
@@ -109,7 +109,7 @@ export const s1_02: Lesson = {
     },
     {
       ch: 1,
-      say: '轉 <b>K1</b>，把 Source 選成 <b>Mic</b>。麥克風在右邊 ENCODER 旁邊那個小圖示的位置。',
+      say: '轉 <b>K1</b>，把 Source 選成 <b>Mic</b>。麥克風在右邊 <b>ENCODER</b> 旁邊那個小圖示的位置。',
       targets: ['k1', 'mic'],
       screen: { t1: 'SOURCE   MIC', tabs: ['Source', 'Monitor', 'Thresh'], bots: ['Mic', 'Auto', 'Off'] },
       hear: '—',
@@ -225,7 +225,7 @@ export const s1_02: Lesson = {
     // ── 第 4 段 · 變成節奏 ──────────────────────────────
     {
       ch: 3,
-      say: '按 <b>SEQ</b>，在 SAMPLE 右邊。現在 pad 不是用來發聲，而是用來選段落。亮的代表裡面有東西。',
+      say: '按 <b>SEQ</b>，在 <b>SAMPLE</b> 右邊。現在 pad 不是用來發聲，而是用來選段落。亮的代表裡面有東西。',
       targets: ['seq'],
       screen: { t1: 'SEQ 02  EMPTY', tabs: ['Seq', 'BPM', 'Rec Q'], bots: ['2 bars', '90.0', 'ON'] },
       hear: '—',
@@ -265,7 +265,7 @@ export const s1_02: Lesson = {
     },
     {
       ch: 3,
-      say: '最後兩步最重要。<b>按住 SHIFT 再按 PAD 11</b>，看 PAD 11 上面的紅字 RESAMPLE。機器會把整段循環收成一個聲音，放進你指定的空 pad。',
+      say: '最後兩步最重要。<b>按住 SHIFT 再按 PAD 11</b>，看 <b>PAD 11</b> 上面的紅字 RESAMPLE。機器會把整段循環收成一個聲音，放進你指定的空 pad。',
       targets: ['p11'],
       shift: true,
       screen: { t1: 'RESAMPLE SEQ → pad?', tabs: ['', '', ''], bots: ['', '', ''] },

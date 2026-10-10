@@ -73,9 +73,15 @@ function escape(s: string): string {
  *
  * 前後都加上界限判斷，否則 `RESAMPLE` 會被咬掉尾巴變成 RE + SAMPLE，
  * 那是最糟的一種錯 —— 看起來還很像對的。
+ *
+ * 第二道排除：面板上的紅字第二功能有幾個剛好含有按鍵名稱，
+ * DOUBLE SEQ、HALF SEQ、PAD PLAY、SAVE SAMPLE、TRIM SAMPLE。
+ * 它們是 pad 上的絲印，不是 SEQ／PLAY／SAMPLE 那顆鍵，不能畫成按鍵圖。
  */
+const SILK_PREFIX = '(?<!(?:DOUBLE|HALF|PAD|SAVE|TRIM)\\s)';
+
 export const KEY_PATTERN = new RegExp(
-  `(?<![A-Z0-9])(PAD\\s\\d{1,2}|${TOKENS.map(escape).join('|')})(?![A-Z0-9])`,
+  `(?<![A-Z0-9])${SILK_PREFIX}(PAD\\s\\d{1,2}|${TOKENS.map(escape).join('|')})(?![A-Z0-9])`,
   'g',
 );
 

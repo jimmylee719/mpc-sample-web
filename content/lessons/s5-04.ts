@@ -66,7 +66,7 @@ export const s5_04: Lesson = {
     },
     {
       ch: 1,
-      say: '<b>連打啟用中按住 SHIFT</b>，B1 到 B3 會變成三連音時值。',
+      say: '<b>連打啟用中按住 SHIFT</b>，<b>B1</b> 到 <b>B3</b> 會變成三連音時值。',
       targets: ['nrep'],
       shift: true,
       screen: { t1: 'TRIPLET', tabs: ['1/8T', '1/16T', '1/32T'] },
@@ -107,7 +107,7 @@ export const s5_04: Lesson = {
     },
     {
       ch: 2,
-      say: '<b>第四週</b>：加過門。每八小節做一次，用 NOTE REPEAT 或手打都行。',
+      say: '<b>第四週</b>：加過門。每八小節做一次，用 <b>NOTE REPEAT</b> 或手打都行。',
       targets: ['p2', 'nrep'],
       screen: { t1: 'WEEK 4  FILLS' },
       hear: '八小節一次的過門',

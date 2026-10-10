@@ -93,7 +93,7 @@ export const s2_08: Lesson = {
     },
     {
       ch: 2,
-      say: '用 USB-C 接電腦，<b>記憶卡會變成一個外接磁碟</b>，直接拖拉檔案。',
+      say: '用 <b>USB-C</b> 接電腦，<b>記憶卡會變成一個外接磁碟</b>，直接拖拉檔案。',
       targets: ['r_usb'],
       screen: { t1: 'SD CARD ACCESS' },
       hear: '—',

@@ -4,6 +4,7 @@ import { lessons, lessonHref, getLesson } from '@/content/lessons';
 import { VERIFIED_FACTS } from '@/content/reference/firmware';
 import { PadGrid, WaveRule } from '@/components/site/Deco';
 import { withShare } from '@/content/site';
+import { OfflineDownload } from '@/components/site/OfflineDownload';
 
 export const metadata: Metadata = withShare({
   title: '開始之前 — 開箱、接線、第一次充電',
@@ -38,7 +39,7 @@ const IN_BOX = [
   { item: '快速入門指南', yes: true, note: '紙本，很薄。完整版是官網那份使用手冊' },
   { item: '安全與保固手冊', yes: true, note: '別丟，保固要用' },
   { item: '變壓器（充電頭）', yes: false, note: '手冊連接圖直接寫明沒附。要自己準備，至少 5V 2A' },
-  { item: 'microSD 記憶卡', yes: false, note: '沒有卡就沒辦法把作品傳到電腦' },
+  { item: 'microSD 記憶卡', yes: false, note: '沒有卡就沒辦法把檔案傳到電腦，強烈建議先買' },
   { item: 'MIDI 轉接線', yes: false, note: '要接合成器才需要，認明 TRS Type A' },
   { item: '耳機', yes: false, note: '練習強烈建議用，理由見下面' },
 ];
@@ -100,7 +101,7 @@ export default function StartPage() {
 
         <p className="mt-4 rounded-lg bg-[#241E14] px-4 py-3 text-[13px] leading-relaxed text-[#E0B36B]">
           <b className="font-bold">先買一張 microSD 卡。</b>
-          沒有卡，你做完的歌拿不出來。傳到電腦時掛載的是記憶卡，不是機器內建的 8 GB。
+          傳檔到電腦時，電腦看到的是記憶卡，不是機器內建的 8 GB。沒有卡就只能用 USB 邊播邊錄，備份與傳樣本都會很麻煩。
         </p>
       </section>
 
@@ -192,12 +193,13 @@ export default function StartPage() {
         <div className="mt-3 rounded-xl border border-[#2C3036] bg-stage-2 p-4">
           <p className="text-[16px] font-semibold text-white">沒有網路的地方也能上課</p>
           <p className="mt-1 text-sm leading-relaxed text-[#8D9299]">
-            這個網站可以裝成 App。裝完之後，<b className="font-semibold text-white">有網路時先把要上的課點開一次</b>
-            ，那一課就會留在你的手機裡，之後在沒訊號的地方照樣讀得到。
+            出門前在有 Wi-Fi 的地方按下面的按鈕，整個網站就存進你的手機，到了沒訊號的地方照樣讀得到。
           </p>
+          <div className="mt-3">
+            <OfflineDownload compact />
+          </div>
           <p className="mt-2 text-sm leading-relaxed text-[#8D9299]">
-            安裝方式：iPhone 用 Safari 的分享按鈕選「加入主畫面」；Android 用 Chrome 右上角選單選「安裝應用程式」。
-            不裝也能用。
+            想要像 App 一樣從桌面打開：iPhone 用 Safari 的分享按鈕選「加入主畫面」；Android 用 Chrome 右上角選單選「安裝應用程式」。不裝也能離線使用。
           </p>
         </div>
       </section>

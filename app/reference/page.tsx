@@ -9,6 +9,8 @@ import { openQuestions, specGroups } from '@/content/reference/firmware';
 import { allTechniques, verifiedTechniqueCount } from '@/content/reference/techniques';
 import { officialTutorial, officialChapters } from '@/content/reference/official-order';
 import { KNOB_FX_TOTAL } from '@/content/reference/fx';
+import { inputs, outputs } from '@/content/reference/connections';
+import { allPrinciples } from '@/content/reference/principles';
 import { withShare } from '@/content/site';
 
 export const metadata: Metadata = withShare({
@@ -18,6 +20,20 @@ export const metadata: Metadata = withShare({
 });
 
 const PAGES = [
+  {
+    href: '/reference/connections',
+    tag: 'CONNECTIONS',
+    title: '接線總表',
+    note: '手機、電腦、唱盤、合成器怎麼接進來取樣，耳機、音響、錄音機怎麼接出去。每一列寫清楚要哪條線。',
+    count: () => `${inputs.length + outputs.length} 種接法`,
+  },
+  {
+    href: '/reference/principles',
+    tag: 'PRINCIPLES',
+    title: '原理',
+    note: '每個操作背後的為什麼。懂了原理，遇到課程沒寫到的狀況也推得出下一步。',
+    count: () => `${allPrinciples.length} 則`,
+  },
   {
     href: '/reference/specs',
     tag: 'SPECS',

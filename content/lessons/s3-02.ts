@@ -107,7 +107,7 @@ export const s3_02: Lesson = {
     },
     {
       ch: 2,
-      say: '機器會問你要放進哪一顆。<b>敲一顆空的 pad</b>，例如 PAD 13。',
+      say: '機器會問你要放進哪一顆。<b>敲一顆空的 pad</b>，例如 <b>PAD 13</b>。',
       targets: ['p13'],
       screen: { t1: 'RESAMPLE → PAD 13', wave: 52 },
       hear: '整段循環被錄成一個聲音',
@@ -142,7 +142,7 @@ export const s3_02: Lesson = {
     },
     {
       ch: 3,
-      say: '按 <b>STOP</b>。滿意了就<b>再存一次專案</b>，然後 SHIFT 加 PAD 11 收成第二層。',
+      say: '按 <b>STOP</b>。滿意了就<b>再存一次專案</b>，然後 <b>SHIFT</b> 加 <b>PAD 11</b> 收成第二層。',
       targets: ['stop', 'p11'],
       shift: true,
       screen: { t1: 'RESAMPLE SEQ → pad?' },

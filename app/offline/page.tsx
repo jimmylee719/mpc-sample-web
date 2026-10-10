@@ -25,6 +25,8 @@ const CANDIDATES: CandidatePage[] = [
   { href: '/reference/glossary', label: '名詞對照', group: '查詢' },
   { href: '/reference/troubleshoot', label: '疑難排解', group: '查詢' },
   { href: '/reference/specs', label: '規格總表', group: '查詢' },
+  { href: '/reference/connections', label: '接線總表', group: '查詢' },
+  { href: '/reference/principles', label: '原理', group: '查詢' },
   { href: '/reference/techniques', label: '延伸技巧', group: '查詢' },
   ...lessons.map((l) => ({
     href: lessonHref(l),

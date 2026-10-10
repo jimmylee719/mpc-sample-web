@@ -1,8 +1,8 @@
 # 敲敲取樣 · 一台就夠
 
-> 繁體中文的 Akai MPC Sample 取樣機教學網站。36 課、456 個步驟，每一步都寫清楚按哪一個鍵、螢幕會變成什麼、耳朵會聽到什麼。全程不需要電腦。
+> 繁體中文的 Akai MPC Sample 取樣機教學網站。36 課、473 個步驟，每一步都寫清楚按哪一個鍵、螢幕會變成什麼、耳朵會聽到什麼。全程不需要電腦。
 
-> Traditional Chinese tutorial site for the Akai MPC Sample standalone sampler. 36 lessons, 456 steps. Every step states which control to press, what the screen shows and what you should hear. No computer required.
+> Traditional Chinese tutorial site for the Akai MPC Sample standalone sampler. 36 lessons, 473 steps. Every step states which control to press, what the screen shows and what you should hear. No computer required.
 
 ## 這個網站可以被信任到什麼程度 / How facts are sourced
 
@@ -10,7 +10,7 @@
 - 來源優先序：官方手冊規格 > 官方支援知識庫 > 官方 FAQ > 媒體評測（僅限使用感受）> 社群與影片
 - 影片與官方衝突時以官方為準。只有社群支持、官方沒寫的，一律標「尚未驗證」，不寫成肯定語氣
 - 每一課都標明查核所依據的韌體版本與查核日期
-- 目前公開列出 5 項尚未驗證、7 項已查清的疑問
+- 目前公開列出 6 項尚未驗證、8 項已查清的疑問
 - The single authority is the official Akai user guide; community sources are used only for cross-checking
 
 ## 最容易被寫錯的事實 / Commonly mis-stated facts
@@ -27,7 +27,9 @@
 - 全機只有五個選單：Input Config、Fader、Time Correct、MIDI Config、Project。沒有 Preferences
 - 電池為手冊所寫的「約 5 小時連續播放」；官方 FAQ 的 6 小時與手冊不一致
 - 音訊 Recall 是最後 25 秒；序列 Recall 撈的是「上一個循環」，不是固定秒數
-- 要把作品傳到電腦必須有 microSD 卡。SD Card Access 掛載的是記憶卡，不是內建的 8 GB
+- 傳「檔案」到電腦必須有 microSD 卡：SD Card Access 掛載的是記憶卡，不是內建的 8 GB。沒有卡時仍可用 USB-C 把機器的聲音送進電腦錄下整首歌
+- 匯出的整首歌音檔存在內建還是記憶卡、什麼格式，官方手冊沒有寫，目前仍未驗證
+- MPC 3.8（2026-04-30）起，其他 MPC 與 MPC 桌面軟體可以載入 MPC Sample 專案；本機讀不了其他 MPC 的專案
 - 盒裝不含變壓器、microSD 卡與 MIDI 轉接線
 - 沒有 Wi-Fi，因此沒有其他 MPC 那種機上 Splice 音色庫整合
 
@@ -47,7 +49,7 @@
 
 學完手上有：一組乾淨可用的素材庫
 
-- [2-1 把外面的聲音抓進來](https://mpc-sample-web.vercel.app/learn/s2/record-external-audio)：30 分鐘、27 步。做完手上有一段從外部音源錄進 pad 的乾淨素材。不需要電腦。
+- [2-1 把外面的聲音抓進來](https://mpc-sample-web.vercel.app/learn/s2/record-external-audio)：30 分鐘、36 步。做完手上有一段從外部音源錄進 pad 的乾淨素材。不需要電腦。
 - [2-2 這段素材可以用嗎](https://mpc-sample-web.vercel.app/learn/s2/sampling-copyright-basics)：15 分鐘、17 步。做完手上有一套你自己判斷得出來的素材可用標準。不需要電腦。
 - [2-3 找到「只有鼓」的那四小節](https://mpc-sample-web.vercel.app/learn/s2/find-the-drum-break)：25 分鐘、12 步。做完手上有一段沒有其他樂器蓋住的乾淨鼓循環。不需要電腦。
 - [2-4 低通濾波留下鼓與貝斯](https://mpc-sample-web.vercel.app/learn/s2/lowpass-filter-drums-and-bass)：20 分鐘、10 步。做完手上有一段只剩低頻的節奏底層。不需要電腦。
@@ -69,7 +71,7 @@
 - [3-7 Step Edit 與 Swing](https://mpc-sample-web.vercel.app/learn/s3/step-edit-and-swing)：30 分鐘、14 步。做完手上有一段聽起來像人彈的循環。不需要電腦。
 - [3-8 錄製自動化](https://mpc-sample-web.vercel.app/learn/s3/recording-automation)：25 分鐘、15 步。做完手上有一段旋鈕自己會動的循環。不需要電腦。
 - [3-9 Song Mode 串接](https://mpc-sample-web.vercel.app/learn/s3/song-mode-arrangement)：25 分鐘、12 步。做完手上有一首從頭到尾播得完的歌。不需要電腦。
-- [3-10 匯出、備份、換音色](https://mpc-sample-web.vercel.app/learn/s3/export-backup-load-kit)：25 分鐘、12 步。做完手上有一個存在你自己電腦裡的作品音檔。不需要電腦。
+- [3-10 匯出、備份、換音色](https://mpc-sample-web.vercel.app/learn/s3/export-backup-load-kit)：25 分鐘、20 步。做完手上有一個存在你自己電腦裡的作品音檔。需要電腦。
 
 ### Season 4：聲音設計（7 課）
 
@@ -125,6 +127,8 @@
 
 ## 查詢區 / Reference
 
+- [接線總表：手機、電腦、唱盤、合成器怎麼接進來取樣，怎麼接出去錄整首歌](https://mpc-sample-web.vercel.app/reference/connections)
+- [原理：每個操作背後的道理，例如 Resample 為什麼能空出聲音、Warp 與 Repitch 差在哪](https://mpc-sample-web.vercel.app/reference/principles)
 - [規格總表：逐行對照官方手冊附錄的硬體與軟體規格](https://mpc-sample-web.vercel.app/reference/specs)
 - [快捷鍵總表：面板紅字的第二功能，含面板沒印出來的組合](https://mpc-sample-web.vercel.app/reference/shortcuts)
 - [旋鈕矩陣：同樣三顆旋鈕在每個畫面分別是什麼功能](https://mpc-sample-web.vercel.app/reference/knobs)
@@ -143,12 +147,14 @@
 - 內建喇叭是單聲道嗎？ — 官方從頭到尾沒有寫過 mono 這個字。手冊規格寫「3-watt speaker」，內文也一律用單數，數量欄位只有一個；MusicRadar 的評測直接寫「3-watt mono built-in speaker」。單聲道的可能性很高，但官方沒明講，所以不寫死。可以確定的是行為：接上 PHONES 或 AUDIO OUT 時喇叭自動停用，選內建麥克風當錄音來源時也會自動停用以防回授。
 - 內建 8 GB 儲存是不是 eMMC？ — 官方只寫「8 GB Internal Drive, including ~2 GB Factory Data」，沒有寫顆粒型式，手冊全文沒有出現 eMMC。網路上找得到「8 GB eMMC」的說法，本站 2026-09-20 回頭追來源，找不到官方文件也找不到任何拆機報告支持，所以不採用。這一項不影響任何操作，列出來只是為了誠實。
 - 韌體更新會不會影響既有專案？ — 官方的 MPC Sample 韌體更新說明整篇沒有提到既有資料，也沒有叫人先備份；1.2.0、1.2.1、1.3.0 三次更新的公開說明同樣沒有提到資料遺失。沒有寫不等於不會發生，所以本站的建議不變：更新前自己先按 SHIFT + PAD 16 存一次，重要專案先用 SD Card Access 複製一份到電腦。
+- 匯出的整首歌音檔，存在內建儲存還是記憶卡？ — 手冊只寫按 B2 匯出成音檔「which you can then transfer to a computer」，沒寫存到哪一個磁碟，也沒寫檔案格式。電腦只看得到記憶卡，所以如果它存在內建儲存，就要另外想辦法搬出來。在實機確認之前，本站在 3-10 同時教一條一定行得通的路：用 USB-C 接電腦，在電腦上直接錄機器播出來的聲音。
 - auto-snapping 到底是哪一個功能？ — 官方功能列表的三個詞裡，lazy-chopping 與 fixed-length sampling 已經查出對應的功能（見下方已排除的疑問）。剩下 auto-snapping 仍然只出現在 Advanced Sample Editing 那一行，手冊內文從頭到尾沒有任何一段說明。合理的猜測是切點或循環點會自動對齊，但官方沒有寫，本站不寫成肯定語氣。
 
 ## 已經查清楚的疑問 / Resolved questions
 
 - Recall 到底能撈回幾秒？ — 音訊 Recall 是 25 秒。序列 Recall 根本不是用秒算的，它撈的是「上一個循環」裡彈過的東西。
-- 沒插 microSD 卡，能不能把作品拿出來？ — 不行。沒有記憶卡就沒辦法把檔案傳到電腦。
+- 沒插 microSD 卡，能不能把作品拿出來？ — 檔案拿不出來，聲音可以。電腦只看得到記憶卡，看不到內建的 8 GB；但機器可以透過 USB-C 把聲音直接送進電腦，邊播邊錄就能存下整首歌。
+- 其他 MPC 開得了 MPC Sample 的專案嗎？ — 可以，從 MPC 3.8 開始。反方向只有鼓軌：其他 MPC 可以把一條 Drum Track 存成 MPC Sample 檔案帶回來，整個專案帶不回來。
 - MIDI 轉接線到底有沒有含在盒裝內？ — 沒有附。要接五針 MIDI 設備，轉接線要自己買，認明 TRS Type A。
 - 電池到底幾小時？ — 約 5 小時。
 - Splice 到底怎麼跟這台機器搭配？是機上整合還是要先下載再傳？ — 沒有機上整合。要先在電腦或手機下載，再傳進 microSD 卡。

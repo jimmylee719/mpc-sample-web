@@ -1,4 +1,5 @@
 import type { Shape } from './panel-layout';
+import { n2 } from '@/components/svg-num';
 
 /**
  * 把一個 Shape 畫成 SVG 元素。
@@ -14,15 +15,15 @@ export function renderShape(s: Shape, key: string) {
         <rect
           key={key}
           className={s.cls}
-          x={s.x}
-          y={s.y}
-          width={s.w}
-          height={s.h}
-          rx={s.rx}
+          x={n2(s.x)}
+          y={n2(s.y)}
+          width={n2(s.w)}
+          height={n2(s.h)}
+          rx={n2(s.rx)}
           fill={s.fill}
           stroke={s.stroke}
-          strokeWidth={s.sw}
-          opacity={s.opacity}
+          strokeWidth={n2(s.sw)}
+          opacity={n2(s.opacity)}
         />
       );
     case 'circle':
@@ -30,12 +31,12 @@ export function renderShape(s: Shape, key: string) {
         <circle
           key={key}
           className={s.cls}
-          cx={s.cx}
-          cy={s.cy}
-          r={s.r}
+          cx={n2(s.cx)}
+          cy={n2(s.cy)}
+          r={n2(s.r)}
           fill={s.fill}
           stroke={s.stroke}
-          strokeWidth={s.sw}
+          strokeWidth={n2(s.sw)}
         />
       );
     case 'line':
@@ -43,30 +44,30 @@ export function renderShape(s: Shape, key: string) {
         <line
           key={key}
           className={s.cls}
-          x1={s.x1}
-          y1={s.y1}
-          x2={s.x2}
-          y2={s.y2}
+          x1={n2(s.x1)}
+          y1={n2(s.y1)}
+          x2={n2(s.x2)}
+          y2={n2(s.y2)}
           stroke={s.stroke}
-          strokeWidth={s.sw}
+          strokeWidth={n2(s.sw)}
           strokeLinecap={s.cap}
         />
       );
     case 'path':
       return (
-        <path key={key} className={s.cls} d={s.d} fill={s.fill} stroke={s.stroke} strokeWidth={s.sw} />
+        <path key={key} className={s.cls} d={s.d} fill={s.fill} stroke={s.stroke} strokeWidth={n2(s.sw)} />
       );
     case 'text':
       return (
         <text
           key={key}
           className={s.cls}
-          x={s.x}
-          y={s.y}
+          x={n2(s.x)}
+          y={n2(s.y)}
           textAnchor={s.anchor}
           fill={s.fill}
           fontFamily={s.family}
-          fontSize={s.size}
+          fontSize={n2(s.size)}
           fontWeight={s.weight}
           fontStyle={s.style}
           letterSpacing={s.ls}

@@ -29,6 +29,8 @@ const STATIC: Array<[string, number]> = [
   ['/reference/troubleshoot', 0.6],
   ['/reference/firmware', 0.5],
   ['/reference/specs', 0.6],
+  ['/reference/connections', 0.7],
+  ['/reference/principles', 0.7],
   ['/reference/techniques', 0.6],
   ['/reference/official-order', 0.5],
   ['/samples', 0.5],

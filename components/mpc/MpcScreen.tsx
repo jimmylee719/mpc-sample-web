@@ -1,4 +1,5 @@
 import type { ScreenState } from '@/types/lesson';
+import { n2 } from '@/components/svg-num';
 import { DEFAULT_TABS, DEFAULT_BOTS } from '@/types/lesson';
 import { SCREEN } from './panel-layout';
 
@@ -88,10 +89,10 @@ export function MpcScreen({ screen }: { screen?: ScreenState }) {
           return (
             <rect
               key={`w-${k}`}
-              x={x0 + i * step}
-              y={cy - h / 2}
-              width={barW}
-              height={h}
+              x={n2(x0 + i * step)}
+              y={n2(cy - h / 2)}
+              width={n2(barW)}
+              height={n2(h)}
               fill={fill}
               opacity={barOpacity}
             />
