@@ -5,9 +5,9 @@
   "description": "敲敲取樣 · 一台就夠 — MPC Sample 中文教學",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run validate && npm run check:panel && npm run llms",
+    "prebuild": "tsx scripts/publish-generated.ts clean && npm run validate && npm run check:panel && npm run llms",
     "build": "next build",
-    "postbuild": "pagefind --site out && tsx scripts/make-offline-manifest.ts",
+    "postbuild": "pagefind --site out && tsx scripts/make-offline-manifest.ts && tsx scripts/publish-generated.ts copy",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
     "validate": "tsx scripts/validate-content.ts",

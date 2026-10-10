@@ -45,3 +45,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# 建置後才產生，每次重新產生，不進版控（scripts/publish-generated.ts）
+/public/pagefind/
+/public/offline-manifest.json
